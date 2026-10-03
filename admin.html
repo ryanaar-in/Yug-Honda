@@ -76,7 +76,6 @@ input,select,textarea{padding:9px 10px;border:1px solid #e5e7eb;border-radius:8p
 <table id="bookingTable"></table></div>
 </div>
 
-<!-- NEW SERVICE BOOKINGS SECTION - ONLY THIS ADDED -->
 <div id="serviceBookings" class="section">
 <div class="card"><h3>🛠️ Service Bookings - Firebase LIVE <span style="float:right"><button class="btn btn-dark" onclick="exportServiceBookings()">Export CSV</button> <button class="btn btn-red2" onclick="loadServiceBookings()">🔄 Refresh</button></span></h3>
 <p id="serviceStatus" style="font-size:11px;color:#666;margin:8px 0">LIVE syncing service bookings...</p>
@@ -89,11 +88,16 @@ input,select,textarea{padding:9px 10px;border:1px solid #e5e7eb;border-radius:8p
 <div class="form-row"><div><span class="label">Bike Name *</span><input id="bName" placeholder="e.g. SP 125"></div><div><span class="label">Category</span><select id="bCat"><option>Commuter Bike</option><option>Scooter</option><option>Premium Bike</option><option>Sports Bike</option></select></div></div>
 <div class="form-row" style="margin-top:10px">
 <div><span class="label" style="color:var(--red)">💰 Price *</span><input id="bPrice" type="number" placeholder="e.g. 95000"></div>
-<div><span class="label">CC</span><input id="bMileage" placeholder="e.g. 110 CC"></div>
+<div><span class="label">CC</span><input id="bMileage" placeholder="CC"></div>
 </div>
 <div style="margin-top:12px">
 <span class="label">📝 Description *</span>
 <textarea id="bDesc" rows="5" placeholder="Full bike details..."></textarea>
+</div>
+<div style="margin-top:12px">
+<span class="label">📋 Full Features Description (HTML Allowed) - Shows in See Features</span>
+<textarea id="bFullDesc" rows="8" placeholder="<h3>Engine</h3><ul><li>• 125cc</li><li>• Mileage 65 kmpl</li></ul><h3>Brakes</h3><p>Disc brake...</p>"></textarea>
+<p style="font-size:10px;color:#888;margin-top:4px">You can use HTML tags like &lt;h3&gt;, &lt;ul&gt;, &lt;li&gt;, &lt;p&gt;, &lt;b&gt;, &lt;br&gt; - This will show when user clicks See Features</p>
 </div>
 <div style="margin-top:14px;border:1px solid #f0f0f0;padding:12px;border-radius:10px;background:#fafafa">
 <span class="label">📸 Bike Images</span>
@@ -163,6 +167,7 @@ input,select,textarea{padding:9px 10px;border:1px solid #e5e7eb;border-radius:8p
 <div id="editModal" class="modal"><div class="modal-box"><h3>✏️ Edit Bike - Firebase</h3><br><span class="label">Bike Name</span><input id="editName"><span class="label" style="margin-top:8px">Category</span><select id="editCat"><option>Commuter Bike</option><option>Scooter</option><option>Premium Bike</option><option>Sports Bike</option></select>
 <div class="form-row" style="margin-top:10px"><div><span class="label">Price</span><input id="editPrice" type="number"></div><div><span class="label">Mileage</span><input id="editMileage"></div></div>
 <span class="label" style="margin-top:10px">Description</span><textarea id="editDesc" rows="5"></textarea>
+<span class="label" style="margin-top:10px">Full Features Description (HTML)</span><textarea id="editFullDesc" rows="8" placeholder="HTML allowed - Shows in See Features"></textarea>
 <div style="margin-top:12px"><span class="label">Images</span><div class="upload-box" onclick="document.getElementById('editFileInput').click()" style="padding:12px"><i class="fa-solid fa-plus"></i> Add More Photos</div><input type="file" id="editFileInput" accept="image/*" multiple style="display:none" onchange="handleEditFiles(event)"><div id="editImagePreview" class="bike-preview-grid" style="margin-top:10px"></div></div>
 <div style="display:flex;gap:10px;margin-top:14px"><button class="btn btn-red2" style="flex:1" id="saveEditBtn">Save to Firebase</button><button class="btn btn-outline" style="flex:1" onclick="closeEdit()">Cancel</button></div></div></div>
 
@@ -227,7 +232,6 @@ async function initLive(){
     });
   }catch(e){ console.log(e); }
 
-  // SERVICE BOOKINGS LIVE - NEW
   try{
     const q2 = query(collection(db, "serviceBookings"), orderBy("createdAt", "desc"));
     onSnapshot(q2, (snap)=>{
@@ -239,7 +243,6 @@ async function initLive(){
       document.getElementById('statService').innerText=arr.length;
     });
   }catch(e){
-    // if no index, fallback without orderBy
     onSnapshot(collection(db, "serviceBookings"), (snap)=>{
       let arr=[]; snap.forEach(d=>arr.push({id:d.id,...d.data()}));
       window._serviceBookings = arr;
@@ -314,14 +317,15 @@ document.getElementById('addBikeBtn').onclick = async function(){
   let price=document.getElementById('bPrice').value.trim();
   let mileage=document.getElementById('bMileage').value.trim();
   let desc=document.getElementById('bDesc').value.trim();
+  let fullDescription=document.getElementById('bFullDesc').value.trim();
   if(!name||!price||!desc||selectedBikeImgs.length===0){ alert('Name, Price, Description & Image required'); return; }
   this.innerText='Uploading to Firebase...'; this.disabled=true;
   try{
     await addDoc(collection(db, "bikes"), {
-      name, cat, imgs:selectedBikeImgs, specs:[{k:'price',v:price},{k:'mileage',v:mileage}], desc, price, stock:true, createdAt: serverTimestamp()
+      name, cat, imgs:selectedBikeImgs, specs:[{k:'price',v:price},{k:'mileage',v:mileage}], desc, price, fullDescription, stock:true, createdAt: serverTimestamp()
     });
     alert('✅ Bike Added LIVE to Firebase!');
-    document.getElementById('bName').value=''; document.getElementById('bPrice').value=''; document.getElementById('bMileage').value=''; document.getElementById('bDesc').value=''; selectedBikeImgs=[]; renderBikePreview();
+    document.getElementById('bName').value=''; document.getElementById('bPrice').value=''; document.getElementById('bMileage').value=''; document.getElementById('bDesc').value=''; document.getElementById('bFullDesc').value=''; selectedBikeImgs=[]; renderBikePreview();
   }catch(e){ alert('Error: '+e.message); }
   this.innerText='+ Add Bike To Firebase'; this.disabled=false;
 }
@@ -347,6 +351,7 @@ window.openEdit = function(id){
   document.getElementById('editPrice').value=b.price||'';
   document.getElementById('editMileage').value=b.specs?.find(s=>s.k==='mileage')?.v||'';
   document.getElementById('editDesc').value=b.desc||'';
+  document.getElementById('editFullDesc').value=b.fullDescription||b.featuresHTML||b.fullDesc||'';
   selectedEditImgs=b.imgs? [...b.imgs]:[];
   renderEditPreview();
   document.getElementById('editModal').style.display='flex';
@@ -362,6 +367,7 @@ document.getElementById('saveEditBtn').onclick = async function(){
       name: document.getElementById('editName').value.trim(),
       cat: document.getElementById('editCat').value,
       price, desc: document.getElementById('editDesc').value.trim(),
+      fullDescription: document.getElementById('editFullDesc').value.trim(),
       specs:[{k:'price',v:price},{k:'mileage',v:mileage}],
       imgs: selectedEditImgs
     });
@@ -510,7 +516,6 @@ window.updateStats = function(){
 }
 window.loadFirebaseBookings = async function(){ }
 
-// ===== SERVICE BOOKINGS FUNCTIONS - NEW =====
 window.renderServiceBookings = function(){
   let arr = window._serviceBookings||[];
   let html='<tr><th>Date</th><th>Name</th><th>Mobile</th><th>Bike Model</th><th>KM</th><th>Service Type</th><th>Preferred</th><th>Message</th><th>Status</th><th>Action</th></tr>';
