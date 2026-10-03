@@ -25,6 +25,15 @@
 .btn-red{background:#E4002B;color:#fff;width:100%}
 .btn-dark{background:#111;color:#fff;width:100%;margin-top:10px}
 .btn-outline{background:#fff;border:1px solid #e5e7eb;width:100%;margin-top:10px}
+/* See Features New CSS */
+.see-features-btn{margin-top:12px;background:#fff;border:1px solid #E4002B;color:#E4002B;padding:10px 14px;border-radius:8px;font-weight:700;font-size:12px;cursor:pointer;width:100%}
+.see-features-btn:hover{background:#E4002B;color:#fff}
+.features-box{display:none;margin-top:12px;background:#ffffff;border:1px solid #e5e7eb;border-radius:12px;padding:18px;line-height:1.8;font-size:14px;color:#1e293b}
+.features-box.open{display:block;animation:fadeIn 0.3s ease}
+.features-box h3,.features-box h2{margin:10px 0;color:#111}
+.features-box ul{padding-left:18px;margin:8px 0}
+.features-box li{margin:4px 0}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
 </style>
 </head>
 <body>
@@ -95,6 +104,7 @@ async function loadBike(){
     let imgs = bike.imgs && bike.imgs.length>0? bike.imgs : (bike.img?[bike.img]:['https://via.placeholder.com/500x300?text=No+Image']);
     let description = bike.desc || bike.description || 'No description added.';
     let myOffer = perBikeOffers[bike.name] || '';
+    let fullDescriptionHTML = bike.fullDescription || bike.featuresHTML || bike.fullDesc || '';
 
     document.getElementById('content').innerHTML=`
     <div class="main-grid">
@@ -114,6 +124,10 @@ async function loadBike(){
         </div>
         <h3 style="font-size:15px;margin-top:18px;margin-bottom:8px"><i class="fa-solid fa-align-left" style="color:#E4002B"></i> Description</h3>
         <div class="desc-box">${description}</div>
+
+        <button class="see-features-btn" id="seeFeaturesBtn"><i class="fa-solid fa-list-check"></i> See Features</button>
+        <div class="features-box" id="featuresBox">${fullDescriptionHTML || '<p style="color:#888">No features added yet from Admin.</p>'}</div>
+
         <div style="margin-top:22px">
           <button class="btn btn-red" id="bookBtn"><i class="fa-solid fa-calendar-check"></i> Book Test Ride - ${bike.name}</button>
           <button class="btn btn-dark" id="waBtn"><i class="fa-brands fa-whatsapp"></i> WhatsApp Enquiry</button>
@@ -143,6 +157,21 @@ async function loadBike(){
     window.setMain = function(index){
       document.getElementById('mainImg').src=window._bikeImgs[index];
       document.querySelectorAll('.thumbs img').forEach((img,i)=>{ img.classList.toggle('active', i===index) });
+    };
+
+    // See Features Toggle Logic
+    const btn = document.getElementById('seeFeaturesBtn');
+    const box = document.getElementById('featuresBox');
+    btn.onclick = ()=>{
+      const isOpen = box.classList.contains('open');
+      if(isOpen){
+        box.classList.remove('open');
+        btn.innerHTML = '<i class="fa-solid fa-list-check"></i> See Features';
+      } else {
+        box.classList.add('open');
+        btn.innerHTML = '<i class="fa-solid fa-xmark"></i> Hide Features';
+        box.scrollIntoView({behavior:'smooth', block:'nearest'});
+      }
     };
 
   }catch(e){
