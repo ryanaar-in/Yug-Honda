@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us - Yug Honda | Pusa, Samastipur</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Inter',sans-serif;background:#f5f5f6;color:#111}
+:root{--red:#E4002B}
+.header{background:#12171e;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:12px 4%;position:sticky;top:0;z-index:99}
+.header a{color:#9aa0a8;text-decoration:none;font-size:13px;margin-left:18px}.header a.active{color:#fff;border-bottom:2px solid var(--red)}
+.hero{background:#12171e;color:#fff;padding:40px 4% 30px}
+.hero h1{font-family:'Outfit';font-size:36px}.hero p{font-size:12px;color:#9aa0a8;margin-top:6px;max-width:600px;line-height:1.6}
+.container{padding:22px 4%;max-width:1150px;margin:0 auto;display:grid;grid-template-columns:1.1fr 0.9fr;gap:20px}
+@media(max-width:900px){.container{grid-template-columns:1fr}}
+.card{background:#fff;border-radius:16px;padding:22px;border:1px solid #e5e7eb}
+.info-row{display:flex;gap:14px;margin-bottom:16px;align-items:flex-start}
+.icon{width:42px;height:42px;border-radius:10px;background:#fef2f2;color:var(--red);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.btn{padding:12px 18px;border-radius:10px;border:none;font-weight:700;font-size:12px;cursor:pointer;width:100%;margin-top:10px;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-red{background:var(--red);color:#fff}.btn-dark{background:#111;color:#fff}.btn-green{background:#25D366;color:#fff}.btn-outline{background:#fff;border:1px solid #ddd;color:#111}
+input,select,textarea{width:100%;padding:11px 12px;border:1px solid #e5e7eb;border-radius:10px;font-size:13px;margin-top:6px;outline:none}
+input:focus,textarea:focus{border-color:var(--red)}
+label{font-size:11px;font-weight:600;color:#444;margin-top:12px;display:block}
+.footer{background:#12171e;color:#fff;padding:24px 4%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;margin-top:30px}
+.social a{width:36px;height:36px;background:#1f2937;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:#fff;margin-right:8px;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="header"><div><b>YUG HONDA</b> <span style="font-size:11px;color:#888" id="headSub">Pusa</span></div><div><a href="index.html">Home</a><a href="bikes.html">Bikes</a><a href="offers.html">Offers</a><a href="gallery.html">Gallery</a><a href="about.html">About</a><a class="active" href="contact.html">Contact</a></div></div>
+
+<div class="hero">
+<h1>Get in Touch with <span style="color:var(--red)">Yug Honda</span></h1>
+<p id="heroAddr">Loading showroom details...</p>
+</div>
+
+<div class="container">
+<div>
+<div class="card">
+<h3 style="font-family:'Outfit';font-size:18px"><i class="fa-solid fa-location-dot" style="color:var(--red)"></i> Visit Our Showroom</h3>
+<div style="margin-top:18px">
+<div class="info-row"><div class="icon"><i class="fa-solid fa-store"></i></div><div><b style="font-size:13px" id="sName">Yug Honda</b><p style="font-size:12px;color:#666;margin-top:2px;line-height:1.5" id="sAddr">Loading...</p></div></div>
+<div class="info-row"><div class="icon"><i class="fa-solid fa-phone"></i></div><div><b style="font-size:12px">Phone</b><p style="font-size:13px;color:#111" id="sPhone">Loading...</p></div></div>
+<div class="info-row"><div class="icon"><i class="fa-brands fa-whatsapp"></i></div><div><b style="font-size:12px">WhatsApp</b><p style="font-size:13px;color:#111" id="sWA">Loading...</p></div></div>
+<div class="info-row"><div class="icon"><i class="fa-solid fa-envelope"></i></div><div><b style="font-size:12px">Email</b><p style="font-size:13px;color:#111" id="sEmail">Loading...</p></div></div>
+<div class="info-row"><div class="icon"><i class="fa-solid fa-clock"></i></div><div><b style="font-size:12px">Working Hours</b><p style="font-size:13px;color:#111" id="sHours">9:30 AM - 7:30 PM</p></div></div>
+</div>
+<button class="btn btn-red" onclick="openMap()"><i class="fa-solid fa-map-location-dot"></i> Get Directions on Google Maps</button>
+<button class="btn btn-green" onclick="openWA()"><i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp</button>
+<button class="btn btn-dark" onclick="callNow()"><i class="fa-solid fa-phone"></i> Call Now</button>
+</div>
+
+<div class="card" style="margin-top:16px">
+<h4 style="font-size:13px">Why Visit Us?</h4>
+<ul style="font-size:12px;color:#555;line-height:2;margin-top:8px;padding-left:18px">
+<li>Test ride all Honda models</li>
+<li>Instant finance approvals.</li>
+<li>Exchange your old bike for best price</li>
+<li>Genuine accessories & service</li>
+</ul>
+<div style="display:flex;gap:10px;margin-top:14px" id="socialRow">
+<a id="fbL" href="#" target="_blank" style="width:38px;height:38px;background:#1877F2;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none"><i class="fa-brands fa-facebook-f"></i></a>
+<a id="instaL" href="#" target="_blank" style="width:38px;height:38px;background:linear-gradient(45deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none"><i class="fa-brands fa-instagram"></i></a>
+<a id="ytL" href="#" target="_blank" style="width:38px;height:38px;background:#FF0000;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none"><i class="fa-brands fa-youtube"></i></a>
+</div>
+</div>
+</div>
+
+<div>
+<div class="card">
+<h3 style="font-family:'Outfit';font-size:18px">Send an Enquiry</h3>
+<p style="font-size:11px;color:#888;margin-top:4px">Fill the form and our team will call you within 30 minutes.</p>
+<label>Full Name *</label><input id="cName" placeholder="e.g. Rahul Kumar">
+<label>Mobile Number *</label><input id="cMobile" placeholder="e.g. 9876543210">
+<label>Interested Model</label><select id="cBike"><option value="">Loading bikes from Firebase...</option></select>
+<label>Message</label><textarea id="cMsg" rows="4" placeholder="I want to know about price, finance, test ride..."></textarea>
+<button class="btn btn-red" id="sendBtn"><i class="fa-solid fa-paper-plane"></i> Send Enquiry</button>
+<p style="font-size:10px;color:#888;margin-top:8px;text-align:center"><i class="fa-solid fa-lock"></i> Your details are safe and LIVE in Admin Panel</p>
+</div>
+
+<div class="card" style="margin-top:16px;padding:0;overflow:hidden">
+<iframe id="mapFrame" src="https://maps.google.com/maps?q=Yug%20Honda%20Pusa&t=&z=13&ie=UTF8&iwloc=&output=embed" style="width:100%;height:220px;border:0"></iframe>
+<div style="padding:12px;display:flex;justify-content:space-between;align-items:center">
+<span style="font-size:11px;color:#666"><i class="fa-solid fa-location-dot" style="color:var(--red)"></i> <span id="mapAddr">Harpur Mahmada, Pusa</span></span>
+<button class="btn-outline" style="padding:6px 12px;border-radius:20px;font-size:10px;width:auto;margin:0" onclick="openMap()">Open in Maps</button>
+</div>
+</div>
+</div>
+</div>
+
+<div class="footer">
+<div><b id="footerName">Yug Honda</b><br><span style="font-size:11px;color:#9aa0a8" id="footerAddr">Harpur Mahmada, Pusa, Samastipur</span></div>
+<div class="social"><a id="fFb" href="#" target="_blank"><i class="fa-brands fa-facebook-f"></i></a><a id="fInsta" href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a><a id="fYt" href="#" target="_blank"><i class="fa-brands fa-youtube"></i></a><a id="fWa" href="#" target="_blank"><i class="fa-brands fa-whatsapp"></i></a></div>
+<div style="font-size:11px;color:#9aa0a8" id="footerContact">+91 98765 43210 | yughonda@gmail.com</div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, collection, addDoc, getDocs, doc, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAufUEH0vcrBwYxi7Q42n4_NABGiAesgT4",
+  authDomain: "yug-honda.firebaseapp.com",
+  projectId: "yug-honda",
+  storageBucket: "yug-honda.firebasestorage.app",
+  messagingSenderId: "7480589189",
+  appId: "1:7480589189:web:d4c717eb42a49a26f6e2ec"
+};
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+let globalSettings = {};
+
+async function loadAll(){
+  try{
+    const settingsSnap = await getDoc(doc(db, "settings", "main"));
+    if(settingsSnap.exists()) globalSettings = settingsSnap.data();
+
+    const bikesSnap = await getDocs(collection(db, "bikes"));
+    let bikes = bikesSnap.docs.map(d=>d.data()).filter(b=>b.stock!==false);
+
+    renderSettings(globalSettings);
+    renderBikes(bikes);
+  }catch(e){
+    console.error(e);
+    document.getElementById('heroAddr').innerText = "Visit our showroom in Harpur Mahmada, Pusa";
+  }
+}
+
+function renderSettings(s){
+  if(!s || Object.keys(s).length===0) return;
+  if(s.name){document.getElementById('sName').innerText=s.name; document.getElementById('footerName').innerText=s.name; document.getElementById('headSub').innerText=s.name;}
+  if(s.addr){document.getElementById('sAddr').innerText=s.addr; document.getElementById('mapAddr').innerText=s.addr; document.getElementById('footerAddr').innerText=s.addr; document.getElementById('heroAddr').innerText='We are here to help you find your perfect Honda ride. Visit our showroom in '+s.addr+' or connect with us online.'}
+  if(s.phone){document.getElementById('sPhone').innerText=s.phone; document.getElementById('footerContact').innerText=s.phone+' | '+(s.email||'');}
+  if(s.wa) document.getElementById('sWA').innerText='+'+s.wa;
+  if(s.email) document.getElementById('sEmail').innerText=s.email;
+  if(s.hours) document.getElementById('sHours').innerText=s.hours;
+  if(s.fb){document.getElementById('fbL').href=s.fb; document.getElementById('fFb').href=s.fb;} else {document.getElementById('fbL').style.display='none'; document.getElementById('fFb').style.display='none';}
+  if(s.insta){document.getElementById('instaL').href=s.insta; document.getElementById('fInsta').href=s.insta;} else {document.getElementById('instaL').style.display='none'; document.getElementById('fInsta').style.display='none';}
+  if(s.yt){document.getElementById('ytL').href=s.yt; document.getElementById('fYt').href=s.yt;} else {document.getElementById('ytL').style.display='none'; document.getElementById('fYt').style.display='none';}
+  if(s.wa){document.getElementById('fWa').href='https://wa.me/'+s.wa;}
+  if(s.map){try{let q=encodeURIComponent(s.map); document.getElementById('mapFrame').src='https://maps.google.com/maps?q='+q+'&z=15&output=embed';}catch(e){}}
+}
+
+function renderBikes(bikes){
+  let sel=document.getElementById('cBike');
+  sel.innerHTML='<option value="">Select a model</option>';
+  bikes.forEach(b=>{let o=document.createElement('option'); o.value=b.name; o.textContent=b.name; sel.appendChild(o);});
+}
+
+window.openMap = function(){ window.open(globalSettings.map||'https://maps.google.com/?q=Yug+Honda+Pusa','_blank')}
+window.openWA = function(){ window.open('https://wa.me/'+(globalSettings.wa||'919876543210')+'?text=Hi Yug Honda, I want to visit your showroom in Pusa','_blank')}
+window.callNow = function(){ window.location.href='tel:'+(globalSettings.phone||'+919876543210')}
+
+document.getElementById('sendBtn').onclick = async function(){
+  let name=document.getElementById('cName').value.trim(); 
+  let mobile=document.getElementById('cMobile').value.trim(); 
+  let bike=document.getElementById('cBike').value; 
+  let msg=document.getElementById('cMsg').value.trim();
+  if(!name||!mobile){alert('Please enter Name & Mobile');return}
+  this.innerHTML='Sending...'; this.disabled=true;
+  try{
+    await addDoc(collection(db, "enquiries"), {
+      name, phone: mobile, mobile, bike: bike || 'General Enquiry', model: bike || 'General Enquiry',
+      message: msg, source: 'contact.html', status: 'new', createdAt: serverTimestamp()
+    });
+    alert('✅ Thank you '+name+'! We will call you within 30 minutes.');
+    document.getElementById('cName').value='';document.getElementById('cMobile').value='';document.getElementById('cMsg').value='';
+  }catch(err){ alert('Error: '+err.message); }
+  this.innerHTML='<i class="fa-solid fa-paper-plane"></i> Send Enquiry'; this.disabled=false;
+}
+
+loadAll();
+</script>
+</body>
+</html>

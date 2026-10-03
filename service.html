@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Service Center - Yug Honda Pusa</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Inter',sans-serif;background:#f5f5f6}
+:root{--red:#E4002B}
+.header{background:#12171e;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:14px 4%;position:sticky;top:0;z-index:99;gap:20px}
+.logo{display:flex;align-items:center;gap:10px;white-space:nowrap}.logo h1{font-family:'Outfit';font-size:22px}
+.menu{display:flex;gap:22px;list-style:none;align-items:center}.menu a{color:#9aa0a8;text-decoration:none;font-size:13px;white-space:nowrap;transition:0.2s}.menu a:hover{color:#fff}.menu a.active{color:#fff;border-bottom:2px solid var(--red);padding-bottom:3px}
+.hamburger{display:none;font-size:22px;cursor:pointer;background:none;border:none;color:#fff}
+.mobile-menu{display:none;flex-direction:column;background:#12171e;padding:14px 4%;gap:12px;position:sticky;top:56px;z-index:98}
+.mobile-menu a{color:#9aa0a8;text-decoration:none;font-size:13px;padding:10px 0;border-bottom:1px solid #222}
+.service-hero{background:#12171e;color:#fff;padding:40px 4%;display:grid;grid-template-columns:1.2fr 0.8fr;gap:20px;align-items:center}
+.service-hero h1{font-family:'Outfit';font-size:36px;line-height:1.1}
+.service-hero p{font-size:13px;color:#9aa0a8;margin-top:10px;line-height:1.6}
+.btn-red{background:var(--red);color:#fff;border:none;padding:12px 20px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer}
+.btn-outline{background:transparent;border:1px solid #fff;color:#fff;padding:11px 20px;border-radius:8px;font-size:13px;margin-left:8px;cursor:pointer}
+.container{padding:20px 4%;display:grid;grid-template-columns:1fr 0.9fr;gap:20px}
+.box{background:#fff;border-radius:14px;padding:18px;border:1px solid #eee}
+.box h3{font-family:'Outfit';font-size:16px;margin-bottom:12px}
+.list{list-style:none;margin-top:8px}
+.list li{font-size:12px;padding:8px 0;border-bottom:1px solid #f3f4f6;display:flex;gap:10px}
+.list li i{color:var(--red);margin-top:2px}
+.input{width:100%;padding:11px 12px;border:1px solid #ddd;border-radius:8px;font-size:12px;margin-top:6px}
+.label{font-size:11px;font-weight:700;color:#444;margin-top:12px;display:block;letter-spacing:0.3px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.warranty-section{background:#0f141b;color:#fff;padding:28px 4%;margin:20px 4%;border-radius:18px;position:relative;overflow:hidden;border:1px solid #1f2937}
+.warranty-top{display:grid;grid-template-columns:1fr 320px;gap:24px;align-items:center}
+.warranty-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
+.w-item{background:#171e29;border:1px solid #222c3a;border-radius:12px;padding:14px;display:flex;gap:12px;align-items:flex-start}
+.w-item i{color:var(--red);font-size:18px;margin-top:2px}
+.w-item b{font-size:12px;display:block}
+.w-item span{font-size:10px;color:#9aa0a8;line-height:1.4;display:block;margin-top:3px}
+.video-card{background:#000;border-radius:12px;overflow:hidden;border:1px solid #222;position:relative;cursor:pointer}
+.video-thumb{width:100%;height:200px;object-fit:cover;opacity:0.8}
+.video-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column}
+.play-btn{width:56px;height:56px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;box-shadow:0 8px 20px rgba(228,0,43,0.4)}
+.parts-note{font-size:9px;color:#6b7280;margin-top:14px;line-height:1.5;border-top:1px solid #1f2937;padding-top:10px}
+.footer{background:#12171e;color:#fff;padding:20px 4%;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:20px;margin-top:20px}
+.footer a{color:#9aa0a8;text-decoration:none;font-size:12px;display:block;margin:6px 0}
+@media(max-width:900px){
+.service-hero{grid-template-columns:1fr}.container{grid-template-columns:1fr}.warranty-top{grid-template-columns:1fr}.warranty-grid{grid-template-columns:1fr}.menu{display:none}.hamburger{display:block}.footer{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<header class="header">
+<div class="logo"><img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Honda_Logo.svg" style="height:28px;filter:brightness(0) invert(1)"><h1>Yug Honda</h1></div>
+<ul class="menu">
+<li><a href="index.html">Home</a></li>
+<li><a href="bikes.html" target="_blank">Bikes & Scooters</a></li>
+<li><a class="active" href="service.html">Service</a></li>
+<li><a href="offers.html" target="_blank">Offers</a></li>
+<li><a href="gallery.html" target="_blank">Gallery</a></li>
+<li><a href="about.html" target="_blank">About Us</a></li>
+<li><a href="contact.html" target="_blank">Contact</a></li>
+</ul>
+<div style="display:flex;align-items:center;gap:14px">
+<div style="font-size:11px;white-space:nowrap" id="headerPhone">+91 98765 43210</div>
+<button class="hamburger" id="hamburgerBtn"><i class="fa-solid fa-bars"></i></button>
+</div>
+</header>
+<div id="mobileMenu" class="mobile-menu">
+<a href="index.html">Home</a><a href="bikes.html">Bikes & Scooters</a><a href="service.html">Service</a><a href="offers.html">Offers</a><a href="gallery.html">Gallery</a><a href="about.html">About Us</a><a href="contact.html">Contact</a>
+</div>
+
+<section class="service-hero">
+<div>
+<div style="font-size:10px;letter-spacing:2.5px;color:var(--red);font-weight:800">AUTHORIZED SERVICE CENTER</div>
+<h1>Honda Service<br>At Yug Honda Pusa</h1>
+<p>Certified technicians, genuine parts, and quick service. Book your service in 30 seconds and keep your Honda in perfect condition.</p>
+<div style="margin-top:16px"><button class="btn-red" onclick="document.getElementById('bookForm').scrollIntoView({behavior:'smooth'})">Book Service Now →</button><button class="btn-outline" onclick="window.open('https://maps.google.com/?q=Yug+Honda+Pusa','_blank')">Get Directions</button></div>
+<div style="display:flex;gap:18px;margin-top:18px;font-size:11px"><span><i class="fa-solid fa-clock" style="color:var(--red)"></i> 9 AM - 8 PM</span><span><i class="fa-solid fa-wrench" style="color:var(--red)"></i> Genuine Parts</span><span><i class="fa-solid fa-shield-halved" style="color:var(--red)"></i> 10 Year Warranty Support</span></div>
+</div>
+<div class="box" style="background:#171e29;border-color:#222;color:#fff">
+<h3 style="color:#fff">What we do in Service?</h3>
+<ul class="list">
+<li><i class="fa-solid fa-check"></i> Engine Oil Level Check & Replacement</li>
+<li><i class="fa-solid fa-check"></i> Chain Cleaning, Lubrication & Adjustment</li>
+<li><i class="fa-solid fa-check"></i> Brake Cleaning & Inspection</li>
+<li><i class="fa-solid fa-check"></i> Air Filter Cleaning</li>
+<li><i class="fa-solid fa-check"></i> Complete Body Wash & Polish</li>
+<li><i class="fa-solid fa-check"></i> 15 Point Safety Checkup</li>
+<li><i class="fa-solid fa-check"></i> Electrical & Battery Checkup</li>
+</ul>
+<p style="font-size:10px;color:#9aa0a8;margin-top:10px">* Consumables and spare parts are charged extra as per actuals.</p>
+</div>
+</section>
+
+<div class="container">
+<div class="box" id="bookForm">
+<h3>Book Your Service</h3>
+<p style="font-size:11px;color:#666">Fill details, we will confirm shortly</p>
+<label class="label">FULL NAME</label>
+<input id="sName" class="input" placeholder="Enter your name">
+<div class="grid2">
+<div><label class="label">MOBILE NUMBER</label><input id="sMobile" class="input" placeholder="+91 ..."></div>
+<div><label class="label">KILOMETERS DRIVEN</label><input id="sKm" class="input" placeholder="e.g. 3500"></div>
+</div>
+<label class="label">BIKE MODEL</label>
+<input id="sModel" class="input" placeholder="Type your bike model e.g. Shine 125, Activa 6G">
+<label class="label">SERVICE TYPE</label>
+<select id="sType" class="input">
+<option>Free Service - 1st</option>
+<option>Free Service - 2nd</option>
+<option>Free Service - 3rd</option>
+<option>Free Service - 4th</option>
+<option>Paid Service</option>
+<option>General Repair</option>
+<option>Accident Repair</option>
+</select>
+<div class="grid2">
+<div><label class="label">PREFERRED DATE</label><input id="sDate" type="date" class="input"></div>
+<div><label class="label">PREFERRED TIME</label><select id="sTime" class="input"><option>9 AM - 11 AM</option><option>11 AM - 1 PM</option><option>2 PM - 4 PM</option><option>4 PM - 6 PM</option></select></div>
+</div>
+<label class="label">MESSAGE (OPTIONAL)</label>
+<textarea id="sMsg" class="input" rows="3" placeholder="Any issue with your bike?"></textarea>
+<button class="btn-red" style="width:100%;margin-top:14px" id="submitBtn" onclick="submitService()">Confirm Booking →</button>
+<p style="font-size:10px;color:#888;text-align:center;margin-top:8px">Service Time: 9:00 AM - 8:00 PM | Pusa Showroom Only</p>
+<p id="successMsg" style="display:none;font-size:12px;color:green;text-align:center;margin-top:10px;font-weight:700">✓ Booking Confirmed! We will call you shortly.</p>
+</div>
+<div>
+<div class="box">
+<h3>Service Charges</h3>
+<ul class="list">
+<li><i class="fa-solid fa-wrench"></i><div><b>Free Service</b><br><span style="font-size:11px;color:#666">As per Honda schedule. Only consumables chargeable.</span></div></li>
+<li><i class="fa-solid fa-wrench"></i><div><b>Paid Service</b><br><span style="font-size:11px;color:#666">Complete checkup, wash and labour included. Parts extra.</span></div></li>
+<li><i class="fa-solid fa-wrench"></i><div><b>General & Accident Repair</b><br><span style="font-size:11px;color:#666">Estimate after inspection.</span></div></li>
+</ul>
+</div>
+<div class="box" style="margin-top:12px;background:#12171e;color:#fff;border-color:#12171e">
+<h3 style="color:#fff">Need Help?</h3>
+<p style="font-size:11px;color:#9aa0a8;margin-top:6px">Call our service advisor for instant support.</p>
+<p style="font-size:13px;margin-top:10px" id="servicePhone">+91 98765 43210</p>
+</div>
+</div>
+</div>
+
+<section class="warranty-section">
+<div class="warranty-top">
+<div>
+<div style="display:inline-block;background:#1f2937;padding:4px 10px;border-radius:20px;font-size:10px;letter-spacing:1px">HONDA 10 YEAR WARRANTY</div>
+<h2 style="font-family:'Outfit';font-size:28px;margin-top:10px;line-height:1.1">10 Years / 1 Lakh KM<br>Warranty Support</h2>
+<p style="font-size:11px;color:#9aa0a8;margin-top:8px;line-height:1.6">Genuine Honda 10 Year Warranty is available across 1000+ touchpoints PAN India. Transferable to new owner. Peace of mind for a decade.</p>
+<div class="warranty-grid">
+<div class="w-item"><i class="fa-solid fa-shield-halved"></i><div><b>Genuine Honda Products</b><span>Engine: Crank Shaft, Cylinder, Piston, Cam Shaft, Engine Cases, etc. (15 Major Parts)</span></div></div>
+<div class="w-item"><i class="fa-solid fa-bolt"></i><div><b>Certified Electrical Parts</b><span>ECM, Fuel Pump, Injector, Regulator, Alternator, Self Starter & 13 more (19 Parts)</span></div></div>
+<div class="w-item"><i class="fa-solid fa-repeat"></i><div><b>Warranty Transferable</b><span>Warranty can be transferred to new owner when you resell. Higher resale value.</span></div></div>
+<div class="w-item"><i class="fa-solid fa-location-dot"></i><div><b>PAN India Coverage</b><span>Claim at 1000+ Honda touchpoints across India. Not limited to buying showroom.</span></div></div>
+<div class="w-item"><i class="fa-solid fa-percent"></i><div><b>Peace of Mind</b><span>10 Years or 1,00,000 KM, whichever comes first. Standard 3 Years + 7 Years Extended.</span></div></div>
+<div class="w-item"><i class="fa-solid fa-headset"></i><div><b>24/7 Support</b><span>At Yug Honda Pusa - Quick claim assistance and genuine parts availability.</span></div></div>
+</div>
+<p class="parts-note">Engine Parts: Crank Shaft, Crank Cases, Cylinder, Piston, Connecting Rod, Valves, Cam Shaft, Engine Head, etc. Electrical: ECM/ECU, Fuel Pump, Fuel Injector, Oil Pump, Regulator Rectifier, Alternator, Self Motor, etc. *Terms and conditions apply as per Honda India policy.</p>
+<div style="margin-top:18px">
+<a href="warranty.html" style="display:inline-block;background:#fff;color:#0f141b;padding:12px 24px;border-radius:8px;text-decoration:none;font-size:13px;font-weight:800;">Know More About 10 Year Warranty →</a>
+<p style="font-size:10px;color:#6b7280;margin-top:8px">Complete details, benefits, coverage & terms</p>
+</div>
+</div>
+<div class="video-card" onclick="window.open('https://youtube.com/shorts/hOKavyuiyxg?si=2WUK6IpXyodwCLXe','_blank')">
+<img class="video-thumb" src="https://img.youtube.com/vi/hOKavyuiyxg/hqdefault.jpg" onerror="this.src='https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=600&q=80'">
+<div class="video-play">
+<div class="play-btn"><i class="fa-solid fa-play"></i></div>
+<div style="margin-top:10px;background:rgba(0,0,0,0.7);padding:6px 12px;border-radius:20px;font-size:11px">Watch: 10 Year Warranty Explained</div>
+<div style="margin-top:6px;font-size:10px;opacity:0.8">Click to watch on YouTube</div>
+</div>
+</div>
+</div>
+</section>
+
+<footer class="footer">
+<div><h3>Yug Honda</h3><p style="font-size:11px;color:#9aa0a8;margin-top:8px" id="footerAddr">Harpur Mahmada, Pusa, Samastipur, Bihar - 848125</p><p style="font-size:11px;color:#9aa0a8" id="footerPhone">+91 98765 43210</p></div>
+<div><b style="font-size:12px">Quick Links</b><a href="bikes.html">Bikes</a><a href="service.html">Service</a><a href="warranty.html">Warranty</a><a href="offers.html">Offers</a><a href="contact.html">Contact</a></div>
+<div><b style="font-size:12px">Support</b><a href="contact.html">Contact Us</a><a href="#">Book Service</a><a href="admin.html">Admin Panel</a></div>
+<div><b style="font-size:12px">Showroom</b><p style="font-size:11px;color:#9aa0a8;margin-top:6px" id="footerHours">Open: 9:00 AM - 8:00 PM</p></div>
+</footer>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, doc, getDoc, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+const firebaseConfig = {
+  apiKey: "AIzaSyAufUEH0vcrBwYxi7Q42n4_NABGiAesgT4",
+  authDomain: "yug-honda.firebaseapp.com",
+  projectId: "yug-honda",
+  storageBucket: "yug-honda.firebasestorage.app",
+  messagingSenderId: "7480589189",
+  appId: "1:7480589189:web:d4c717eb42a49a26f6e2ec"
+};
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+async function loadSettings(){
+  try{
+    const snap = await getDoc(doc(db,"settings","main"));
+    if(snap.exists()){
+      let s=snap.data();
+      if(s.phone){
+        document.getElementById('headerPhone').innerText=s.phone;
+        document.getElementById('servicePhone').innerText=s.phone;
+        document.getElementById('footerPhone').innerText=s.phone;
+      }
+      if(s.addr) document.getElementById('footerAddr').innerText=s.addr;
+      if(s.hours) document.getElementById('footerHours').innerText='Open: '+s.hours;
+    }
+  }catch(e){ console.log(e); }
+}
+loadSettings();
+
+document.getElementById('hamburgerBtn').onclick = () => {
+  let m=document.getElementById('mobileMenu');
+  m.style.display = m.style.display==='flex'? 'none':'flex';
+}
+
+window.submitService = async function(){
+  let name=document.getElementById('sName').value.trim();
+  let mobile=document.getElementById('sMobile').value.trim();
+  let model=document.getElementById('sModel').value.trim();
+  let km=document.getElementById('sKm').value.trim();
+  let type=document.getElementById('sType').value;
+  let date=document.getElementById('sDate').value;
+  let time=document.getElementById('sTime').value;
+  let msg=document.getElementById('sMsg').value.trim();
+  let btn=document.getElementById('submitBtn');
+
+  if(!name||!mobile||!model){
+    alert('Please fill Name, Mobile and Bike Model');
+    return;
+  }
+
+  btn.innerText="Booking...";
+  btn.disabled=true;
+
+  try{
+    await addDoc(collection(db, "serviceBookings"), {
+      name: name,
+      mobile: mobile,
+      bikeModel: model,
+      km: km,
+      serviceType: type,
+      preferredDate: date,
+      preferredTime: time,
+      message: msg,
+      status: "New",
+      createdAt: serverTimestamp()
+    });
+    
+    document.getElementById('successMsg').style.display='block';
+    document.getElementById('sName').value='';
+    document.getElementById('sMobile').value='';
+    document.getElementById('sModel').value='';
+    document.getElementById('sKm').value='';
+    document.getElementById('sDate').value='';
+    document.getElementById('sMsg').value='';
+    
+    setTimeout(()=>{ document.getElementById('successMsg').style.display='none'; }, 4000);
+
+  }catch(err){
+    console.error("Firebase Error:", err);
+    alert("Error: " + err.message);
+  }
+
+  btn.innerText="Confirm Booking →";
+  btn.disabled=false;
+}
+</script>
+</body>
+</html>

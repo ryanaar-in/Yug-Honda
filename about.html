@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us - Yug Honda</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Inter',sans-serif;background:#f5f5f6;color:#111;line-height:1.6}
+:root{--red:#E4002B}
+.header{background:#12171e;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:12px 4%;position:sticky;top:0;z-index:99}
+.header a{color:#9aa0a8;text-decoration:none;font-size:13px;margin-left:18px}.header a.active{color:#fff;border-bottom:2px solid var(--red)}
+.hero{background:linear-gradient(105deg,#12171e 60%,#1f2937 100%);color:#fff;padding:50px 4%;display:grid;grid-template-columns:1.2fr 0.8fr;gap:20px;align-items:center}
+.hero h1{font-family:'Outfit';font-size:42px;line-height:1.1}.hero h1 span{color:var(--red)}
+.hero p{font-size:13px;color:#9aa0a8;margin-top:12px;line-height:1.7}
+.container{padding:24px 4%;max-width:1100px;margin:0 auto}
+.card{background:#fff;border-radius:14px;padding:22px;border:1px solid #e5e7eb;margin-bottom:18px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.icon-box{width:44px;height:44px;border-radius:10px;background:#fef2f2;color:var(--red);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:10px}
+.stat-box{background:#12171e;color:#fff;border-radius:14px;padding:18px;text-align:center}
+.footer{background:#12171e;color:#fff;padding:28px 4%;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:20px;margin-top:30px}
+.footer a{color:#9aa0a8;text-decoration:none;font-size:12px;display:block;margin:6px 0}
+.footer a:hover{color:#fff}
+.social-icons{display:flex;gap:12px;margin-top:12px}
+.social-icons a{width:36px;height:36px;background:#1f2937;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none}
+@media(max-width:900px){.hero{grid-template-columns:1fr}.grid2{grid-template-columns:1fr}.grid3{grid-template-columns:1fr}.footer{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="header"><div><b>YUG HONDA</b> <span style="font-size:11px;color:#888" id="headPlace">Pusa, Samastipur</span></div><div><a href="index.html">Home</a><a href="bikes.html">Bikes</a><a href="offers.html">Offers</a><a href="gallery.html">Gallery</a><a class="active" href="about.html">About</a><a href="contact.html">Contact</a></div></div>
+
+<div class="hero">
+<div>
+<div style="font-size:10px;letter-spacing:3px;color:var(--red);font-weight:700">SINCE 2019 • AUTHORIZED HONDA DEALER</div>
+<h1>We Don't Just Sell Bikes,<br>We Build <span>Trust & Relationships.</span></h1>
+<p>Yug Honda is the most trusted authorized Honda showroom in Harpur Mahmada, Pusa. We have helped over 5000 families own their first bike. Our goal is not just to sell a two-wheeler, but to give every customer a riding experience that lasts for years.</p>
+<div style="display:flex;gap:12px;margin-top:18px"><button style="background:var(--red);color:#fff;border:none;padding:10px 18px;border-radius:8px;font-weight:700;font-size:12px" onclick="window.open('bikes.html','_blank')">Explore Models →</button><button style="background:#fff;color:#111;border:none;padding:10px 18px;border-radius:8px;font-weight:700;font-size:12px" onclick="window.open('contact.html','_blank')">Visit Showroom</button></div>
+</div>
+<div style="background:#fff;border-radius:16px;padding:8px"><img src="pic/yug.jpeg" style="width:100%;height:320px;object-fit:cover;border-radius:12px"></div>
+</div>
+
+<div class="container">
+<div class="grid3">
+<div class="stat-box"><b>5000+</b><span>Happy Families</span></div>
+<div class="stat-box"><b>4 ★ </b><span>Google Rating</span></div>
+<div class="stat-box"><b id="modelCount">Multiple</b><span>Models Available</span></div>
+</div>
+
+<div class="grid2" style="margin-top:18px">
+<div class="card">
+<h3 style="font-family:'Outfit'">Our Story - The Journey From Pusa</h3>
+<p style="font-size:13px;color:#444;margin-top:10px;line-height:1.8">
+<b id="sName1">Yug Honda</b> started in <b>2019</b> from a small village Harpur Mahmada, Pusa. From that setup, today we are the largest authorized Honda dealers in the Samastipur district.<br><br>
+We have only multiple models. Today, more than <b>150+ bikes</b> are delivered from our showroom every month.<br><br>
+We believe that people in Bihar work hard, so they need a bike that is as reliable as their hard work - low maintenance, high mileage, and never lets them down. That's why we chose Honda - the world leader in performance, style and reliability.
+</p>
+</div>
+<div class="card">
+<h3 style="font-family:'Outfit'">Our Mission & Vision</h3>
+<div style="margin-top:14px">
+<div style="display:flex;gap:12px;margin-bottom:16px"><div class="icon-box"><i class="fa-solid fa-bullseye"></i></div><div><b style="font-size:13px">Our Mission</b><p style="font-size:12px;color:#666;margin-top:2px">To deliver a Honda bike to every home with minimum EMI burden and maximum happiness.</p></div></div>
+<div style="display:flex;gap:12px;margin-bottom:16px"><div class="icon-box"><i class="fa-solid fa-eye"></i></div><div><b style="font-size:13px">Our Vision</b><p style="font-size:12px;color:#666;margin-top:2px">To become the No.1 Honda service network in North Bihar by 2028.</p></div></div>
+<div style="display:flex;gap:12px"><div class="icon-box"><i class="fa-solid fa-handshake"></i></div><div><b style="font-size:13px">Our Promise</b><p style="font-size:12px;color:#666;margin-top:2px">No hidden charges. The price you see on the website is the same at the showroom.</p></div></div>
+</div>
+</div>
+</div>
+
+<div class="card">
+<h3 style="font-family:'Outfit'">Why 5000+ People Trust Us?</h3>
+<div class="grid3" style="margin-top:16px">
+<div><div class="icon-box"><i class="fa-solid fa-shield-halved"></i></div><b style="font-size:13px">100% Genuine Honda</b><p style="font-size:11px;color:#666">Company warranty and invoice with every bike.</p></div>
+<div><div class="icon-box"><i class="fa-solid fa-wrench"></i></div><b style="font-size:13px">Expert Service</b><p style="font-size:11px;color:#666">Honda-trained mechanics and genuine spare parts.</p></div>
+<div><div class="icon-box"><i class="fa-solid fa-percent"></i></div><b style="font-size:13px">Best Finance</b><p style="font-size:11px;color:#666">Tie-ups with Bajaj, HDFC, IDFC. 15-min approval.</p></div>
+<div><div class="icon-box"><i class="fa-solid fa-gift"></i></div><b style="font-size:13px">Festival Offers</b><p style="font-size:11px;color:#666">Up to ₹5000 off + free helmet + free servicing.</p></div>
+<div><div class="icon-box"><i class="fa-solid fa-headset"></i></div><b style="font-size:13px">After Sales Support</b><p style="font-size:11px;color:#666">24/7 WhatsApp support and roadside assistance.</p></div>
+<div><div class="icon-box"><i class="fa-solid fa-location-dot"></i></div><b style="font-size:13px">Pusa's Own Showroom</b><p style="font-size:11px;color:#666">In Mahmada, Pusa easy to reach.</p></div>
+</div>
+</div>
+</div>
+
+<!-- FOOTER WITH FB, INSTA, CONTACT - ADMIN SE LIVE UPDATE -->
+<footer class="footer">
+<div>
+<h3 id="footerName">Yug Honda</h3>
+<p style="font-size:11px;color:#9aa0a8;margin-top:8px" id="footerAddr">Harpur Mahmada, Pusa, Samastipur, Bihar - 848125</p>
+<p style="font-size:11px;color:#9aa0a8;margin-top:6px" id="footerContact">+91 98765 43210 | yughonda@gmail.com</p>
+<div class="social-icons">
+<a id="fbLink" href="#" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+<a id="instaLink" href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+<a id="ytLink" href="#" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+<a id="waLink" href="#" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+</div>
+</div>
+<div><b style="font-size:12px">Quick Links</b><a href="bikes.html" target="_blank">Bikes & Scooters</a><a href="offers.html" target="_blank">Offers</a><a href="gallery.html" target="_blank">Gallery</a><a href="about.html">About Us</a></div>
+<div><b style="font-size:12px">Support</b><a href="contact.html" target="_blank">Contact Us</a><a href="#" onclick="alert('Call: '+document.getElementById('footerContact').innerText)">Book Test Ride</a><a id="footerMap" href="#" target="_blank">Get Directions</a><a href="admin.html">Admin Panel</a></div>
+<div><b style="font-size:12px">Showroom</b><p style="font-size:11px;color:#9aa0a8;margin-top:6px" id="footerHours">Open: 9:30 AM - 7:30 PM</p><p style="font-size:11px;color:#9aa0a8;margin-top:4px">24/7 WhatsApp Support Available</p></div>
+</footer>
+
+<script>
+function load(){
+let s=JSON.parse(localStorage.getItem('yug_settings')||'null');
+if(!s) return;
+if(s.name){document.getElementById('sName1').innerText=s.name; document.getElementById('footerName').innerText=s.name;}
+if(s.addr){document.getElementById('footerAddr').innerText=s.addr;}
+if(s.phone || s.email){document.getElementById('footerContact').innerText=(s.phone||'')+' | '+(s.email||'');}
+if(s.hours) document.getElementById('footerHours').innerText='Open: '+s.hours;
+if(s.map) document.getElementById('footerMap').href=s.map;
+if(s.fb && s.fb.trim()!=='') document.getElementById('fbLink').href=s.fb; else document.getElementById('fbLink').style.display='none';
+if(s.insta && s.insta.trim()!=='') document.getElementById('instaLink').href=s.insta; else document.getElementById('instaLink').style.display='none';
+if(s.yt && s.yt.trim()!=='') document.getElementById('ytLink').href=s.yt; else document.getElementById('ytLink').style.display='none';
+if(s.wa && s.wa.trim()!==''){document.getElementById('waLink').href='https://wa.me/'+s.wa; document.getElementById('waLink').style.display='flex';} else document.getElementById('waLink').style.display='none';
+let bikes=JSON.parse(localStorage.getItem('yug_bikes_v6')||'[]');
+if(bikes.length) document.getElementById('modelCount').innerText=bikes.length+'+';
+}
+load();
+</script>
+</body>
+</html>
