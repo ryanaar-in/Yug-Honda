@@ -25,10 +25,10 @@
 .btn-red{background:#E4002B;color:#fff;width:100%}
 .btn-dark{background:#111;color:#fff;width:100%;margin-top:10px}
 .btn-outline{background:#fff;border:1px solid #e5e7eb;width:100%;margin-top:10px}
-/* See Features New CSS */
+/* See Features - FIXED for jaisa likhe waisa aaye */
 .see-features-btn{margin-top:12px;background:#fff;border:1px solid #E4002B;color:#E4002B;padding:10px 14px;border-radius:8px;font-weight:700;font-size:12px;cursor:pointer;width:100%}
 .see-features-btn:hover{background:#E4002B;color:#fff}
-.features-box{display:none;margin-top:12px;background:#ffffff;border:1px solid #e5e7eb;border-radius:12px;padding:18px;line-height:1.8;font-size:14px;color:#1e293b}
+.features-box{display:none;margin-top:12px;background:#ffffff;border:1px solid #e5e7eb;border-radius:12px;padding:18px;line-height:1.8;font-size:14px;color:#1e293b;white-space:pre-wrap;word-wrap:break-word;}
 .features-box.open{display:block;animation:fadeIn 0.3s ease}
 .features-box h3,.features-box h2{margin:10px 0;color:#111}
 .features-box ul{padding-left:18px;margin:8px 0}
@@ -67,12 +67,10 @@ async function loadBike(){
   let bike = null;
 
   try{
-    // Try direct doc ID fetch (new Firebase way)
     if(bikeId){
       let snap = await getDoc(doc(db, "bikes", bikeId));
       if(snap.exists()) bike = {id:snap.id,...snap.data()};
     }
-    // If not found by ID, try to load all and get by index (old way fallback)
     if(!bike){
       const allSnap = await getDocs(collection(db, "bikes"));
       let all = allSnap.docs.map(d=>({id:d.id,...d.data()}));
@@ -85,7 +83,6 @@ async function loadBike(){
       return;
     }
 
-    // Settings for WA
     let settings = {};
     try{
       let sSnap = await getDoc(doc(db, "settings", "main"));
@@ -159,7 +156,6 @@ async function loadBike(){
       document.querySelectorAll('.thumbs img').forEach((img,i)=>{ img.classList.toggle('active', i===index) });
     };
 
-    // See Features Toggle Logic
     const btn = document.getElementById('seeFeaturesBtn');
     const box = document.getElementById('featuresBox');
     btn.onclick = ()=>{
