@@ -45,6 +45,13 @@
 @media(max-width:900px){
 .service-hero{grid-template-columns:1fr}.container{grid-template-columns:1fr}.warranty-top{grid-template-columns:1fr}.warranty-grid{grid-template-columns:1fr}.menu{display:none}.hamburger{display:block}.footer{grid-template-columns:1fr}
 }
+.contact-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9999;align-items:center;justify-content:center;padding:20px}
+.contact-modal.active{display:flex}
+.contact-box{background:#fff;border-radius:16px;width:100%;max-width:360px;overflow:hidden}
+.contact-box-header{padding:16px;background:#12171e;color:#fff;display:flex;justify-content:space-between;align-items:center}
+.contact-box-body{padding:12px}
+.contact-option{display:flex;align-items:center;justify-content:space-between;padding:14px;border:1px solid #eee;border-radius:10px;margin-bottom:8px;cursor:pointer}
+.contact-option:hover{border-color:var(--red);background:#fff7f7}
 </style>
 </head>
 <body>
@@ -60,7 +67,7 @@
 <li><a href="contact.html" target="_blank">Contact</a></li>
 </ul>
 <div style="display:flex;align-items:center;gap:14px">
-<div style="font-size:11px;white-space:nowrap" id="headerPhone">+91 98765 43210</div>
+<div style="font-size:11px;white-space:nowrap;cursor:pointer" id="headerPhone" onclick="handleCallClick('service')">+91 98765 43210</div>
 <button class="hamburger" id="hamburgerBtn"><i class="fa-solid fa-bars"></i></button>
 </div>
 </header>
@@ -74,7 +81,7 @@
 <h1>Honda Service<br>At Yug Honda Pusa</h1>
 <p>Certified technicians, genuine parts, and quick service. Book your service in 30 seconds and keep your Honda in perfect condition.</p>
 <div style="margin-top:16px"><button class="btn-red" onclick="document.getElementById('bookForm').scrollIntoView({behavior:'smooth'})">Book Service Now →</button><button class="btn-outline" onclick="window.open('https://maps.google.com/?q=Yug+Honda+Pusa','_blank')">Get Directions</button></div>
-<div style="display:flex;gap:18px;margin-top:18px;font-size:11px"><span><i class="fa-solid fa-clock" style="color:var(--red)"></i> 9 AM - 8 PM</span><span><i class="fa-solid fa-wrench" style="color:var(--red)"></i> Genuine Parts</span><span><i class="fa-solid fa-shield-halved" style="color:var(--red)"></i> 10 Year Warranty Support</span></div>
+<div style="display:flex;gap:18px;margin-top:18px;font-size:11px"><span><i class="fa-solid fa-clock" style="color:var(--red)"></i> 9:30 AM - 7:30 PM</span><span><i class="fa-solid fa-wrench" style="color:var(--red)"></i> Genuine Parts</span><span><i class="fa-solid fa-shield-halved" style="color:var(--red)"></i> 10 Year Warranty Support</span></div>
 </div>
 <div class="box" style="background:#171e29;border-color:#222;color:#fff">
 <h3 style="color:#fff">What we do in Service?</h3>
@@ -108,7 +115,6 @@
 <option>Free Service - 1st</option>
 <option>Free Service - 2nd</option>
 <option>Free Service - 3rd</option>
-<option>Free Service - 4th</option>
 <option>Paid Service</option>
 <option>General Repair</option>
 <option>Accident Repair</option>
@@ -135,7 +141,13 @@
 <div class="box" style="margin-top:12px;background:#12171e;color:#fff;border-color:#12171e">
 <h3 style="color:#fff">Need Help?</h3>
 <p style="font-size:11px;color:#9aa0a8;margin-top:6px">Call our service advisor for instant support.</p>
-<p style="font-size:13px;margin-top:10px" id="servicePhone">+91 98765 43210</p>
+<p style="font-size:13px;margin-top:10px;cursor:pointer" id="servicePhone" onclick="handleCallClick('service')">+91 98765 43210</p>
+<p style="font-size:10px;color:#9aa0a8;margin-top:6px;display:none" id="servicePhone2"></p>
+<p style="font-size:11px;color:#9aa0a8;margin-top:8px" id="serviceEmailShow">service@yughonda.com</p>
+<div style="display:flex;gap:8px;margin-top:12px">
+<button class="btn-red" style="flex:1;font-size:11px" onclick="handleCallClick('service')"><i class="fa-solid fa-phone"></i> Call Service</button>
+<button class="btn-red" style="flex:1;font-size:11px;background:#25D366" onclick="handleWhatsAppClick('service')"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button>
+</div>
 </div>
 </div>
 </div>
@@ -144,7 +156,7 @@
 <div class="warranty-top">
 <div>
 <div style="display:inline-block;background:#1f2937;padding:4px 10px;border-radius:20px;font-size:10px;letter-spacing:1px">HONDA 10 YEAR WARRANTY</div>
-<h2 style="font-family:'Outfit';font-size:28px;margin-top:10px;line-height:1.1">10 Years / 1 Lakh KM<br>Warranty Support</h2>
+<h2 style="font-family:'Outfit';font-size:28px;margin-top:10px;line-height:1.1">10 Years<br>Warranty Support</h2>
 <p style="font-size:11px;color:#9aa0a8;margin-top:8px;line-height:1.6">Genuine Honda 10 Year Warranty is available across 1000+ touchpoints PAN India. Transferable to new owner. Peace of mind for a decade.</p>
 <div class="warranty-grid">
 <div class="w-item"><i class="fa-solid fa-shield-halved"></i><div><b>Genuine Honda Products</b><span>Engine: Crank Shaft, Cylinder, Piston, Cam Shaft, Engine Cases, etc. (15 Major Parts)</span></div></div>
@@ -171,8 +183,10 @@
 </div>
 </section>
 
+<div id="contactModal" class="contact-modal" onclick="closeContactModal()"><div class="contact-box" onclick="event.stopPropagation()"><div class="contact-box-header"><b id="contactModalTitle">Choose Number</b><span onclick="closeContactModal()" style="cursor:pointer"><i class="fa-solid fa-xmark"></i></span></div><div class="contact-box-body" id="contactModalBody"></div></div></div>
+
 <footer class="footer">
-<div><h3>Yug Honda</h3><p style="font-size:11px;color:#9aa0a8;margin-top:8px" id="footerAddr">Harpur Mahmada, Pusa, Samastipur, Bihar - 848125</p><p style="font-size:11px;color:#9aa0a8" id="footerPhone">+91 98765 43210</p></div>
+<div><h3>Yug Honda</h3><p style="font-size:11px;color:#9aa0a8;margin-top:8px" id="footerAddr">Harpur Mahmada, Pusa, Samastipur, Bihar - 848125</p><p style="font-size:11px;color:#9aa0a8" id="footerPhone">+91 98765 43210</p><p style="font-size:11px;color:#9aa0a8" id="footerServiceEmail">service@yughonda.com</p></div>
 <div><b style="font-size:12px">Quick Links</b><a href="bikes.html">Bikes</a><a href="service.html">Service</a><a href="warranty.html">Warranty</a><a href="offers.html">Offers</a><a href="contact.html">Contact</a></div>
 <div><b style="font-size:12px">Support</b><a href="contact.html">Contact Us</a><a href="#">Book Service</a><a href="admin.html">Admin Panel</a></div>
 <div><b style="font-size:12px">Showroom</b><p style="font-size:11px;color:#9aa0a8;margin-top:6px" id="footerHours">Open: 9:00 AM - 8:00 PM</p></div>
@@ -192,15 +206,32 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+let SETTINGS = {};
+
 async function loadSettings(){
   try{
     const snap = await getDoc(doc(db,"settings","main"));
     if(snap.exists()){
       let s=snap.data();
-      if(s.phone){
-        document.getElementById('headerPhone').innerText=s.phone;
-        document.getElementById('servicePhone').innerText=s.phone;
-        document.getElementById('footerPhone').innerText=s.phone;
+      SETTINGS = s;
+      // Sales fallback
+      let salesP1 = s.salesPhone1 || s.phone || '';
+      let serviceP1 = s.servicePhone1 || s.phone || '';
+      let serviceP2 = s.servicePhone2 || '';
+      let serviceEmail = s.serviceEmail || 'service@yughonda.com';
+
+      if(serviceP1){
+        document.getElementById('headerPhone').innerText=serviceP1;
+        document.getElementById('servicePhone').innerText=serviceP1;
+        document.getElementById('footerPhone').innerText=serviceP1;
+      }
+      if(serviceP2){
+        let el=document.getElementById('servicePhone2');
+        if(el){ el.innerText='Alt: '+serviceP2; el.style.display='block'; }
+      }
+      if(serviceEmail){
+        document.getElementById('serviceEmailShow').innerText=serviceEmail;
+        document.getElementById('footerServiceEmail').innerText=serviceEmail;
       }
       if(s.addr) document.getElementById('footerAddr').innerText=s.addr;
       if(s.hours) document.getElementById('footerHours').innerText='Open: '+s.hours;
@@ -208,6 +239,25 @@ async function loadSettings(){
   }catch(e){ console.log(e); }
 }
 loadSettings();
+
+function formatTel(p){ return p? p.replace(/\s+/g,''):''; }
+window.showContactChooser = function(title, numbers, type){
+  const modal=document.getElementById('contactModal'); const body=document.getElementById('contactModalBody'); document.getElementById('contactModalTitle').innerText=title; body.innerHTML='';
+  numbers.forEach(n=>{ if(!n.value) return; let icon=type==='call'?'fa-phone':'fa-whatsapp'; let col=type==='call'?'#111':'#25D366'; let div=document.createElement('div'); div.className='contact-option'; div.innerHTML=`<div style="display:flex;align-items:center;gap:10px"><div style="width:36px;height:36px;background:${col};color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center"><i class="fa-solid ${icon}"></i></div><div><b>${n.label}</b><br><span>${n.value}</span></div></div><i class="fa-solid fa-chevron-right" style="color:#ccc"></i>`; div.onclick=()=>{ if(type==='call'){ window.location.href=`tel:${formatTel(n.value)}`; }else{ let c=n.value.replace(/[^0-9]/g,''); window.open(`https://wa.me/${c}`,'_blank'); } closeContactModal(); }; body.appendChild(div); }); modal.classList.add('active');
+}
+window.closeContactModal = function(){ document.getElementById('contactModal').classList.remove('active'); }
+window.handleCallClick = function(dept){
+  let p1=dept==='sales'? (SETTINGS.salesPhone1||SETTINGS.phone):SETTINGS.servicePhone1;
+  let p2=dept==='sales'? SETTINGS.salesPhone2:SETTINGS.servicePhone2;
+  if(!p1){ p1 = SETTINGS.phone; }
+  let list=[]; if(p1) list.push({label:dept==='sales'?'Sales Number 1':'Service Number 1',value:p1}); if(p2&&p2.trim()!=='') list.push({label:dept==='sales'?'Sales Number 2':'Service Number 2',value:p2});
+  if(list.length===0){ alert('Number not configured'); return; } if(list.length===1){ window.location.href=`tel:${formatTel(list[0].value)}`; }else{ showContactChooser(dept==='sales'?'Choose Sales Number':'Choose Service Number',list,'call'); }
+}
+window.handleWhatsAppClick = function(dept){
+  let w1=dept==='sales'? (SETTINGS.salesWA1||SETTINGS.wa):SETTINGS.serviceWA1; let w2=dept==='sales'? SETTINGS.salesWA2:SETTINGS.serviceWA2; if(!w1){ w1=dept==='sales'? (SETTINGS.salesPhone1||SETTINGS.phone):SETTINGS.servicePhone1; }
+  let list=[]; if(w1) list.push({label:dept==='sales'?'Sales WhatsApp 1':'Service WhatsApp 1',value:w1}); if(w2&&w2.trim()!=='') list.push({label:dept==='sales'?'Sales WhatsApp 2':'Service WhatsApp 2',value:w2});
+  if(list.length===0){ alert('WhatsApp not configured'); return; } if(list.length===1){ let c=list[0].value.replace(/[^0-9]/g,''); window.open(`https://wa.me/${c}`,'_blank'); }else{ showContactChooser(dept==='sales'?'Choose Sales WhatsApp':'Choose Service WhatsApp',list,'whatsapp'); }
+}
 
 document.getElementById('hamburgerBtn').onclick = () => {
   let m=document.getElementById('mobileMenu');
@@ -224,46 +274,15 @@ window.submitService = async function(){
   let time=document.getElementById('sTime').value;
   let msg=document.getElementById('sMsg').value.trim();
   let btn=document.getElementById('submitBtn');
-
-  if(!name||!mobile||!model){
-    alert('Please fill Name, Mobile and Bike Model');
-    return;
-  }
-
-  btn.innerText="Booking...";
-  btn.disabled=true;
-
+  if(!name||!mobile||!model){ alert('Please fill Name, Mobile and Bike Model'); return; }
+  btn.innerText="Booking..."; btn.disabled=true;
   try{
-    await addDoc(collection(db, "serviceBookings"), {
-      name: name,
-      mobile: mobile,
-      bikeModel: model,
-      km: km,
-      serviceType: type,
-      preferredDate: date,
-      preferredTime: time,
-      message: msg,
-      status: "New",
-      createdAt: serverTimestamp()
-    });
-    
+    await addDoc(collection(db, "serviceBookings"), { name: name, mobile: mobile, bikeModel: model, km: km, serviceType: type, preferredDate: date, preferredTime: time, message: msg, status: "New", createdAt: serverTimestamp() });
     document.getElementById('successMsg').style.display='block';
-    document.getElementById('sName').value='';
-    document.getElementById('sMobile').value='';
-    document.getElementById('sModel').value='';
-    document.getElementById('sKm').value='';
-    document.getElementById('sDate').value='';
-    document.getElementById('sMsg').value='';
-    
+    document.getElementById('sName').value=''; document.getElementById('sMobile').value=''; document.getElementById('sModel').value=''; document.getElementById('sKm').value=''; document.getElementById('sDate').value=''; document.getElementById('sMsg').value='';
     setTimeout(()=>{ document.getElementById('successMsg').style.display='none'; }, 4000);
-
-  }catch(err){
-    console.error("Firebase Error:", err);
-    alert("Error: " + err.message);
-  }
-
-  btn.innerText="Confirm Booking →";
-  btn.disabled=false;
+  }catch(err){ console.error("Firebase Error:", err); alert("Error: " + err.message); }
+  btn.innerText="Confirm Booking →"; btn.disabled=false;
 }
 </script>
 </body>
