@@ -75,6 +75,9 @@
 .contact-box-body{padding:12px}
 .contact-option{display:flex;align-items:center;justify-content:space-between;padding:14px;border:1px solid #eee;border-radius:10px;margin-bottom:8px;cursor:pointer}
 .contact-option:hover{border-color:var(--red);background:#fff7f7}
+.review-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:9999;align-items:center;justify-content:center;padding:20px}
+.review-modal.active{display:flex}
+.review-modal-box{background:#fff;border-radius:16px;width:100%;max-width:700px;max-height:85vh;overflow-y:auto;padding:20px}
 </style>
 </head>
 <body>
@@ -200,6 +203,31 @@
 <div class="sec-head"><h2 style="font-size:14px">Our Gallery</h2><a href="gallery.html" target="_blank" style="color:var(--red);font-size:11px">View Gallery →</a></div>
 <div class="gallery" id="galleryContainer"></div>
 </section>
+
+<!-- FIXED REVIEWS SECTION -->
+<section class="section" id="reviewsSection" style="background:#fff;margin-top:16px;border-top:1px solid #eee;border-bottom:1px solid #eee">
+<div class="sec-head"><h2>Customer Reviews <span id="reviewAvg" style="font-size:12px;color:#f59e0b;margin-left:8px"></span></h2><a href="javascript:void(0)" onclick="openAllReviews()" style="cursor:pointer">View All Reviews →</a></div>
+<div id="reviewsList" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px">
+<p style="font-size:12px;color:#888">Loading reviews...</p>
+</div>
+<div style="max-width:500px;margin:24px auto 0;background:#f9fafb;padding:18px;border-radius:14px;border:1px solid #eee">
+<h3 style="font-size:14px;font-family:'Outfit'">Add Your Review</h3>
+<input id="rName" placeholder="Your Name" style="width:100%;padding:10px;margin-top:10px;border-radius:8px;border:1px solid #ddd;font-size:13px">
+<select id="rRating" style="width:100%;padding:10px;margin-top:10px;border-radius:8px;border:1px solid #ddd;font-size:13px">
+<option value="5">⭐⭐⭐⭐⭐ 5 Star - Excellent</option>
+<option value="4">⭐⭐⭐⭐ 4 Star - Good</option>
+<option value="3">⭐⭐⭐ 3 Star - Average</option>
+<option value="2">⭐⭐ 2 Star - Poor</option>
+<option value="1">⭐ 1 Star - Very Bad</option>
+</select>
+<textarea id="rMsg" rows="3" placeholder="Write your experience..." style="width:100%;padding:10px;margin-top:10px;border-radius:8px;border:1px solid #ddd;font-size:13px"></textarea>
+<button id="rBtn" class="btn-red" style="width:100%;margin-top:12px">Submit Review</button>
+<p style="font-size:10px;color:#888;text-align:center;margin-top:6px">Review will show after admin approval</p>
+</div>
+</section>
+
+<div id="allReviewsModal" class="review-modal" onclick="closeAllReviews()"><div class="review-modal-box" onclick="event.stopPropagation()"><div style="display:flex;justify-content:space-between;align-items:center"><h3 style="font-family:'Outfit'">All Customer Reviews</h3><span onclick="closeAllReviews()" style="cursor:pointer;font-size:20px">✕</span></div><div id="allReviewsList" style="margin-top:16px;display:grid;gap:12px"></div></div></div>
+
 <div id="contactModal" class="contact-modal" onclick="closeContactModal()"><div class="contact-box" onclick="event.stopPropagation()"><div class="contact-box-header"><b id="contactModalTitle">Choose Number</b><span onclick="closeContactModal()" style="cursor:pointer"><i class="fa-solid fa-xmark"></i></span></div><div class="contact-box-body" id="contactModalBody"></div></div></div>
 <footer class="footer">
 <div>
@@ -220,17 +248,18 @@
 </footer>
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getFirestore, collection, getDocs, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { getFirestore, collection, getDocs, doc, getDoc, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 const firebaseConfig = { apiKey: "AIzaSyAufUEH0vcrBwYxi7Q42n4_NABGiAesgT4", authDomain: "yug-honda.firebaseapp.com", projectId: "yug-honda", storageBucket: "yug-honda.firebasestorage.app", messagingSenderId: "7480589189", appId: "1:7480589189:web:d4c717eb42a49a26f6e2ec" };
 const app = initializeApp(firebaseConfig); const db = getFirestore(app);
 let allBikesData = []; let currentTenure=24; let currentPrice=80000; let globalSettings = {}; let globalOffers = { offerText: "", offerEnable: false, perBikeOffers: {}, festTitle: "", festOffer: "", festNote: "", festEnable: true, festBtn: "Explore Now →" };
+let allReviewsCache = [];
 async function fetchAllData() {
   try {
     const bikesSnap = await getDocs(collection(db, "bikes")); allBikesData = []; bikesSnap.forEach(d=>{ let data=d.data(); if(data.imgs && data.imgs[0] && data.imgs[0].length > 800000){ data.imgs = ['https://imgd.aeplcdn.com/664x374/n/cw/ec/1/versions/honda-sp-125-drum1725629300829.jpg']; } allBikesData.push({ id: d.id,...data }); });
     if (allBikesData.length === 0) { let local = JSON.parse(localStorage.getItem('yug_bikes_v6') || '[]'); if (local.length > 0) allBikesData = local; }
     const settingsSnap = await getDoc(doc(db, "settings", "main")); if (settingsSnap.exists()) { globalSettings = settingsSnap.data(); } else { globalSettings = JSON.parse(localStorage.getItem('yug_settings')||'{}'); }
     const offersSnap = await getDoc(doc(db, "offers", "main")); if (offersSnap.exists()) { globalOffers = {...globalOffers,...offersSnap.data()}; } else { globalOffers.offerText = localStorage.getItem('yug_offer_text') || ""; globalOffers.offerEnable = localStorage.getItem('yug_offer_enable')!== 'false'; globalOffers.perBikeOffers = JSON.parse(localStorage.getItem('yug_per_bike_offers')||'{}'); }
-    renderBikes(); renderOfferBar(); renderFestivalBanner(); renderSettings(); await renderGallery();
+    renderBikes(); renderOfferBar(); renderFestivalBanner(); renderSettings(); await renderGallery(); loadReviews();
   } catch (e) { console.error("Firebase fetch failed", e); document.getElementById('modelsContainer').innerHTML = `<div style="background:#fff;padding:20px;border-radius:12px;color:red"><b>Firebase Error:</b> ${e.message}</div>`; }
 }
 window.getBikes = () => allBikesData;
@@ -290,6 +319,72 @@ window.renderGallery = async function(){
   try { const galSnap = await getDocs(collection(db, "gallery")); let g = galSnap.docs.map(d=>d.data().src || d.data().url).filter(Boolean); if(g.length===0){ let localG = JSON.parse(localStorage.getItem('yug_gallery')||'[]'); g = localG; } if(g.length===0){ cont.innerHTML=``; return; } cont.innerHTML=g.slice(-6).map(src=>`<img src="${src}" onclick="window.open('gallery.html','_blank')" style="cursor:pointer">`).join(''); } catch(e){ let g=JSON.parse(localStorage.getItem('yug_gallery')||'[]'); if(g.length===0) cont.innerHTML=``; else cont.innerHTML=g.slice(-6).map(src=>`<img src="${src}" onclick="window.open('gallery.html','_blank')" style="cursor:pointer">`).join(''); }
 }
 function updateShowroomStatus(){ const now = new Date(); const hours = now.getHours() + now.getMinutes()/60; const open = 9.5; const close = 19.5; const isOpen = hours >= open && hours < close; const dot = document.getElementById('statusDot'); const text = document.getElementById('statusText'); const sub = document.getElementById('statusSub'); const badge = document.getElementById('statusBadge'); const timeEl = document.getElementById('currentTime'); if(!dot) return; timeEl.innerText = now.toLocaleString('en-IN', { weekday:'short', hour:'2-digit', minute:'2-digit', hour12:true }); if(isOpen){ dot.style.background = '#22c55e'; dot.style.animationName = 'pulse'; text.innerText = 'OPEN NOW'; text.style.color = '#166534'; badge.innerText = 'Live • Open'; badge.style.background = '#dcfce7'; badge.style.color = '#166534'; sub.innerText = 'Showroom is open • Closes at 7:30 PM today'; sub.style.color = '#16a34a'; } else { dot.style.background = '#ef4444'; dot.style.animationName = 'pulseRed'; text.innerText = 'CLOSED NOW'; text.style.color = '#991b1b'; badge.innerText = 'Closed'; badge.style.background = '#fee2e2'; badge.style.color = '#991b1b'; sub.style.color = '#dc2626'; if(hours < open){ sub.innerText = 'Showroom is closed • Opens at 9:30 AM today'; } else { sub.innerText = 'Showroom is closed • Opens at 9:30 AM tomorrow'; } } }
+
+// --- FIXED REVIEW SYSTEM (NO INDEX NEEDED) ---
+async function loadReviews(){
+  try{
+    const snap = await getDocs(collection(db, "reviews"));
+    let all = [];
+    snap.forEach(d=>{ all.push({id:d.id,...d.data()}) });
+    // Filter approved in JS (no composite index needed)
+    let approved = all.filter(r=>r.status==='approved');
+    // Sort by time in JS
+    approved.sort((a,b)=>{
+      let at = a.createdAt?.seconds || a.createdAt?.toMillis?.() || 0;
+      let bt = b.createdAt?.seconds || b.createdAt?.toMillis?.() || 0;
+      if(at && bt) return bt - at;
+      return 0;
+    });
+    allReviewsCache = approved;
+
+    let avg = 0;
+    if(approved.length>0){ avg = (approved.reduce((s,r)=>s+(r.rating||5),0)/approved.length).toFixed(1); document.getElementById('reviewAvg').innerText = `⭐ ${avg} (${approved.length} reviews)`; }
+
+    let show = approved.slice(0,4);
+    let html="";
+    show.forEach(r=>{
+      const stars="⭐".repeat(r.rating||5);
+      html+=`<div style="background:#f9fafb;border:1px solid #eee;padding:14px;border-radius:12px"><div style="color:#f59e0b;font-size:13px">${stars}</div><p style="margin-top:8px;font-size:13px;line-height:1.5;color:#333">"${r.message}"</p><b style="font-size:12px;margin-top:10px;display:block">- ${r.name}</b></div>`;
+    });
+    if(html==="") html="<p style='color:#888;font-size:13px;text-align:center;grid-column:1/-1'>No reviews yet. Be the first to review!</p>";
+    document.getElementById('reviewsList').innerHTML=html;
+
+    // Fill all reviews modal list too
+    let allHtml="";
+    approved.forEach(r=>{
+      const stars="⭐".repeat(r.rating||5);
+      allHtml+=`<div style="background:#f9fafb;border:1px solid #eee;padding:14px;border-radius:12px"><div style="color:#f59e0b;font-size:13px">${stars}</div><p style="margin-top:8px;font-size:13px;line-height:1.5;color:#333">"${r.message}"</p><b style="font-size:12px;margin-top:10px;display:block">- ${r.name}</b></div>`;
+    });
+    if(allHtml==="") allHtml="<p style='color:#888'>No reviews yet</p>";
+    document.getElementById('allReviewsList').innerHTML=allHtml;
+
+  }catch(e){
+    console.log("Reviews load error",e);
+    document.getElementById('reviewsList').innerHTML="<p style='color:red;font-size:12px'>Failed to load reviews: "+e.message+"</p>";
+  }
+}
+
+window.openAllReviews = function(){ document.getElementById('allReviewsModal').classList.add('active'); }
+window.closeAllReviews = function(){ document.getElementById('allReviewsModal').classList.remove('active'); }
+
+document.getElementById('rBtn').onclick = async function(){
+  const nameEl=document.getElementById('rName');
+  const msgEl=document.getElementById('rMsg');
+  const ratingEl=document.getElementById('rRating');
+  let name=nameEl.value.trim();
+  let message=msgEl.value.trim();
+  let rating=parseInt(ratingEl.value);
+  if(!name ||!message){ alert("Please enter name and review"); return; }
+  this.innerText="Submitting..."; this.disabled=true;
+  try{
+    await addDoc(collection(db, "reviews"), { name, rating, message, status: "pending", createdAt: serverTimestamp() });
+    alert("Thank you! Your review has been submitted for approval.");
+    nameEl.value=""; msgEl.value="";
+  }catch(err){ alert("Error: "+err.message); }
+  this.innerText="Submit Review"; this.disabled=false;
+}
+// --- REVIEW SYSTEM END ---
+
 fetchAllData(); updateShowroomStatus(); setInterval(updateShowroomStatus, 60000);
 document.getElementById('hamburgerBtn').onclick = () => { let m=document.getElementById('mobileMenu'); m.style.display = m.style.display==='flex'? 'none' : 'flex'; }
 </script>
