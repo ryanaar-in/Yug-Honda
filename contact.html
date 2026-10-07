@@ -17,6 +17,7 @@
 .card{background:#fff;border-radius:16px;padding:22px;border:1px solid #e5e7eb}
 .info-row{display:flex;gap:14px;margin-bottom:16px;align-items:flex-start}
 .icon{width:42px;height:42px;border-radius:10px;background:#fef2f2;color:var(--red);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.icon-green{background:#f0fdf4;color:#166534}
 .btn{padding:12px 18px;border-radius:10px;border:none;font-weight:700;font-size:12px;cursor:pointer;width:100%;margin-top:10px;display:flex;align-items:center;justify-content:center;gap:8px}
 .btn-red{background:var(--red);color:#fff}.btn-dark{background:#111;color:#fff}.btn-green{background:#25D366;color:#fff}.btn-outline{background:#fff;border:1px solid #ddd;color:#111}
 input,select,textarea{width:100%;padding:11px 12px;border:1px solid #e5e7eb;border-radius:10px;font-size:13px;margin-top:6px;outline:none}
@@ -24,6 +25,13 @@ input:focus,textarea:focus{border-color:var(--red)}
 label{font-size:11px;font-weight:600;color:#444;margin-top:12px;display:block}
 .footer{background:#12171e;color:#fff;padding:24px 4%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;margin-top:30px}
 .social a{width:36px;height:36px;background:#1f2937;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:#fff;margin-right:8px;text-decoration:none}
+.contact-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9999;align-items:center;justify-content:center;padding:20px}
+.contact-modal.active{display:flex}
+.contact-box{background:#fff;border-radius:16px;width:100%;max-width:360px;overflow:hidden}
+.contact-box-header{padding:16px;background:#12171e;color:#fff;display:flex;justify-content:space-between;align-items:center}
+.contact-box-body{padding:12px}
+.contact-option{display:flex;align-items:center;justify-content:space-between;padding:14px;border:1px solid #eee;border-radius:10px;margin-bottom:8px;cursor:pointer}
+.contact-option:hover{border-color:var(--red);background:#fff7f7}
 </style>
 </head>
 <body>
@@ -40,14 +48,32 @@ label{font-size:11px;font-weight:600;color:#444;margin-top:12px;display:block}
 <h3 style="font-family:'Outfit';font-size:18px"><i class="fa-solid fa-location-dot" style="color:var(--red)"></i> Visit Our Showroom</h3>
 <div style="margin-top:18px">
 <div class="info-row"><div class="icon"><i class="fa-solid fa-store"></i></div><div><b style="font-size:13px" id="sName">Yug Honda</b><p style="font-size:12px;color:#666;margin-top:2px;line-height:1.5" id="sAddr">Loading...</p></div></div>
-<div class="info-row"><div class="icon"><i class="fa-solid fa-phone"></i></div><div><b style="font-size:12px">Phone</b><p style="font-size:13px;color:#111" id="sPhone">Loading...</p></div></div>
-<div class="info-row"><div class="icon"><i class="fa-brands fa-whatsapp"></i></div><div><b style="font-size:12px">WhatsApp</b><p style="font-size:13px;color:#111" id="sWA">Loading...</p></div></div>
-<div class="info-row"><div class="icon"><i class="fa-solid fa-envelope"></i></div><div><b style="font-size:12px">Email</b><p style="font-size:13px;color:#111" id="sEmail">Loading...</p></div></div>
+
+<div style="background:#fff7f7;border:1px solid #ffd0d0;border-radius:12px;padding:12px;margin-bottom:12px">
+<p style="font-size:10px;font-weight:800;color:#E4002B;letter-spacing:1px;margin-bottom:8px">SALES DEPARTMENT</p>
+<div class="info-row" style="margin-bottom:8px"><div class="icon"><i class="fa-solid fa-phone"></i></div><div><b style="font-size:12px">Sales Phone</b><p style="font-size:13px;color:#111;cursor:pointer" id="sPhone" onclick="handleCallClick('sales')">Loading...</p><p style="font-size:11px;color:#888" id="sPhone2"></p></div></div>
+<div class="info-row" style="margin-bottom:8px"><div class="icon"><i class="fa-brands fa-whatsapp"></i></div><div><b style="font-size:12px">Sales WhatsApp</b><p style="font-size:13px;color:#111;cursor:pointer" id="sWA" onclick="handleWhatsAppClick('sales')">Loading...</p></div></div>
+<div class="info-row" style="margin-bottom:0"><div class="icon"><i class="fa-solid fa-envelope"></i></div><div><b style="font-size:12px">Sales Email</b><p style="font-size:13px;color:#111" id="sEmail">Loading...</p></div></div>
+</div>
+
+<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:12px;padding:12px;margin-bottom:12px">
+<p style="font-size:10px;font-weight:800;color:#166534;letter-spacing:1px;margin-bottom:8px">SERVICE DEPARTMENT</p>
+<div class="info-row" style="margin-bottom:8px"><div class="icon icon-green"><i class="fa-solid fa-screwdriver-wrench"></i></div><div><b style="font-size:12px">Service Phone</b><p style="font-size:13px;color:#111;cursor:pointer" id="sServicePhone" onclick="handleCallClick('service')">Loading...</p><p style="font-size:11px;color:#888" id="sServicePhone2"></p></div></div>
+<div class="info-row" style="margin-bottom:8px"><div class="icon icon-green"><i class="fa-brands fa-whatsapp"></i></div><div><b style="font-size:12px">Service WhatsApp</b><p style="font-size:13px;color:#111;cursor:pointer" id="sServiceWA" onclick="handleWhatsAppClick('service')">Loading...</p></div></div>
+<div class="info-row" style="margin-bottom:0"><div class="icon icon-green"><i class="fa-solid fa-envelope"></i></div><div><b style="font-size:12px">Service Email</b><p style="font-size:13px;color:#111" id="sServiceEmail">Loading...</p></div></div>
+</div>
+
 <div class="info-row"><div class="icon"><i class="fa-solid fa-clock"></i></div><div><b style="font-size:12px">Working Hours</b><p style="font-size:13px;color:#111" id="sHours">9:30 AM - 7:30 PM</p></div></div>
 </div>
 <button class="btn btn-red" onclick="openMap()"><i class="fa-solid fa-map-location-dot"></i> Get Directions on Google Maps</button>
-<button class="btn btn-green" onclick="openWA()"><i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp</button>
-<button class="btn btn-dark" onclick="callNow()"><i class="fa-solid fa-phone"></i> Call Now</button>
+<div style="display:flex;gap:8px;margin-top:8px">
+<button class="btn btn-dark" style="flex:1" onclick="handleCallClick('sales')"><i class="fa-solid fa-phone"></i> Call Sales</button>
+<button class="btn btn-dark" style="flex:1;background:#166534" onclick="handleCallClick('service')"><i class="fa-solid fa-screwdriver-wrench"></i> Call Service</button>
+</div>
+<div style="display:flex;gap:8px;margin-top:8px">
+<button class="btn btn-green" style="flex:1" onclick="handleWhatsAppClick('sales')"><i class="fa-brands fa-whatsapp"></i> Sales WA</button>
+<button class="btn btn-green" style="flex:1;background:#128C7E" onclick="handleWhatsAppClick('service')"><i class="fa-brands fa-whatsapp"></i> Service WA</button>
+</div>
 </div>
 
 <div class="card" style="margin-top:16px">
@@ -88,6 +114,8 @@ label{font-size:11px;font-weight:600;color:#444;margin-top:12px;display:block}
 </div>
 </div>
 
+<div id="contactModal" class="contact-modal" onclick="closeContactModal()"><div class="contact-box" onclick="event.stopPropagation()"><div class="contact-box-header"><b id="contactModalTitle">Choose Number</b><span onclick="closeContactModal()" style="cursor:pointer"><i class="fa-solid fa-xmark"></i></span></div><div class="contact-box-body" id="contactModalBody"></div></div></div>
+
 <div class="footer">
 <div><b id="footerName">Yug Honda</b><br><span style="font-size:11px;color:#9aa0a8" id="footerAddr">Harpur Mahmada, Pusa, Samastipur</span></div>
 <div class="social"><a id="fFb" href="#" target="_blank"><i class="fa-brands fa-facebook-f"></i></a><a id="fInsta" href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a><a id="fYt" href="#" target="_blank"><i class="fa-brands fa-youtube"></i></a><a id="fWa" href="#" target="_blank"><i class="fa-brands fa-whatsapp"></i></a></div>
@@ -97,7 +125,6 @@ label{font-size:11px;font-weight:600;color:#444;margin-top:12px;display:block}
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getFirestore, collection, addDoc, getDocs, doc, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
 const firebaseConfig = {
   apiKey: "AIzaSyAufUEH0vcrBwYxi7Q42n4_NABGiAesgT4",
   authDomain: "yug-honda.firebaseapp.com",
@@ -108,68 +135,73 @@ const firebaseConfig = {
 };
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-
 let globalSettings = {};
-
 async function loadAll(){
   try{
     const settingsSnap = await getDoc(doc(db, "settings", "main"));
     if(settingsSnap.exists()) globalSettings = settingsSnap.data();
-
     const bikesSnap = await getDocs(collection(db, "bikes"));
     let bikes = bikesSnap.docs.map(d=>d.data()).filter(b=>b.stock!==false);
-
     renderSettings(globalSettings);
     renderBikes(bikes);
-  }catch(e){
-    console.error(e);
-    document.getElementById('heroAddr').innerText = "Visit our showroom in Harpur Mahmada, Pusa";
-  }
+  }catch(e){ console.error(e); document.getElementById('heroAddr').innerText = "Visit our showroom in Harpur Mahmada, Pusa"; }
 }
-
+function formatTel(p){ return p? p.replace(/\s+/g,''):''; }
+window.showContactChooser = function(title, numbers, type){
+  const modal=document.getElementById('contactModal'); const body=document.getElementById('contactModalBody'); document.getElementById('contactModalTitle').innerText=title; body.innerHTML='';
+  numbers.forEach(n=>{ if(!n.value) return; let icon=type==='call'?'fa-phone':'fa-whatsapp'; let col=type==='call'?'#111':'#25D366'; let div=document.createElement('div'); div.className='contact-option'; div.innerHTML=`<div style="display:flex;align-items:center;gap:10px"><div style="width:36px;height:36px;background:${col};color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center"><i class="fa-solid ${icon}"></i></div><div><b>${n.label}</b><br><span>${n.value}</span></div></div><i class="fa-solid fa-chevron-right" style="color:#ccc"></i>`; div.onclick=()=>{ if(type==='call'){ window.location.href=`tel:${formatTel(n.value)}`; }else{ let c=n.value.replace(/[^0-9]/g,''); window.open(`https://wa.me/${c}`,'_blank'); } closeContactModal(); }; body.appendChild(div); }); modal.classList.add('active');
+}
+window.closeContactModal = function(){ document.getElementById('contactModal').classList.remove('active'); }
+window.handleCallClick = function(dept){
+  let p1=dept==='sales'? (globalSettings.salesPhone1||globalSettings.phone):globalSettings.servicePhone1;
+  let p2=dept==='sales'? globalSettings.salesPhone2:globalSettings.servicePhone2;
+  if(!p1) p1=globalSettings.phone;
+  let list=[]; if(p1) list.push({label:dept==='sales'?'Sales Number 1':'Service Number 1',value:p1}); if(p2&&p2.trim()!=='') list.push({label:dept==='sales'?'Sales Number 2':'Service Number 2',value:p2});
+  if(list.length===0){ alert('Number not configured'); return; } if(list.length===1){ window.location.href=`tel:${formatTel(list[0].value)}`; }else{ showContactChooser(dept==='sales'?'Choose Sales Number':'Choose Service Number',list,'call'); }
+}
+window.handleWhatsAppClick = function(dept){
+  let w1=dept==='sales'? (globalSettings.salesWA1||globalSettings.wa):globalSettings.serviceWA1; let w2=dept==='sales'? globalSettings.salesWA2:globalSettings.serviceWA2; if(!w1){ w1=dept==='sales'? (globalSettings.salesPhone1||globalSettings.phone):globalSettings.servicePhone1; }
+  let list=[]; if(w1) list.push({label:dept==='sales'?'Sales WhatsApp 1':'Service WhatsApp 1',value:w1}); if(w2&&w2.trim()!=='') list.push({label:dept==='sales'?'Sales WhatsApp 2':'Service WhatsApp 2',value:w2});
+  if(list.length===0){ alert('WhatsApp not configured'); return; } if(list.length===1){ let c=list[0].value.replace(/[^0-9]/g,''); window.open(`https://wa.me/${c}`,'_blank'); }else{ showContactChooser(dept==='sales'?'Choose Sales WhatsApp':'Choose Service WhatsApp',list,'whatsapp'); }
+}
 function renderSettings(s){
   if(!s || Object.keys(s).length===0) return;
+  let salesP1=s.salesPhone1||s.phone||''; let salesP2=s.salesPhone2||''; let salesWA1=s.salesWA1||s.wa||''; let salesEmail=s.salesEmail||s.email||'';
+  let serviceP1=s.servicePhone1||''; let serviceP2=s.servicePhone2||''; let serviceWA1=s.serviceWA1||''; let serviceEmail=s.serviceEmail||'';
   if(s.name){document.getElementById('sName').innerText=s.name; document.getElementById('footerName').innerText=s.name; document.getElementById('headSub').innerText=s.name;}
   if(s.addr){document.getElementById('sAddr').innerText=s.addr; document.getElementById('mapAddr').innerText=s.addr; document.getElementById('footerAddr').innerText=s.addr; document.getElementById('heroAddr').innerText='We are here to help you find your perfect Honda ride. Visit our showroom in '+s.addr+' or connect with us online.'}
-  if(s.phone){document.getElementById('sPhone').innerText=s.phone; document.getElementById('footerContact').innerText=s.phone+' | '+(s.email||'');}
-  if(s.wa) document.getElementById('sWA').innerText='+'+s.wa;
-  if(s.email) document.getElementById('sEmail').innerText=s.email;
+  if(salesP1){document.getElementById('sPhone').innerText=salesP1; document.getElementById('footerContact').innerText=salesP1+' | '+(salesEmail||'');}
+  if(salesP2){ document.getElementById('sPhone2').innerText='Alt: '+salesP2; }
+  if(salesWA1) document.getElementById('sWA').innerText='+'+salesWA1.replace(/[^0-9]/g,'');
+  if(salesEmail) document.getElementById('sEmail').innerText=salesEmail;
+  if(serviceP1){ document.getElementById('sServicePhone').innerText=serviceP1; }
+  if(serviceP2){ document.getElementById('sServicePhone2').innerText='Alt: '+serviceP2; }
+  if(serviceWA1) document.getElementById('sServiceWA').innerText='+'+serviceWA1.replace(/[^0-9]/g,'');
+  if(serviceEmail) document.getElementById('sServiceEmail').innerText=serviceEmail;
   if(s.hours) document.getElementById('sHours').innerText=s.hours;
   if(s.fb){document.getElementById('fbL').href=s.fb; document.getElementById('fFb').href=s.fb;} else {document.getElementById('fbL').style.display='none'; document.getElementById('fFb').style.display='none';}
   if(s.insta){document.getElementById('instaL').href=s.insta; document.getElementById('fInsta').href=s.insta;} else {document.getElementById('instaL').style.display='none'; document.getElementById('fInsta').style.display='none';}
   if(s.yt){document.getElementById('ytL').href=s.yt; document.getElementById('fYt').href=s.yt;} else {document.getElementById('ytL').style.display='none'; document.getElementById('fYt').style.display='none';}
-  if(s.wa){document.getElementById('fWa').href='https://wa.me/'+s.wa;}
+  if(s.salesWA1||s.wa){document.getElementById('fWa').href='https://wa.me/'+(s.salesWA1||s.wa);}
   if(s.map){try{let q=encodeURIComponent(s.map); document.getElementById('mapFrame').src='https://maps.google.com/maps?q='+q+'&z=15&output=embed';}catch(e){}}
 }
-
 function renderBikes(bikes){
-  let sel=document.getElementById('cBike');
-  sel.innerHTML='<option value="">Select a model</option>';
+  let sel=document.getElementById('cBike'); sel.innerHTML='<option value="">Select a model</option>';
   bikes.forEach(b=>{let o=document.createElement('option'); o.value=b.name; o.textContent=b.name; sel.appendChild(o);});
 }
-
 window.openMap = function(){ window.open(globalSettings.map||'https://maps.google.com/?q=Yug+Honda+Pusa','_blank')}
-window.openWA = function(){ window.open('https://wa.me/'+(globalSettings.wa||'919876543210')+'?text=Hi Yug Honda, I want to visit your showroom in Pusa','_blank')}
-window.callNow = function(){ window.location.href='tel:'+(globalSettings.phone||'+919876543210')}
-
+window.openWA = function(){ handleWhatsAppClick('sales'); }
+window.callNow = function(){ handleCallClick('sales'); }
 document.getElementById('sendBtn').onclick = async function(){
-  let name=document.getElementById('cName').value.trim(); 
-  let mobile=document.getElementById('cMobile').value.trim(); 
-  let bike=document.getElementById('cBike').value; 
-  let msg=document.getElementById('cMsg').value.trim();
+  let name=document.getElementById('cName').value.trim(); let mobile=document.getElementById('cMobile').value.trim(); let bike=document.getElementById('cBike').value; let msg=document.getElementById('cMsg').value.trim();
   if(!name||!mobile){alert('Please enter Name & Mobile');return}
   this.innerHTML='Sending...'; this.disabled=true;
   try{
-    await addDoc(collection(db, "enquiries"), {
-      name, phone: mobile, mobile, bike: bike || 'General Enquiry', model: bike || 'General Enquiry',
-      message: msg, source: 'contact.html', status: 'new', createdAt: serverTimestamp()
-    });
-    alert('✅ Thank you '+name+'! We will call you within 30 minutes.');
-    document.getElementById('cName').value='';document.getElementById('cMobile').value='';document.getElementById('cMsg').value='';
+    await addDoc(collection(db, "enquiries"), { name, phone: mobile, mobile, bike: bike || 'General Enquiry', model: bike || 'General Enquiry', message: msg, source: 'contact.html', status: 'new', createdAt: serverTimestamp() });
+    alert('Thank you '+name+'! We will call you within 30 minutes.'); document.getElementById('cName').value='';document.getElementById('cMobile').value='';document.getElementById('cMsg').value='';
   }catch(err){ alert('Error: '+err.message); }
   this.innerHTML='<i class="fa-solid fa-paper-plane"></i> Send Enquiry'; this.disabled=false;
 }
-
 loadAll();
 </script>
 </body>
