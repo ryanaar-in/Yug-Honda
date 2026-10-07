@@ -92,7 +92,6 @@ input,select,textarea{padding:9px 10px;border:1px solid #e5e7eb;border-radius:8p
 </div>
 </div>
 
-<!-- REVIEWS SECTION ADDED -->
 <div id="reviews" class="section">
 <div class="card">
 <h3>⭐ Customer Reviews - Approval System</h3>
@@ -142,9 +141,9 @@ input,select,textarea{padding:9px 10px;border:1px solid #e5e7eb;border-radius:8p
 </div>
 <div class="card"><h3>🏷️ Per Bike Offer - LIVE</h3><div class="form-row"><div><span class="label">Select Bike</span><select id="offerBikeSelect"></select></div><div><span class="label">Offer Text</span><input id="offerBikeText" placeholder="e.g. ₹5000 Off"></div></div><button class="btn btn-red2" onclick="savePerBikeOffer()">💾 Save Bike Offer</button><div id="perBikeOffersList" style="margin-top:14px;background:#f9fafb;padding:12px;border-radius:8px;font-size:12px"></div></div>
 </div>
+
 <div id="gallery" class="section">
-<div class="card"><h3>🖼️ Gallery Management - Firebase LIVE</h3>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:12px">
+<div class="card"><h3>🖼️ Gallery Management - Firebase LIVE (Images Only)</h3>
 <div style="border:1px solid #eee;padding:12px;border-radius:10px">
 <span class="label">📁 Image Upload to Storage</span>
 <div class="upload-box" onclick="document.getElementById('galleryFileInput').click()"><i class="fa-solid fa-images" style="font-size:22px;color:var(--red)"></i><p style="font-size:11px;font-weight:600;margin-top:6px">Click to Upload Images to Storage</p></div>
@@ -153,13 +152,6 @@ input,select,textarea{padding:9px 10px;border:1px solid #e5e7eb;border-radius:8p
 <span class="label" style="margin-top:10px">🔗 Image URL to Firebase</span>
 <input id="galleryUrl" placeholder="https://..." style="margin-top:4px">
 <button class="btn btn-red2" onclick="addGalleryImg()" style="width:100%;margin-top:8px">+ Add Image URL to Firebase</button>
-</div>
-<div style="border:1px solid #eee;padding:12px;border-radius:10px;background:#fff7f7">
-<span class="label" style="color:var(--red)">🎬 Video Upload - Storage</span>
-<div class="upload-box" onclick="document.getElementById('galleryVideoFileInput').click()" style="border-color:#E4002B"><i class="fa-solid fa-video" style="font-size:22px;color:var(--red)"></i><p style="font-size:11px;font-weight:600;margin-top:6px">Click to Upload Video (Max 30MB to Storage)</p></div>
-<input type="file" id="galleryVideoFileInput" accept="video/*" style="display:none" onchange="handleVideoFileUpload(event)">
-<p style="font-size:10px;color:#666;margin-top:6px" id="videoUploadStatus"></p>
-</div>
 </div>
 <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
 <button class="btn btn-outline" onclick="window.open('gallery.html','_blank')">View Gallery</button>
@@ -173,25 +165,21 @@ input,select,textarea{padding:9px 10px;border:1px solid #e5e7eb;border-radius:8p
 <div id="settings" class="section">
 <div class="card"><h3>🏪 Showroom Details - LIVE Firebase</h3>
 <div class="form-row"><div><span class="label">Showroom Name</span><input id="setName" value="Yug Honda"></div><div><span class="label">Owner Name</span><input id="setOwner" value="Yug Honda Owner"></div></div>
-
 <div style="background:#fff7f7;border:1px solid #ffd0d0;padding:12px;border-radius:10px;margin-bottom:12px;margin-top:10px">
 <h4 style="font-size:13px;color:#E4002B;margin-bottom:10px"><i class="fa-solid fa-phone"></i> SALES Contact (Separate)</h4>
 <div class="form-row"><div><span class="label">Sales Phone 1 * (Main)</span><input id="setSalesPhone1" placeholder="+91 98765 43210"></div><div><span class="label">Sales Phone 2 (Optional)</span><input id="setSalesPhone2" placeholder="+91 98765 43211"></div></div>
 <div class="form-row"><div><span class="label">Sales WhatsApp 1 (without + e.g. 919876543210)</span><input id="setSalesWA1" placeholder="919876543210"></div><div><span class="label">Sales WhatsApp 2 (Optional)</span><input id="setSalesWA2" placeholder="919876543211"></div></div>
 <div style="margin-top:8px"><span class="label">Sales Email *</span><input id="setSalesEmail" placeholder="sales@yughonda.com" value="yughonda@gmail.com"></div>
 </div>
-
 <div style="background:#f0fdf4;border:1px solid #bbf7d0;padding:12px;border-radius:10px;margin-bottom:12px">
 <h4 style="font-size:13px;color:#166534;margin-bottom:10px"><i class="fa-solid fa-screwdriver-wrench"></i> SERVICE Contact (Separate)</h4>
 <div class="form-row"><div><span class="label">Service Phone 1 * (Main)</span><input id="setServicePhone1" placeholder="+91 98765 43212"></div><div><span class="label">Service Phone 2 (Optional)</span><input id="setServicePhone2" placeholder="+91 98765 43213"></div></div>
 <div class="form-row"><div><span class="label">Service WhatsApp 1 (without +)</span><input id="setServiceWA1" placeholder="919876543212"></div><div><span class="label">Service WhatsApp 2 (Optional)</span><input id="setServiceWA2" placeholder="919876543213"></div></div>
 <div style="margin-top:8px"><span class="label">Service Email *</span><input id="setServiceEmail" placeholder="service@yughonda.com" value="service@yughonda.com"></div>
 </div>
-
 <span class="label">Map Link</span><input id="setMap" value="https://maps.google.com/?q=Yug+Honda+Pusa" style="margin-bottom:10px"><span class="label">Address</span><input id="setAddr" value="Harpur Mahmada, Pusa, Samastipur, Bihar - 848125" style="margin-bottom:10px"><div class="form-row"><div><span class="label">Hours</span><input id="setHours" value="9:00 AM - 8:00 PM"></div><div><span class="label">EMI %</span><input id="setEMI" value="9"></div></div></div>
 <div class="card"><h3>📱 Social</h3><div class="form-row"><div><span class="label">Facebook</span><input id="setFB"></div><div><span class="label">Instagram</span><input id="setInsta"></div></div><div class="form-row"><div><span class="label">YouTube</span><input id="setYT"></div><div><span class="label">Review Link</span><input id="setReview"></div></div><button class="btn btn-red2" id="saveSettingsBtn">💾 Save All to Firebase</button><p id="settingsStatus" style="font-size:11px;color:green;margin-top:8px"></p></div>
 </div>
-
 </div>
 </div>
 
@@ -279,7 +267,6 @@ async function initLive(){
     window._galleryCache = snap.docs.map(d=>({id:d.id,...d.data()}));
     renderGalleryAdmin();
   });
-  // REVIEWS LIVE LISTENER
   onSnapshot(collection(db, "reviews"), (snap)=>{
     window._reviewsCache = snap.docs.map(d=>({id:d.id,...d.data()}));
     updateReviewCounts();
@@ -328,10 +315,9 @@ async function loadSettingsFromFirebase(){
       document.getElementById('setYT').value=s.yt||'';
       document.getElementById('setReview').value=s.review||'';
     }
-  }catch(e){ console.log(e); }
+  }catch(e){}
 }
 
-// --- REVIEW SYSTEM ADMIN START ---
 window.updateReviewCounts = function(){
   let all = window._reviewsCache||[];
   let pending = all.filter(r=>r.status==='pending').length;
@@ -343,14 +329,8 @@ window.updateReviewCounts = function(){
 window.loadAdminReviews = async function(status){
   let all = window._reviewsCache||[];
   if(all.length===0){
-    try{
-      const q = query(collection(db, "reviews"), where("status","==",status), orderBy("createdAt","desc"));
-      const snap = await getDocs(q);
-      all = snap.docs.map(d=>({id:d.id,...d.data()}));
-    }catch(e){
-      const snap = await getDocs(collection(db, "reviews"));
-      all = snap.docs.map(d=>({id:d.id,...d.data()})).filter(r=>r.status===status);
-    }
+    const snap = await getDocs(collection(db, "reviews"));
+    all = snap.docs.map(d=>({id:d.id,...d.data()})).filter(r=>r.status===status);
   }
   let filtered = all.filter(r=>r.status===status);
   filtered.sort((a,b)=> (b.createdAt?.seconds||0)-(a.createdAt?.seconds||0));
@@ -368,9 +348,6 @@ window.loadAdminReviews = async function(status){
   });
   if(html==="") html=`<p style="text-align:center;color:#999;padding:20px">No ${status} reviews</p>`;
   document.getElementById('adminReviewsList').innerHTML=html;
-  // highlight buttons
-  if(status==='pending'){ document.getElementById('pendingBtn').style.background='#f59e0b'; document.getElementById('pendingBtn').style.color='#fff'; document.getElementById('approvedBtn').style.background='#fff'; document.getElementById('approvedBtn').style.color='#111'; }
-  else{ document.getElementById('approvedBtn').style.background='#16a34a'; document.getElementById('approvedBtn').style.color='#fff'; document.getElementById('pendingBtn').style.background='#fff'; document.getElementById('pendingBtn').style.color='#111'; }
 }
 window.approveReview = async function(id){
   await updateDoc(doc(db, "reviews", id), {status:"approved"});
@@ -382,7 +359,6 @@ window.deleteReview = async function(id){
   await deleteDoc(doc(db, "reviews", id));
   alert("Deleted");
 }
-// --- REVIEW SYSTEM ADMIN END ---
 
 async function compressImage(file, maxWidth=1024, quality=0.7){
   return new Promise((resolve)=>{
@@ -573,26 +549,13 @@ window.handleFileUpload = async function(event){
   }catch(e){ alert(e.message); }
   event.target.value='';
 }
-window.handleVideoFileUpload = async function(event){
-  let file=event.target.files[0]; if(!file) return;
-  if(file.size>30*1024*1024){ alert('30MB max'); return; }
-  document.getElementById('videoUploadStatus').innerText='Uploading video...';
-  try{
-    let storageRef = ref(storage, `gallery/videos/${Date.now()}_${file.name}`);
-    await uploadBytes(storageRef, file);
-    let url = await getDownloadURL(storageRef);
-    await addDoc(collection(db, "gallery"), { src: url, type:'video', createdAt: serverTimestamp() });
-    document.getElementById('videoUploadStatus').innerText='✅ Video LIVE!';
-  }catch(e){ alert(e.message); }
-  event.target.value='';
-}
 window.renderGalleryAdmin = function(){
   let items = window._galleryCache||[];
-  document.getElementById('galleryCount').innerText=items.length+' Items LIVE';
+  document.getElementById('galleryCount').innerText=items.length+' Images LIVE';
   let list=document.getElementById('galleryAdminList');
   if(items.length===0){ list.innerHTML='<span style="color:#999;font-size:12px">No gallery yet</span>'; return; }
   list.innerHTML=items.map(it=>`<div style="position:relative;border:1px solid #eee;border-radius:8px;overflow:hidden;background:#fff">
-    ${it.type==='video'? `<video src="${it.src}" style="width:100%;height:110px;object-fit:cover" muted></video>` : `<img src="${it.src}" style="width:100%;height:110px;object-fit:cover">`}
+    <img src="${it.src}" style="width:100%;height:110px;object-fit:cover">
     <button class="btn btn-red2" style="position:absolute;top:4px;right:4px;padding:3px 7px" onclick="deleteGallery('${it.id}')">✕</button></div>`).join('');
 }
 window.deleteGallery = async function(id){ if(!confirm('Delete?')) return; await deleteDoc(doc(db, "gallery", id)); }
@@ -604,25 +567,18 @@ window.clearGallery = async function(){
 document.getElementById('saveSettingsBtn').onclick = async function(){
   this.innerText='Saving...';
   let data={
-    name: setName.value,
-    owner: setOwner.value,
-    salesPhone1: setSalesPhone1.value.trim(),
-    salesPhone2: setSalesPhone2.value.trim(),
-    salesWA1: setSalesWA1.value.trim(),
-    salesWA2: setSalesWA2.value.trim(),
+    name: setName.value, owner: setOwner.value,
+    salesPhone1: setSalesPhone1.value.trim(), salesPhone2: setSalesPhone2.value.trim(),
+    salesWA1: setSalesWA1.value.trim(), salesWA2: setSalesWA2.value.trim(),
     salesEmail: setSalesEmail.value.trim(),
-    servicePhone1: setServicePhone1.value.trim(),
-    servicePhone2: setServicePhone2.value.trim(),
-    serviceWA1: setServiceWA1.value.trim(),
-    serviceWA2: setServiceWA2.value.trim(),
+    servicePhone1: setServicePhone1.value.trim(), servicePhone2: setServicePhone2.value.trim(),
+    serviceWA1: setServiceWA1.value.trim(), serviceWA2: setServiceWA2.value.trim(),
     serviceEmail: setServiceEmail.value.trim(),
-    phone: setSalesPhone1.value.trim(),
-    wa: setSalesWA1.value.trim(),
-    email: setSalesEmail.value.trim(),
+    phone: setSalesPhone1.value.trim(), wa: setSalesWA1.value.trim(), email: setSalesEmail.value.trim(),
     map: setMap.value, addr: setAddr.value, hours: setHours.value, emi: setEMI.value, fb: setFB.value, insta: setInsta.value, yt: setYT.value, review: setReview.value
   };
   await setDoc(doc(db, "settings", "main"), data, {merge:true});
-  document.getElementById('settingsStatus').innerText='✅ LIVE Saved! All pages will update automatically.';
+  document.getElementById('settingsStatus').innerText='✅ LIVE Saved!';
   this.innerText='💾 Save All to Firebase';
   setTimeout(()=>{ document.getElementById('settingsStatus').innerText=''; },3000);
 }
@@ -630,33 +586,16 @@ window.renderBookings = function(){
   let fb = window._firebaseBookings||[];
   let html='<tr><th>Source</th><th>Date</th><th>Name</th><th>Mobile</th><th>Bike / Details</th><th>Status</th><th>Action</th></tr>';
   let cards='';
-  if(fb.length===0){
-    html+='<tr><td colspan=7 style="text-align:center;color:#999;padding:20px">No bookings yet</td></tr>';
-    cards='<p style="text-align:center;color:#999;padding:20px">No bookings yet</p>';
-  } else {
-    fb.forEach(x=>{
-      let dateStr = x.createdAt?.toDate? x.createdAt.toDate().toLocaleString() : (x.date||'Just now');
-      let typeBadge = x.type==='test-ride'? 'TEST RIDE' : 'ENQUIRY';
-      let details = x.bike||x.model||'General';
-      html+=`<tr><td>${typeBadge}</td><td>${dateStr}</td><td>${x.name||'-'}</td><td>${x.mobile||x.phone}</td><td>${details}</td><td>${x.status||'new'}</td><td><button class="btn btn-outline" onclick="toggleFirebaseStatus('${x.id}','${x.status||'new'}')">Done</button> <button class="btn btn-red2" onclick="deleteFirebaseBooking('${x.id}')">X</button></td></tr>`;
-      cards+=`<div class="bk-card"><div class="bk-row"><span>Name</span><span>= ${x.name||'-'}</span></div><div class="bk-row"><span>Date</span><span>= ${dateStr}</span></div><div class="bk-row"><span>Mobile</span><span>= ${x.mobile||x.phone||'-'}</span></div><div class="bk-row"><span>Bike</span><span>= ${details}</span></div><div class="bk-row"><span>Type</span><span>= ${typeBadge}</span></div><div class="bk-row"><span>Status</span><span>= ${x.status||'new'}</span></div><div class="bk-card-actions"><a href="tel:${x.mobile||x.phone}" style="background:#111;color:#fff">📞 Call</a><a href="https://wa.me/${(x.mobile||x.phone||'').replace(/[^0-9]/g,'')}" target="_blank" style="background:#22c55e;color:#fff">WhatsApp</a><button class="btn btn-outline" onclick="deleteFirebaseBooking('${x.id}')">Del</button></div></div>`;
-    });
-  }
-  document.getElementById('bookingTable').innerHTML=html;
-  document.getElementById('bookingCards').innerHTML=cards;
-  document.getElementById('statBookings').innerText=fb.length;
+  if(fb.length===0){ html+='<tr><td colspan=7 style="text-align:center;color:#999;padding:20px">No bookings yet</td></tr>'; cards='<p style="text-align:center;color:#999;padding:20px">No bookings yet</p>'; }
+  else { fb.forEach(x=>{ let dateStr = x.createdAt?.toDate? x.createdAt.toDate().toLocaleString() : (x.date||'Just now'); let typeBadge = x.type==='test-ride'? 'TEST RIDE' : 'ENQUIRY'; let details = x.bike||x.model||'General'; html+=`<tr><td>${typeBadge}</td><td>${dateStr}</td><td>${x.name||'-'}</td><td>${x.mobile||x.phone}</td><td>${details}</td><td>${x.status||'new'}</td><td><button class="btn btn-outline" onclick="toggleFirebaseStatus('${x.id}','${x.status||'new'}')">Done</button> <button class="btn btn-red2" onclick="deleteFirebaseBooking('${x.id}')">X</button></td></tr>`; cards+=`<div class="bk-card"><div class="bk-row"><span>Name</span><span>= ${x.name||'-'}</span></div><div class="bk-row"><span>Date</span><span>= ${dateStr}</span></div><div class="bk-row"><span>Mobile</span><span>= ${x.mobile||x.phone||'-'}</span></div><div class="bk-row"><span>Bike</span><span>= ${details}</span></div><div class="bk-row"><span>Type</span><span>= ${typeBadge}</span></div><div class="bk-row"><span>Status</span><span>= ${x.status||'new'}</span></div><div class="bk-card-actions"><a href="tel:${x.mobile||x.phone}" style="background:#111;color:#fff">📞 Call</a><a href="https://wa.me/${(x.mobile||x.phone||'').replace(/[^0-9]/g,'')}" target="_blank" style="background:#22c55e;color:#fff">WhatsApp</a><button class="btn btn-outline" onclick="deleteFirebaseBooking('${x.id}')">Del</button></div></div>`; }); }
+  document.getElementById('bookingTable').innerHTML=html; document.getElementById('bookingCards').innerHTML=cards; document.getElementById('statBookings').innerText=fb.length;
 }
 window.renderRecent = function(){
   let fb = window._firebaseBookings||[];
-  let html='<tr><th>Name</th><th>Mobile</th><th>Bike</th><th>Type</th></tr>';
-  let cards='';
+  let html='<tr><th>Name</th><th>Mobile</th><th>Bike</th><th>Type</th></tr>'; let cards='';
   if(fb.length===0) html+='<tr><td colspan=4 style="text-align:center;color:#999">Waiting...</td></tr>';
-  else fb.slice(0,5).forEach(x=>{
-    html+=`<tr><td>${x.name}</td><td>${x.mobile||x.phone}</td><td>${x.bike||x.model}</td><td>${x.type||'enquiry'}</td></tr>`;
-    cards+=`<div class="bk-card"><div class="bk-row"><span>Name</span><span>= ${x.name}</span></div><div class="bk-row"><span>Mobile</span><span>= ${x.mobile||x.phone}</span></div><div class="bk-row"><span>Bike</span><span>= ${x.bike||x.model||'-'}</span></div></div>`;
-  });
-  document.getElementById('recentTable').innerHTML=html;
-  document.getElementById('recentCards').innerHTML=cards;
+  else fb.slice(0,5).forEach(x=>{ html+=`<tr><td>${x.name}</td><td>${x.mobile||x.phone}</td><td>${x.bike||x.model}</td><td>${x.type||'enquiry'}</td></tr>`; cards+=`<div class="bk-card"><div class="bk-row"><span>Name</span><span>= ${x.name}</span></div><div class="bk-row"><span>Mobile</span><span>= ${x.mobile||x.phone}</span></div><div class="bk-row"><span>Bike</span><span>= ${x.bike||x.model||'-'}</span></div></div>`; });
+  document.getElementById('recentTable').innerHTML=html; document.getElementById('recentCards').innerHTML=cards;
 }
 window.toggleFirebaseStatus = async function(id, cur){ let ns=cur==='done'?'new':'done'; await updateDoc(doc(db, "enquiries", id), {status: ns}); }
 window.deleteFirebaseBooking = async function(id){ if(!confirm('Delete?')) return; await deleteDoc(doc(db, "enquiries", id)); }
@@ -668,31 +607,17 @@ window.exportBookings = function(){
 window.updateStats = function(){ document.getElementById('statBookings').innerText=(window._firebaseBookings||[]).length; document.getElementById('statBikes').innerText=allBikesCache.filter(b=>b.stock!==false).length; }
 window.renderServiceBookings = function(){
   let arr = window._serviceBookings||[];
-  let html='<tr><th>Date</th><th>Name</th><th>Mobile</th><th>Bike Model</th><th>KM</th><th>Service Type</th><th>Preferred</th><th>Message</th><th>Status</th><th>Action</th></tr>';
-  let cards='';
+  let html='<tr><th>Date</th><th>Name</th><th>Mobile</th><th>Bike Model</th><th>KM</th><th>Service Type</th><th>Preferred</th><th>Message</th><th>Status</th><th>Action</th></tr>'; let cards='';
   if(arr.length===0){ html+='<tr><td colspan=10 style="text-align:center;color:#999;padding:20px">No service bookings yet</td></tr>'; cards='<p style="text-align:center;color:#999">No service bookings</p>'; }
-  else{
-    arr.forEach(x=>{
-      let dateStr = x.createdAt?.toDate? x.createdAt.toDate().toLocaleString() : 'Just now';
-      let pref = `${x.preferredDate||''} ${x.preferredTime||''}`;
-      html+=`<tr><td>${dateStr}</td><td>${x.name}</td><td>${x.mobile}</td><td>${x.bikeModel}</td><td>${x.km}</td><td>${x.serviceType}</td><td>${pref}</td><td>${x.message||'-'}</td><td>${x.status||'New'}</td><td><button class="btn btn-outline" onclick="toggleServiceStatus('${x.id}','${x.status||'New'}')">Toggle</button> <button class="btn btn-red2" onclick="deleteServiceBooking('${x.id}')">X</button></td></tr>`;
-      cards+=`<div class="bk-card"><div class="bk-row"><span>Name</span><span>= ${x.name||'-'}</span></div><div class="bk-row"><span>Date</span><span>= ${dateStr}</span></div><div class="bk-row"><span>Mobile</span><span>= ${x.mobile||'-'}</span></div><div class="bk-row"><span>Bike Model</span><span>= ${x.bikeModel||'-'}</span></div><div class="bk-row"><span>Status</span><span>= ${x.status||'New'}</span></div><div class="bk-card-actions"><a href="tel:${x.mobile}" style="background:#111;color:#fff">📞 Call</a><button class="btn btn-outline" onclick="toggleServiceStatus('${x.id}','${x.status||'New'}')">${x.status||'New'}</button><button class="btn btn-red2" onclick="deleteServiceBooking('${x.id}')">Del</button></div></div>`;
-    });
-  }
-  document.getElementById('serviceBookingTable').innerHTML=html;
-  document.getElementById('serviceBookingCards').innerHTML=cards;
+  else{ arr.forEach(x=>{ let dateStr = x.createdAt?.toDate? x.createdAt.toDate().toLocaleString() : 'Just now'; let pref = `${x.preferredDate||''} ${x.preferredTime||''}`; html+=`<tr><td>${dateStr}</td><td>${x.name}</td><td>${x.mobile}</td><td>${x.bikeModel}</td><td>${x.km}</td><td>${x.serviceType}</td><td>${pref}</td><td>${x.message||'-'}</td><td>${x.status||'New'}</td><td><button class="btn btn-outline" onclick="toggleServiceStatus('${x.id}','${x.status||'New'}')">Toggle</button> <button class="btn btn-red2" onclick="deleteServiceBooking('${x.id}')">X</button></td></tr>`; cards+=`<div class="bk-card"><div class="bk-row"><span>Name</span><span>= ${x.name||'-'}</span></div><div class="bk-row"><span>Date</span><span>= ${dateStr}</span></div><div class="bk-row"><span>Mobile</span><span>= ${x.mobile||'-'}</span></div><div class="bk-row"><span>Bike Model</span><span>= ${x.bikeModel||'-'}</span></div><div class="bk-row"><span>Status</span><span>= ${x.status||'New'}</span></div><div class="bk-card-actions"><a href="tel:${x.mobile}" style="background:#111;color:#fff">📞 Call</a><button class="btn btn-outline" onclick="toggleServiceStatus('${x.id}','${x.status||'New'}')">${x.status||'New'}</button><button class="btn btn-red2" onclick="deleteServiceBooking('${x.id}')">Del</button></div></div>`; }); }
+  document.getElementById('serviceBookingTable').innerHTML=html; document.getElementById('serviceBookingCards').innerHTML=cards;
 }
 window.renderRecentService = function(){
   let arr = window._serviceBookings||[];
-  let html='<tr><th>Name</th><th>Mobile</th><th>Bike</th><th>Service</th></tr>';
-  let cards='';
+  let html='<tr><th>Name</th><th>Mobile</th><th>Bike</th><th>Service</th></tr>'; let cards='';
   if(arr.length===0) html+='<tr><td colspan=4 style="text-align:center;color:#999">No service bookings</td></tr>';
-  else arr.slice(0,5).forEach(x=>{
-    html+=`<tr><td>${x.name}</td><td>${x.mobile}</td><td>${x.bikeModel}</td><td>${x.serviceType}</td></tr>`;
-    cards+=`<div class="bk-card"><div class="bk-row"><span>Name</span><span>= ${x.name}</span></div><div class="bk-row"><span>Mobile</span><span>= ${x.mobile}</span></div><div class="bk-row"><span>Bike</span><span>= ${x.bikeModel}</span></div></div>`;
-  });
-  document.getElementById('recentServiceTable').innerHTML=html;
-  document.getElementById('recentServiceCards').innerHTML=cards;
+  else arr.slice(0,5).forEach(x=>{ html+=`<tr><td>${x.name}</td><td>${x.mobile}</td><td>${x.bikeModel}</td><td>${x.serviceType}</td></tr>`; cards+=`<div class="bk-card"><div class="bk-row"><span>Name</span><span>= ${x.name}</span></div><div class="bk-row"><span>Mobile</span><span>= ${x.mobile}</span></div><div class="bk-row"><span>Bike</span><span>= ${x.bikeModel}</span></div></div>`; });
+  document.getElementById('recentServiceTable').innerHTML=html; document.getElementById('recentServiceCards').innerHTML=cards;
 }
 window.updateServiceStats = function(){ document.getElementById('statService').innerText=(window._serviceBookings||[]).length; document.getElementById('serviceCount').innerText=(window._serviceBookings||[]).length; }
 window.toggleServiceStatus = async function(id, cur){ let ns = cur==='New'? 'Completed' : 'New'; await updateDoc(doc(db, "serviceBookings", id), {status: ns}); }
