@@ -18,7 +18,6 @@
 .stat-card{background:#fff;border-radius:12px;padding:18px;border:1px solid #e5e7eb}
 .card{background:#fff;border-radius:12px;padding:18px;border:1px solid #e5e7eb;margin-bottom:18px}
 table{width:100%;border-collapse:collapse} th,td{padding:11px 8px;font-size:12px;border-bottom:1px solid #f0f0f0} th{color:#666;font-size:11px;text-transform:uppercase}
-.badge{padding:3px 8px;border-radius:12px;font-size:10px;font-weight:600}.badge.green{background:#dcfce7;color:#166534}.badge.yellow{background:#fef9c3;color:#854d0e}.badge.blue{background:#dbeafe;color:#1e40af}
 .btn{padding:7px 12px;border-radius:6px;border:none;font-size:11px;cursor:pointer;font-weight:600}.btn-red2{background:#E4002B;color:#fff}.btn-dark{background:#111;color:#fff}.btn-outline{background:#fff;border:1px solid #e5e7eb}
 input,select,textarea{padding:9px 10px;border:1px solid #e5e7eb;border-radius:8px;width:100%;font-size:13px}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
@@ -32,8 +31,6 @@ input,select,textarea{padding:9px 10px;border:1px solid #e5e7eb;border-radius:8p
 .bike-preview-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
 .bike-preview-item{position:relative;border:1px solid #eee;border-radius:8px;overflow:hidden;background:#fff}
 .bike-preview-item img{width:100%;height:90px;object-fit:cover}
-
-/* === NAME = VALUE CARD FIX === */
 .booking-cards{display:none}
 .bk-card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:12px;margin-bottom:12px}
 .bk-row{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px dashed #eeeeee;font-size:13px}
@@ -42,7 +39,6 @@ input,select,textarea{padding:9px 10px;border:1px solid #e5e7eb;border-radius:8p
 .bk-row span:last-child{color:#111;font-weight:600;text-align:right;word-break:break-all}
 .bk-card-actions{display:flex;gap:8px;margin-top:12px}
 .bk-card-actions a,.bk-card-actions button{flex:1;text-align:center;padding:10px;border-radius:8px;font-size:12px;font-weight:700;text-decoration:none;display:block}
-
 @media(max-width:900px){
 .sidebar{width:100%;height:auto;position:relative}.main{margin-left:0;width:100%}.stats{grid-template-columns:1fr 1fr}.form-row{grid-template-columns:1fr}
 #bookings table, #serviceBookings table, #dashboard table{display:none}
@@ -54,15 +50,14 @@ input,select,textarea{padding:9px 10px;border:1px solid #e5e7eb;border-radius:8p
 <div id="loginScreen" class="login-wrap">
   <div class="login-box">
     <h2>Yug Honda Admin</h2>
-    <p style="font-size:12px;color:#666;margin:6px 0 18px">Firebase LIVE Mode - yug-honda (NAME=VALUE)</p>
+    <p style="font-size:12px;color:#666;margin:6px 0 18px">Firebase LIVE Mode - yug-honda</p>
     <input id="loginUser" placeholder="Username">
     <input id="loginPass" type="password" placeholder="Password" style="margin-top:10px">
     <button style="background:#E4002B;color:#fff;padding:12px;border:none;border-radius:8px;width:100%;font-weight:600;cursor:pointer;margin-top:12px" onclick="doLogin()">Login →</button>
-    <p style="font-size:10px;color:#888;margin-top:10px">Default: admin </p>
   </div>
 </div>
 <div id="adminScreen" style="display:none">
-<div class="sidebar"><h2>YUG HONDA</h2><small style="color:#22c55e;font-size:11px">● Firebase LIVE + CARDS</small>
+<div class="sidebar"><h2>YUG HONDA</h2><small style="color:#22c55e;font-size:11px">● Firebase LIVE</small>
 <div class="menu">
 <a class="active" onclick="showTab('dashboard',this)"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
 <a onclick="showTab('bookings',this)"><i class="fa-solid fa-calendar-check"></i> Bookings <span id="bookingCount" style="margin-left:auto;background:#E4002B;color:#fff;padding:2px 6px;border-radius:10px;font-size:10px">0</span></a>
@@ -76,7 +71,7 @@ input,select,textarea{padding:9px 10px;border:1px solid #e5e7eb;border-radius:8p
 <div class="main">
 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px"><div><h2 id="pageTitle">Dashboard</h2><p style="font-size:12px;color:#666">Harpur Mahmada, Pusa, Samastipur | <span style="color:green">● yug-honda Firebase Connected</span></p></div><button class="btn btn-dark" onclick="window.open('index.html','_blank')">🌐 View Website</button></div>
 <div id="dashboard" class="section active">
-<div class="stats"><div class="stat-card"><h3 id="statBookings">0</h3><p style="font-size:12px;color:#666">Total Bookings (Firebase)</p></div><div class="stat-card"><h3 id="statService">0</h3><p style="font-size:12px;color:#666">Service Bookings</p></div><div class="stat-card"><h3 id="statBikes">0</h3><p style="font-size:12px;color:#666">Bikes in Stock</p></div><div class="stat-card"><h3 id="statOffers">0</h3><p style="font-size:12px;color:#666">Active Offers</p></div></div>
+<div class="stats"><div class="stat-card"><h3 id="statBookings">0</h3><p style="font-size:12px;color:#666">Total Bookings</p></div><div class="stat-card"><h3 id="statService">0</h3><p style="font-size:12px;color:#666">Service Bookings</p></div><div class="stat-card"><h3 id="statBikes">0</h3><p style="font-size:12px;color:#666">Bikes in Stock</p></div><div class="stat-card"><h3 id="statOffers">0</h3><p style="font-size:12px;color:#666">Active Offers</p></div></div>
 <div class="card"><h3>🔥 Live Firebase Bookings (Latest 5)</h3><table id="recentTable"></table><div id="recentCards" class="booking-cards"></div></div>
 <div class="card"><h3>🛠️ Latest Service Bookings (Latest 5)</h3><table id="recentServiceTable"></table><div id="recentServiceCards" class="booking-cards"></div></div>
 <div class="card"><h3>Quick Links</h3><div id="quickLinks" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"></div></div>
@@ -90,27 +85,21 @@ input,select,textarea{padding:9px 10px;border:1px solid #e5e7eb;border-radius:8p
 </div>
 <div id="serviceBookings" class="section">
 <div class="card"><h3>🛠️ Service Bookings - Firebase LIVE <span style="float:right"><button class="btn btn-dark" onclick="exportServiceBookings()">Export CSV</button> <button class="btn btn-red2" onclick="loadServiceBookings()">🔄 Refresh</button></span></h3>
-<p id="serviceStatus" style="font-size:11px;color:#666;margin:8px 0">LIVE syncing service bookings...</p>
+<p id="serviceStatus" style="font-size:11px;color:#666;margin:8px 0">LIVE syncing...</p>
 <table id="serviceBookingTable"></table>
 <div id="serviceBookingCards" class="booking-cards"></div>
 </div>
 </div>
 <div id="inventory" class="section">
 <div class="card">
-<h3>➕ Add New Bike - LIVE to Firebase (STORAGE FIXED)</h3>
+<h3>➕ Add New Bike - LIVE to Firebase</h3>
 <div class="form-row"><div><span class="label">Bike Name *</span><input id="bName" placeholder="e.g. SP 125"></div><div><span class="label">Category</span><select id="bCat"><option>Commuter Bike</option><option>Scooter</option><option>Premium Bike</option><option>Sports Bike</option></select></div></div>
 <div class="form-row" style="margin-top:10px">
 <div><span class="label" style="color:var(--red)">💰 Price *</span><input id="bPrice" type="number" placeholder="e.g. 95000"></div>
 <div><span class="label">CC</span><input id="bMileage" placeholder="CC"></div>
 </div>
-<div style="margin-top:12px">
-<span class="label">📝 Description *</span>
-<textarea id="bDesc" rows="5" placeholder="Full bike details..."></textarea>
-</div>
-<div style="margin-top:12px">
-<span class="label">📋 Full Features Description (HTML Allowed)</span>
-<textarea id="bFullDesc" rows="8" placeholder="<h3>Engine</h3><ul><li>• 125cc</li></ul>"></textarea>
-</div>
+<div style="margin-top:12px"><span class="label">📝 Description *</span><textarea id="bDesc" rows="5" placeholder="Full bike details..."></textarea></div>
+<div style="margin-top:12px"><span class="label">📋 Full Features Description (HTML Allowed)</span><textarea id="bFullDesc" rows="8" placeholder="<h3>Engine</h3><ul><li>• 125cc</li></ul>"></textarea></div>
 <div style="margin-top:14px;border:1px solid #f0f0f0;padding:12px;border-radius:10px;background:#fafafa">
 <span class="label">📸 Bike Images</span>
 <div class="upload-box" onclick="document.getElementById('bikeFileInput').click()"><i class="fa-solid fa-cloud-arrow-up" style="font-size:24px;color:var(--red)"></i><p style="font-size:12px;font-weight:600;margin-top:6px">Click to Choose Images</p></div>
@@ -165,17 +154,37 @@ input,select,textarea{padding:9px 10px;border:1px solid #e5e7eb;border-radius:8p
 <div id="galleryAdminList" style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px"></div>
 </div>
 </div>
+
 <div id="settings" class="section">
-<div class="card"><h3>🏪 Showroom Details - LIVE Firebase</h3><div class="form-row"><div><span class="label">Showroom Name</span><input id="setName" value="Yug Honda"></div><div><span class="label">Owner Name</span><input id="setOwner" value="Yug Honda Owner"></div></div><div class="form-row"><div><span class="label">Phone</span><input id="setPhone" value="+91 98765 43210"></div><div><span class="label">WhatsApp (without +)</span><input id="setWALog" value="919876543210"></div></div><div class="form-row"><div><span class="label">Email</span><input id="setEmail" value="yughonda@gmail.com"></div><div><span class="label">Map Link</span><input id="setMap" value="https://maps.google.com/?q=Yug+Honda+Pusa"></div></div><span class="label">Address</span><input id="setAddr" value="Harpur Mahmada, Pusa, Samastipur, Bihar - 848125" style="margin-bottom:10px"><div class="form-row"><div><span class="label">Hours</span><input id="setHours" value="9:00 AM - 8:00 PM"></div><div><span class="label">EMI %</span><input id="setEMI" value="9"></div></div></div>
+<div class="card"><h3>🏪 Showroom Details - LIVE Firebase</h3>
+<div class="form-row"><div><span class="label">Showroom Name</span><input id="setName" value="Yug Honda"></div><div><span class="label">Owner Name</span><input id="setOwner" value="Yug Honda Owner"></div></div>
+
+<div style="background:#fff7f7;border:1px solid #ffd0d0;padding:12px;border-radius:10px;margin-bottom:12px;margin-top:10px">
+<h4 style="font-size:13px;color:#E4002B;margin-bottom:10px"><i class="fa-solid fa-phone"></i> SALES Contact (Separate)</h4>
+<div class="form-row"><div><span class="label">Sales Phone 1 * (Main)</span><input id="setSalesPhone1" placeholder="+91 98765 43210"></div><div><span class="label">Sales Phone 2 (Optional)</span><input id="setSalesPhone2" placeholder="+91 98765 43211"></div></div>
+<div class="form-row"><div><span class="label">Sales WhatsApp 1 (without + e.g. 919876543210)</span><input id="setSalesWA1" placeholder="919876543210"></div><div><span class="label">Sales WhatsApp 2 (Optional)</span><input id="setSalesWA2" placeholder="919876543211"></div></div>
+<div style="margin-top:8px"><span class="label">Sales Email *</span><input id="setSalesEmail" placeholder="sales@yughonda.com" value="yughonda@gmail.com"></div>
+</div>
+
+<div style="background:#f0fdf4;border:1px solid #bbf7d0;padding:12px;border-radius:10px;margin-bottom:12px">
+<h4 style="font-size:13px;color:#166534;margin-bottom:10px"><i class="fa-solid fa-screwdriver-wrench"></i> SERVICE Contact (Separate)</h4>
+<div class="form-row"><div><span class="label">Service Phone 1 * (Main)</span><input id="setServicePhone1" placeholder="+91 98765 43212"></div><div><span class="label">Service Phone 2 (Optional)</span><input id="setServicePhone2" placeholder="+91 98765 43213"></div></div>
+<div class="form-row"><div><span class="label">Service WhatsApp 1 (without +)</span><input id="setServiceWA1" placeholder="919876543212"></div><div><span class="label">Service WhatsApp 2 (Optional)</span><input id="setServiceWA2" placeholder="919876543213"></div></div>
+<div style="margin-top:8px"><span class="label">Service Email *</span><input id="setServiceEmail" placeholder="service@yughonda.com" value="service@yughonda.com"></div>
+</div>
+
+<span class="label">Map Link</span><input id="setMap" value="https://maps.google.com/?q=Yug+Honda+Pusa" style="margin-bottom:10px"><span class="label">Address</span><input id="setAddr" value="Harpur Mahmada, Pusa, Samastipur, Bihar - 848125" style="margin-bottom:10px"><div class="form-row"><div><span class="label">Hours</span><input id="setHours" value="9:00 AM - 8:00 PM"></div><div><span class="label">EMI %</span><input id="setEMI" value="9"></div></div></div>
 <div class="card"><h3>📱 Social</h3><div class="form-row"><div><span class="label">Facebook</span><input id="setFB"></div><div><span class="label">Instagram</span><input id="setInsta"></div></div><div class="form-row"><div><span class="label">YouTube</span><input id="setYT"></div><div><span class="label">Review Link</span><input id="setReview"></div></div><button class="btn btn-red2" id="saveSettingsBtn">💾 Save All to Firebase</button><p id="settingsStatus" style="font-size:11px;color:green;margin-top:8px"></p></div>
 </div>
+
 </div>
 </div>
+
 <div id="editModal" class="modal"><div class="modal-box"><h3>✏️ Edit Bike - Firebase</h3><br><span class="label">Bike Name</span><input id="editName"><span class="label" style="margin-top:8px">Category</span><select id="editCat"><option>Commuter Bike</option><option>Scooter</option><option>Premium Bike</option><option>Sports Bike</option></select>
 <div class="form-row" style="margin-top:10px"><div><span class="label">Price</span><input id="editPrice" type="number"></div><div><span class="label">Mileage</span><input id="editMileage"></div></div>
 <span class="label" style="margin-top:10px">Description</span><textarea id="editDesc" rows="5"></textarea>
 <span class="label" style="margin-top:10px">Full Features Description (HTML)</span><textarea id="editFullDesc" rows="8"></textarea>
-<div style="margin-top:12px"><span class="label">Images</span><div class="upload-box" onclick="document.getElementById('editFileInput').click()" style="padding:12px"><i class="fa-solid fa-plus"></i> Add More Photos (Storage)</div><input type="file" id="editFileInput" accept="image/*" multiple style="display:none" onchange="handleEditFiles(event)"><div id="editImagePreview" class="bike-preview-grid" style="margin-top:10px"></div></div>
+<div style="margin-top:12px"><span class="label">Images</span><div class="upload-box" onclick="document.getElementById('editFileInput').click()" style="padding:12px"><i class="fa-solid fa-plus"></i> Add More Photos</div><input type="file" id="editFileInput" accept="image/*" multiple style="display:none" onchange="handleEditFiles(event)"><div id="editImagePreview" class="bike-preview-grid" style="margin-top:10px"></div></div>
 <div style="display:flex;gap:10px;margin-top:14px"><button class="btn btn-red2" style="flex:1" id="saveEditBtn">Save to Firebase</button><button class="btn btn-outline" style="flex:1" onclick="closeEdit()">Cancel</button></div></div></div>
 
 <script type="module">
@@ -194,7 +203,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const storage = getStorage(app);
-window.db = db;
 let editId = null;
 let selectedBikeImgs = [];
 let selectedBikeFiles = [];
@@ -233,7 +241,7 @@ async function initLive(){
       document.getElementById('firebaseStatus').innerText=`✅ Firebase LIVE: ${arr.length} bookings`;
       document.getElementById('bookingCount').innerText=arr.length;
     });
-  }catch(e){ console.log(e); }
+  }catch(e){}
   try{
     const q2 = query(collection(db, "serviceBookings"), orderBy("createdAt", "desc"));
     onSnapshot(q2, (snap)=>{
@@ -271,19 +279,32 @@ async function loadOffersFromFirebase(){
       document.getElementById('festBtn').value = offersCache.festBtn || 'Explore Now →';
     }
     loadPerBikeOfferUI();
-  }catch(e){ console.log(e); }
+  }catch(e){}
 }
 async function loadSettingsFromFirebase(){
   try{
     const snap = await getDoc(doc(db, "settings", "main"));
     if(snap.exists()){
       let s=snap.data();
-      document.getElementById('setName').value=s.name||''; document.getElementById('setOwner').value=s.owner||'';
-      document.getElementById('setPhone').value=s.phone||''; document.getElementById('setWALog').value=s.wa||'';
-      document.getElementById('setEmail').value=s.email||''; document.getElementById('setMap').value=s.map||'';
-      document.getElementById('setAddr').value=s.addr||''; document.getElementById('setHours').value=s.hours||'';
-      document.getElementById('setEMI').value=s.emi||'9'; document.getElementById('setFB').value=s.fb||'';
-      document.getElementById('setInsta').value=s.insta||''; document.getElementById('setYT').value=s.yt||'';
+      document.getElementById('setName').value=s.name||'';
+      document.getElementById('setOwner').value=s.owner||'';
+      document.getElementById('setSalesPhone1').value=s.salesPhone1||s.phone||'';
+      document.getElementById('setSalesPhone2').value=s.salesPhone2||'';
+      document.getElementById('setSalesWA1').value=s.salesWA1||s.wa||'';
+      document.getElementById('setSalesWA2').value=s.salesWA2||'';
+      document.getElementById('setSalesEmail').value=s.salesEmail||s.email||'';
+      document.getElementById('setServicePhone1').value=s.servicePhone1||'';
+      document.getElementById('setServicePhone2').value=s.servicePhone2||'';
+      document.getElementById('setServiceWA1').value=s.serviceWA1||'';
+      document.getElementById('setServiceWA2').value=s.serviceWA2||'';
+      document.getElementById('setServiceEmail').value=s.serviceEmail||'service@yughonda.com';
+      document.getElementById('setMap').value=s.map||'';
+      document.getElementById('setAddr').value=s.addr||'';
+      document.getElementById('setHours').value=s.hours||'';
+      document.getElementById('setEMI').value=s.emi||'9';
+      document.getElementById('setFB').value=s.fb||'';
+      document.getElementById('setInsta').value=s.insta||'';
+      document.getElementById('setYT').value=s.yt||'';
       document.getElementById('setReview').value=s.review||'';
     }
   }catch(e){ console.log(e); }
@@ -351,25 +372,22 @@ document.getElementById('addBikeBtn').onclick = async function(){
   let desc=document.getElementById('bDesc').value.trim();
   let fullDescription=document.getElementById('bFullDesc').value.trim();
   if(!name||!price||!desc||selectedBikeFiles.length===0){ alert('Name, Price, Description & Image required'); return; }
-  this.innerText='Uploading to Storage...'; this.disabled=true;
+  this.innerText='Uploading...'; this.disabled=true;
   try{
     let finalUrls = await uploadFilesToStorage(selectedBikeFiles, 'bikes');
-    await addDoc(collection(db, "bikes"), {
-      name, cat, imgs:finalUrls, specs:[{k:'price',v:price},{k:'mileage',v:mileage}], desc, price, fullDescription, stock:true, createdAt: serverTimestamp()
-    });
+    await addDoc(collection(db, "bikes"), { name, cat, imgs:finalUrls, specs:[{k:'price',v:price},{k:'mileage',v:mileage}], desc, price, fullDescription, stock:true, createdAt: serverTimestamp() });
     alert('✅ Bike Added LIVE!');
     document.getElementById('bName').value=''; document.getElementById('bPrice').value=''; document.getElementById('bMileage').value=''; document.getElementById('bDesc').value=''; document.getElementById('bFullDesc').value=''; selectedBikeImgs=[]; selectedBikeFiles=[]; renderBikePreview();
     document.getElementById('bikeUploadStatus').innerText='';
   }catch(e){ alert('Error: '+e.message); }
   this.innerText='+ Add Bike To Firebase'; this.disabled=false;
 }
-
 window.renderInventory = function(){
   let html='<tr><th>Image</th><th>Name</th><th>Price</th><th>Stock</th><th>Action</th></tr>';
   allBikesCache.forEach(b=>{
     let priceNum=Number(String(b.price||'').replace(/[^0-9]/g,''));
     let firstImg=b.imgs?.[0]||'';
-    html+=`<tr><td><img src="${firstImg}" style="width:50px;height:32px;object-fit:contain"></td><td><b>${b.name}</b><br><span style="font-size:10px;color:#888">${b.cat}</span></td><td style="font-weight:700;color:#E4002B">₹${isNaN(priceNum)?b.price:priceNum.toLocaleString('en-IN')}</td><td><label class="switch"><input type="checkbox" ${b.stock?'checked':''} onchange="toggleStock('${b.id}',${b.stock})"><span class="slider"></span></label></td><td><button class="btn btn-dark" onclick="openEdit('${b.id}')">Edit</button> <button class="btn btn-red2" onclick="removeBike('${b.id}')">Del</button></td></tr>`;
+    html+=`<tr><td><img src="${firstImg}" style="width:50px;height:32px;object-fit:contain"></td><td><b>${b.name}</b></td><td style="font-weight:700;color:#E4002B">₹${isNaN(priceNum)?b.price:priceNum.toLocaleString('en-IN')}</td><td><label class="switch"><input type="checkbox" ${b.stock?'checked':''} onchange="toggleStock('${b.id}',${b.stock})"><span class="slider"></span></label></td><td><button class="btn btn-dark" onclick="openEdit('${b.id}')">Edit</button> <button class="btn btn-red2" onclick="removeBike('${b.id}')">Del</button></td></tr>`;
   });
   document.getElementById('inventoryTable').innerHTML=html;
   document.getElementById('statBikes').innerText=allBikesCache.filter(b=>b.stock!==false).length;
@@ -450,7 +468,7 @@ window.loadPerBikeOfferUI = function(){
   let list=document.getElementById('perBikeOffersList');
   if(Object.keys(offers).length===0){ list.innerHTML='<span style="color:#999">No offers yet</span>'; document.getElementById('statOffers').innerText=0; return; }
   document.getElementById('statOffers').innerText=Object.keys(offers).length;
-  let html='<b>Current Offers (Firebase):</b><br><br>';
+  let html='<b>Current Offers:</b><br><br>';
   for(let k in offers){ html+=`<div style="display:flex;justify-content:space-between;background:#fff;padding:8px;border-radius:6px;margin-bottom:6px;border:1px solid #eee"><div><b>${k}</b>: ${offers[k]}</div><button class="btn btn-red2" onclick="deletePerBikeOffer('${k}')">X</button></div>` }
   list.innerHTML=html;
 }
@@ -510,14 +528,29 @@ window.clearGallery = async function(){
 }
 document.getElementById('saveSettingsBtn').onclick = async function(){
   this.innerText='Saving...';
-  let data={ name: setName.value, owner: setOwner.value, phone: setPhone.value, wa: setWALog.value, email: setEmail.value, map: setMap.value, addr: setAddr.value, hours: setHours.value, emi: setEMI.value, fb: setFB.value, insta: setInsta.value, yt: setYT.value, review: setReview.value };
+  let data={
+    name: setName.value,
+    owner: setOwner.value,
+    salesPhone1: setSalesPhone1.value.trim(),
+    salesPhone2: setSalesPhone2.value.trim(),
+    salesWA1: setSalesWA1.value.trim(),
+    salesWA2: setSalesWA2.value.trim(),
+    salesEmail: setSalesEmail.value.trim(),
+    servicePhone1: setServicePhone1.value.trim(),
+    servicePhone2: setServicePhone2.value.trim(),
+    serviceWA1: setServiceWA1.value.trim(),
+    serviceWA2: setServiceWA2.value.trim(),
+    serviceEmail: setServiceEmail.value.trim(),
+    phone: setSalesPhone1.value.trim(),
+    wa: setSalesWA1.value.trim(),
+    email: setSalesEmail.value.trim(),
+    map: setMap.value, addr: setAddr.value, hours: setHours.value, emi: setEMI.value, fb: setFB.value, insta: setInsta.value, yt: setYT.value, review: setReview.value
+  };
   await setDoc(doc(db, "settings", "main"), data, {merge:true});
-  document.getElementById('settingsStatus').innerText='✅ LIVE Saved!';
+  document.getElementById('settingsStatus').innerText='✅ LIVE Saved! All pages will update automatically.';
   this.innerText='💾 Save All to Firebase';
   setTimeout(()=>{ document.getElementById('settingsStatus').innerText=''; },3000);
 }
-
-// ===== FINAL NAME = VALUE CARD RENDER =====
 window.renderBookings = function(){
   let fb = window._firebaseBookings||[];
   let html='<tr><th>Source</th><th>Date</th><th>Name</th><th>Mobile</th><th>Bike / Details</th><th>Status</th><th>Action</th></tr>';
@@ -531,20 +564,7 @@ window.renderBookings = function(){
       let typeBadge = x.type==='test-ride'? 'TEST RIDE' : 'ENQUIRY';
       let details = x.bike||x.model||'General';
       html+=`<tr><td>${typeBadge}</td><td>${dateStr}</td><td>${x.name||'-'}</td><td>${x.mobile||x.phone}</td><td>${details}</td><td>${x.status||'new'}</td><td><button class="btn btn-outline" onclick="toggleFirebaseStatus('${x.id}','${x.status||'new'}')">Done</button> <button class="btn btn-red2" onclick="deleteFirebaseBooking('${x.id}')">X</button></td></tr>`;
-      cards+=`<div class="bk-card">
-        <div class="bk-row"><span>Name</span><span>= ${x.name||'-'}</span></div>
-        <div class="bk-row"><span>Date</span><span>= ${dateStr}</span></div>
-        <div class="bk-row"><span>Mobile</span><span>= ${x.mobile||x.phone||'-'}</span></div>
-        <div class="bk-row"><span>Bike</span><span>= ${details}</span></div>
-        <div class="bk-row"><span>Type</span><span>= ${typeBadge}</span></div>
-        <div class="bk-row"><span>Status</span><span>= ${x.status||'new'}</span></div>
-        ${x.message? `<div class="bk-row"><span>Message</span><span>= ${x.message.substring(0,100)}</span></div>`:''}
-        <div class="bk-card-actions">
-          <a href="tel:${x.mobile||x.phone}" style="background:#111;color:#fff">📞 Call</a>
-          <a href="https://wa.me/${(x.mobile||x.phone||'').replace(/[^0-9]/g,'')}" target="_blank" style="background:#22c55e;color:#fff">WhatsApp</a>
-          <button class="btn btn-outline" onclick="deleteFirebaseBooking('${x.id}')">Del</button>
-        </div>
-      </div>`;
+      cards+=`<div class="bk-card"><div class="bk-row"><span>Name</span><span>= ${x.name||'-'}</span></div><div class="bk-row"><span>Date</span><span>= ${dateStr}</span></div><div class="bk-row"><span>Mobile</span><span>= ${x.mobile||x.phone||'-'}</span></div><div class="bk-row"><span>Bike</span><span>= ${details}</span></div><div class="bk-row"><span>Type</span><span>= ${typeBadge}</span></div><div class="bk-row"><span>Status</span><span>= ${x.status||'new'}</span></div><div class="bk-card-actions"><a href="tel:${x.mobile||x.phone}" style="background:#111;color:#fff">📞 Call</a><a href="https://wa.me/${(x.mobile||x.phone||'').replace(/[^0-9]/g,'')}" target="_blank" style="background:#22c55e;color:#fff">WhatsApp</a><button class="btn btn-outline" onclick="deleteFirebaseBooking('${x.id}')">Del</button></div></div>`;
     });
   }
   document.getElementById('bookingTable').innerHTML=html;
@@ -570,12 +590,7 @@ window.exportBookings = function(){
   let csv='Name,Mobile,Bike,Date,Status\n'+fb.map(x=>`"${x.name}","${x.mobile||x.phone}","${(x.bike||'').replace(/"/g,'')}","${x.createdAt?.toDate? x.createdAt.toDate().toLocaleString(): x.date}","${x.status}"`).join('\n');
   let blob=new Blob([csv],{type:'text/csv'}); let a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='yug_honda_bookings.csv'; a.click();
 }
-window.updateStats = function(){
-  document.getElementById('statBookings').innerText=(window._firebaseBookings||[]).length;
-  document.getElementById('statBikes').innerText=allBikesCache.filter(b=>b.stock!==false).length;
-}
-window.loadFirebaseBookings = async function(){ }
-
+window.updateStats = function(){ document.getElementById('statBookings').innerText=(window._firebaseBookings||[]).length; document.getElementById('statBikes').innerText=allBikesCache.filter(b=>b.stock!==false).length; }
 window.renderServiceBookings = function(){
   let arr = window._serviceBookings||[];
   let html='<tr><th>Date</th><th>Name</th><th>Mobile</th><th>Bike Model</th><th>KM</th><th>Service Type</th><th>Preferred</th><th>Message</th><th>Status</th><th>Action</th></tr>';
@@ -586,22 +601,7 @@ window.renderServiceBookings = function(){
       let dateStr = x.createdAt?.toDate? x.createdAt.toDate().toLocaleString() : 'Just now';
       let pref = `${x.preferredDate||''} ${x.preferredTime||''}`;
       html+=`<tr><td>${dateStr}</td><td>${x.name}</td><td>${x.mobile}</td><td>${x.bikeModel}</td><td>${x.km}</td><td>${x.serviceType}</td><td>${pref}</td><td>${x.message||'-'}</td><td>${x.status||'New'}</td><td><button class="btn btn-outline" onclick="toggleServiceStatus('${x.id}','${x.status||'New'}')">Toggle</button> <button class="btn btn-red2" onclick="deleteServiceBooking('${x.id}')">X</button></td></tr>`;
-      cards+=`<div class="bk-card">
-        <div class="bk-row"><span>Name</span><span>= ${x.name||'-'}</span></div>
-        <div class="bk-row"><span>Date</span><span>= ${dateStr}</span></div>
-        <div class="bk-row"><span>Mobile</span><span>= ${x.mobile||'-'}</span></div>
-        <div class="bk-row"><span>Bike Model</span><span>= ${x.bikeModel||'-'}</span></div>
-        <div class="bk-row"><span>KM</span><span>= ${x.km||'-'}</span></div>
-        <div class="bk-row"><span>Service Type</span><span>= ${x.serviceType||'-'}</span></div>
-        <div class="bk-row"><span>Preferred</span><span>= ${pref||'-'}</span></div>
-        <div class="bk-row"><span>Status</span><span>= ${x.status||'New'}</span></div>
-        ${x.message? `<div class="bk-row"><span>Message</span><span>= ${x.message.substring(0,100)}</span></div>`:''}
-        <div class="bk-card-actions">
-          <a href="tel:${x.mobile}" style="background:#111;color:#fff">📞 Call</a>
-          <button class="btn btn-outline" onclick="toggleServiceStatus('${x.id}','${x.status||'New'}')">${x.status||'New'}</button>
-          <button class="btn btn-red2" onclick="deleteServiceBooking('${x.id}')">Del</button>
-        </div>
-      </div>`;
+      cards+=`<div class="bk-card"><div class="bk-row"><span>Name</span><span>= ${x.name||'-'}</span></div><div class="bk-row"><span>Date</span><span>= ${dateStr}</span></div><div class="bk-row"><span>Mobile</span><span>= ${x.mobile||'-'}</span></div><div class="bk-row"><span>Bike Model</span><span>= ${x.bikeModel||'-'}</span></div><div class="bk-row"><span>Status</span><span>= ${x.status||'New'}</span></div><div class="bk-card-actions"><a href="tel:${x.mobile}" style="background:#111;color:#fff">📞 Call</a><button class="btn btn-outline" onclick="toggleServiceStatus('${x.id}','${x.status||'New'}')">${x.status||'New'}</button><button class="btn btn-red2" onclick="deleteServiceBooking('${x.id}')">Del</button></div></div>`;
     });
   }
   document.getElementById('serviceBookingTable').innerHTML=html;
@@ -619,24 +619,16 @@ window.renderRecentService = function(){
   document.getElementById('recentServiceTable').innerHTML=html;
   document.getElementById('recentServiceCards').innerHTML=cards;
 }
-window.updateServiceStats = function(){
-  document.getElementById('statService').innerText=(window._serviceBookings||[]).length;
-  document.getElementById('serviceCount').innerText=(window._serviceBookings||[]).length;
-}
-window.toggleServiceStatus = async function(id, cur){
-  let ns = cur==='New'? 'Completed' : 'New';
-  await updateDoc(doc(db, "serviceBookings", id), {status: ns});
-}
-window.deleteServiceBooking = async function(id){
-  if(!confirm('Delete this service booking?')) return;
-  await deleteDoc(doc(db, "serviceBookings", id));
-}
+window.updateServiceStats = function(){ document.getElementById('statService').innerText=(window._serviceBookings||[]).length; document.getElementById('serviceCount').innerText=(window._serviceBookings||[]).length; }
+window.toggleServiceStatus = async function(id, cur){ let ns = cur==='New'? 'Completed' : 'New'; await updateDoc(doc(db, "serviceBookings", id), {status: ns}); }
+window.deleteServiceBooking = async function(id){ if(!confirm('Delete?')) return; await deleteDoc(doc(db, "serviceBookings", id)); }
 window.exportServiceBookings = function(){
   let arr = window._serviceBookings||[]; if(arr.length===0){ alert('No data'); return; }
   let csv='Name,Mobile,BikeModel,KM,ServiceType,Date,Time,Message,Status\n'+arr.map(x=>`"${x.name}","${x.mobile}","${x.bikeModel}","${x.km}","${x.serviceType}","${x.preferredDate}","${x.preferredTime}","${(x.message||'').replace(/"/g,'')}","${x.status}"`).join('\n');
   let blob=new Blob([csv],{type:'text/csv'}); let a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='service_bookings.csv'; a.click();
 }
 window.loadServiceBookings = function(){}
+window.loadFirebaseBookings = function(){}
 </script>
 </body>
 </html>
