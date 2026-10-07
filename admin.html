@@ -50,7 +50,7 @@ input,select,textarea{padding:9px 10px;border:1px solid #e5e7eb;border-radius:8p
 <div id="loginScreen" class="login-wrap">
   <div class="login-box">
     <h2>Yug Honda Admin</h2>
-    <p style="font-size:12px;color:#666;margin:6px 0 18px">Firebase LIVE Mode - yug-honda</p>
+    <p style="font-size:12px;color:#666;margin:6px 0 18px">Firebase LIVE - No Billing Needed</p>
     <input id="loginUser" placeholder="Username">
     <input id="loginPass" type="password" placeholder="Password" style="margin-top:10px">
     <button style="background:#E4002B;color:#fff;padding:12px;border:none;border-radius:8px;width:100%;font-weight:600;cursor:pointer;margin-top:12px" onclick="doLogin()">Login →</button>
@@ -91,7 +91,6 @@ input,select,textarea{padding:9px 10px;border:1px solid #e5e7eb;border-radius:8p
 <div id="serviceBookingCards" class="booking-cards"></div>
 </div>
 </div>
-
 <div id="reviews" class="section">
 <div class="card">
 <h3>⭐ Customer Reviews - Approval System</h3>
@@ -103,7 +102,6 @@ input,select,textarea{padding:9px 10px;border:1px solid #e5e7eb;border-radius:8p
 <div id="adminReviewsList" style="margin-top:16px;display:grid;gap:10px"></div>
 </div>
 </div>
-
 <div id="inventory" class="section">
 <div class="card">
 <h3>➕ Add New Bike - LIVE to Firebase</h3>
@@ -115,7 +113,7 @@ input,select,textarea{padding:9px 10px;border:1px solid #e5e7eb;border-radius:8p
 <div style="margin-top:12px"><span class="label">📝 Description *</span><textarea id="bDesc" rows="5" placeholder="Full bike details..."></textarea></div>
 <div style="margin-top:12px"><span class="label">📋 Full Features Description (HTML Allowed)</span><textarea id="bFullDesc" rows="8" placeholder="<h3>Engine</h3><ul><li>• 125cc</li></ul>"></textarea></div>
 <div style="margin-top:14px;border:1px solid #f0f0f0;padding:12px;border-radius:10px;background:#fafafa">
-<span class="label">📸 Bike Images</span>
+<span class="label">📸 Bike Images (No Storage Needed)</span>
 <div class="upload-box" onclick="document.getElementById('bikeFileInput').click()"><i class="fa-solid fa-cloud-arrow-up" style="font-size:24px;color:var(--red)"></i><p style="font-size:12px;font-weight:600;margin-top:6px">Click to Choose Images</p></div>
 <input type="file" id="bikeFileInput" accept="image/*" multiple style="display:none" onchange="handleBikeFiles(event)">
 <p style="font-size:10px;color:#666;margin-top:6px" id="bikeUploadStatus"></p>
@@ -141,12 +139,11 @@ input,select,textarea{padding:9px 10px;border:1px solid #e5e7eb;border-radius:8p
 </div>
 <div class="card"><h3>🏷️ Per Bike Offer - LIVE</h3><div class="form-row"><div><span class="label">Select Bike</span><select id="offerBikeSelect"></select></div><div><span class="label">Offer Text</span><input id="offerBikeText" placeholder="e.g. ₹5000 Off"></div></div><button class="btn btn-red2" onclick="savePerBikeOffer()">💾 Save Bike Offer</button><div id="perBikeOffersList" style="margin-top:14px;background:#f9fafb;padding:12px;border-radius:8px;font-size:12px"></div></div>
 </div>
-
 <div id="gallery" class="section">
-<div class="card"><h3>🖼️ Gallery Management - Firebase LIVE (Images Only)</h3>
+<div class="card"><h3>🖼️ Gallery - Images Only (No Billing)</h3>
 <div style="border:1px solid #eee;padding:12px;border-radius:10px">
-<span class="label">📁 Image Upload to Storage</span>
-<div class="upload-box" onclick="document.getElementById('galleryFileInput').click()"><i class="fa-solid fa-images" style="font-size:22px;color:var(--red)"></i><p style="font-size:11px;font-weight:600;margin-top:6px">Click to Upload Images to Storage</p></div>
+<span class="label">📁 Image Upload (Direct to Firestore)</span>
+<div class="upload-box" onclick="document.getElementById('galleryFileInput').click()"><i class="fa-solid fa-images" style="font-size:22px;color:var(--red)"></i><p style="font-size:11px;font-weight:600;margin-top:6px">Click to Upload Images</p></div>
 <input type="file" id="galleryFileInput" accept="image/*" multiple style="display:none" onchange="handleFileUpload(event)">
 <p style="font-size:10px;color:#666;margin-top:6px" id="uploadStatus"></p>
 <span class="label" style="margin-top:10px">🔗 Image URL to Firebase</span>
@@ -155,35 +152,33 @@ input,select,textarea{padding:9px 10px;border:1px solid #e5e7eb;border-radius:8p
 </div>
 <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
 <button class="btn btn-outline" onclick="window.open('gallery.html','_blank')">View Gallery</button>
-<button class="btn btn-outline" onclick="clearGallery()">Clear All Gallery from Firebase</button>
+<button class="btn btn-outline" onclick="clearGallery()">Clear All Gallery</button>
 <span style="font-size:11px;color:#666;margin-left:auto" id="galleryCount">0 Images</span>
 </div>
 <div id="galleryAdminList" style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px"></div>
 </div>
 </div>
-
 <div id="settings" class="section">
 <div class="card"><h3>🏪 Showroom Details - LIVE Firebase</h3>
 <div class="form-row"><div><span class="label">Showroom Name</span><input id="setName" value="Yug Honda"></div><div><span class="label">Owner Name</span><input id="setOwner" value="Yug Honda Owner"></div></div>
 <div style="background:#fff7f7;border:1px solid #ffd0d0;padding:12px;border-radius:10px;margin-bottom:12px;margin-top:10px">
-<h4 style="font-size:13px;color:#E4002B;margin-bottom:10px"><i class="fa-solid fa-phone"></i> SALES Contact (Separate)</h4>
-<div class="form-row"><div><span class="label">Sales Phone 1 * (Main)</span><input id="setSalesPhone1" placeholder="+91 98765 43210"></div><div><span class="label">Sales Phone 2 (Optional)</span><input id="setSalesPhone2" placeholder="+91 98765 43211"></div></div>
-<div class="form-row"><div><span class="label">Sales WhatsApp 1 (without + e.g. 919876543210)</span><input id="setSalesWA1" placeholder="919876543210"></div><div><span class="label">Sales WhatsApp 2 (Optional)</span><input id="setSalesWA2" placeholder="919876543211"></div></div>
-<div style="margin-top:8px"><span class="label">Sales Email *</span><input id="setSalesEmail" placeholder="sales@yughonda.com" value="yughonda@gmail.com"></div>
+<h4 style="font-size:13px;color:#E4002B;margin-bottom:10px"><i class="fa-solid fa-phone"></i> SALES Contact</h4>
+<div class="form-row"><div><span class="label">Sales Phone 1</span><input id="setSalesPhone1"></div><div><span class="label">Sales Phone 2</span><input id="setSalesPhone2"></div></div>
+<div class="form-row"><div><span class="label">Sales WhatsApp 1</span><input id="setSalesWA1"></div><div><span class="label">Sales WhatsApp 2</span><input id="setSalesWA2"></div></div>
+<div style="margin-top:8px"><span class="label">Sales Email</span><input id="setSalesEmail" value="yughonda@gmail.com"></div>
 </div>
 <div style="background:#f0fdf4;border:1px solid #bbf7d0;padding:12px;border-radius:10px;margin-bottom:12px">
-<h4 style="font-size:13px;color:#166534;margin-bottom:10px"><i class="fa-solid fa-screwdriver-wrench"></i> SERVICE Contact (Separate)</h4>
-<div class="form-row"><div><span class="label">Service Phone 1 * (Main)</span><input id="setServicePhone1" placeholder="+91 98765 43212"></div><div><span class="label">Service Phone 2 (Optional)</span><input id="setServicePhone2" placeholder="+91 98765 43213"></div></div>
-<div class="form-row"><div><span class="label">Service WhatsApp 1 (without +)</span><input id="setServiceWA1" placeholder="919876543212"></div><div><span class="label">Service WhatsApp 2 (Optional)</span><input id="setServiceWA2" placeholder="919876543213"></div></div>
-<div style="margin-top:8px"><span class="label">Service Email *</span><input id="setServiceEmail" placeholder="service@yughonda.com" value="service@yughonda.com"></div>
+<h4 style="font-size:13px;color:#166534;margin-bottom:10px"><i class="fa-solid fa-screwdriver-wrench"></i> SERVICE Contact</h4>
+<div class="form-row"><div><span class="label">Service Phone 1</span><input id="setServicePhone1"></div><div><span class="label">Service Phone 2</span><input id="setServicePhone2"></div></div>
+<div class="form-row"><div><span class="label">Service WhatsApp 1</span><input id="setServiceWA1"></div><div><span class="label">Service WhatsApp 2</span><input id="setServiceWA2"></div></div>
+<div style="margin-top:8px"><span class="label">Service Email</span><input id="setServiceEmail" value="service@yughonda.com"></div>
 </div>
 <span class="label">Map Link</span><input id="setMap" value="https://maps.google.com/?q=Yug+Honda+Pusa" style="margin-bottom:10px"><span class="label">Address</span><input id="setAddr" value="Harpur Mahmada, Pusa, Samastipur, Bihar - 848125" style="margin-bottom:10px"><div class="form-row"><div><span class="label">Hours</span><input id="setHours" value="9:00 AM - 8:00 PM"></div><div><span class="label">EMI %</span><input id="setEMI" value="9"></div></div></div>
 <div class="card"><h3>📱 Social</h3><div class="form-row"><div><span class="label">Facebook</span><input id="setFB"></div><div><span class="label">Instagram</span><input id="setInsta"></div></div><div class="form-row"><div><span class="label">YouTube</span><input id="setYT"></div><div><span class="label">Review Link</span><input id="setReview"></div></div><button class="btn btn-red2" id="saveSettingsBtn">💾 Save All to Firebase</button><p id="settingsStatus" style="font-size:11px;color:green;margin-top:8px"></p></div>
 </div>
 </div>
 </div>
-
-<div id="editModal" class="modal"><div class="modal-box"><h3>✏️ Edit Bike - Firebase</h3><br><span class="label">Bike Name</span><input id="editName"><span class="label" style="margin-top:8px">Category</span><select id="editCat"><option>Commuter Bike</option><option>Scooter</option><option>Premium Bike</option><option>Sports Bike</option></select>
+<div id="editModal" class="modal"><div class="modal-box"><h3>✏️ Edit Bike</h3><br><span class="label">Bike Name</span><input id="editName"><span class="label" style="margin-top:8px">Category</span><select id="editCat"><option>Commuter Bike</option><option>Scooter</option><option>Premium Bike</option><option>Sports Bike</option></select>
 <div class="form-row" style="margin-top:10px"><div><span class="label">Price</span><input id="editPrice" type="number"></div><div><span class="label">Mileage</span><input id="editMileage"></div></div>
 <span class="label" style="margin-top:10px">Description</span><textarea id="editDesc" rows="5"></textarea>
 <span class="label" style="margin-top:10px">Full Features Description (HTML)</span><textarea id="editFullDesc" rows="8"></textarea>
@@ -193,7 +188,6 @@ input,select,textarea{padding:9px 10px;border:1px solid #e5e7eb;border-radius:8p
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getFirestore, collection, getDocs, addDoc, deleteDoc, doc, updateDoc, getDoc, setDoc, query, orderBy, onSnapshot, serverTimestamp, where } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAufUEH0vcrBwYxi7Q42n4_NABGiAesgT4",
@@ -205,12 +199,8 @@ const firebaseConfig = {
 };
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-const storage = getStorage(app);
 let editId = null;
 let selectedBikeImgs = [];
-let selectedBikeFiles = [];
-let selectedEditImgs = [];
-let selectedEditFiles = [];
 let allBikesCache = [];
 let offersCache = { offerText: "", offerEnable: true, perBikeOffers: {}, festTitle: "", festOffer: "", festNote: "", festEnable: true, festBtn: "Explore Now →" };
 
@@ -317,7 +307,6 @@ async function loadSettingsFromFirebase(){
     }
   }catch(e){}
 }
-
 window.updateReviewCounts = function(){
   let all = window._reviewsCache||[];
   let pending = all.filter(r=>r.status==='pending').length;
@@ -351,7 +340,7 @@ window.loadAdminReviews = async function(status){
 }
 window.approveReview = async function(id){
   await updateDoc(doc(db, "reviews", id), {status:"approved"});
-  alert("Approved! Now visible on main website");
+  alert("Approved!");
   loadAdminReviews('pending');
 }
 window.deleteReview = async function(id){
@@ -359,9 +348,8 @@ window.deleteReview = async function(id){
   await deleteDoc(doc(db, "reviews", id));
   alert("Deleted");
 }
-
-async function compressImage(file, maxWidth=1024, quality=0.7){
-  return new Promise((resolve)=>{
+async function compressToBase64(file, maxWidth=900, quality=0.6){
+  return new Promise((resolve, reject)=>{
     const img = new Image();
     img.src = URL.createObjectURL(file);
     img.onload = ()=>{
@@ -371,49 +359,34 @@ async function compressImage(file, maxWidth=1024, quality=0.7){
       canvas.width = w; canvas.height = h;
       const ctx = canvas.getContext('2d');
       ctx.drawImage(img,0,0,w,h);
-      canvas.toBlob((blob)=>{
-        resolve(new File([blob], file.name.replace(/\.[^/.]+$/, ".jpg"), {type:'image/jpeg'}));
-      }, 'image/jpeg', quality);
+      resolve(canvas.toDataURL('image/jpeg', quality));
     };
-    img.onerror = ()=> resolve(file);
+    img.onerror = ()=> reject("Image load failed");
   });
-}
-async function uploadFilesToStorage(files, folder='bikes'){
-  let urls=[];
-  for(let file of files){
-    let fileName = `${folder}/${Date.now()}_${Math.random().toString(36).substr(2,5)}_${file.name}`;
-    let storageRef = ref(storage, fileName);
-    await uploadBytes(storageRef, file);
-    let dl = await getDownloadURL(storageRef);
-    urls.push(dl);
-  }
-  return urls;
 }
 window.handleBikeFiles = async function(event){
   let files=event.target.files; if(!files.length) return;
   document.getElementById('bikeUploadStatus').innerText=`Compressing ${files.length} images...`;
   for(let file of files){
-    let compressed = await compressImage(file);
-    selectedBikeFiles.push(compressed);
-    selectedBikeImgs.push(URL.createObjectURL(compressed));
+    let b64 = await compressToBase64(file, 1024, 0.65);
+    selectedBikeImgs.push(b64);
   }
   renderBikePreview();
   document.getElementById('bikeUploadStatus').innerText=`✅ ${selectedBikeImgs.length} images ready`;
   event.target.value='';
 }
 window.renderBikePreview = function(){ document.getElementById('bikeImagePreview').innerHTML=selectedBikeImgs.map((url,i)=>`<div class="bike-preview-item"><img src="${url}"><button class="btn btn-red2" style="position:absolute;top:4px;right:4px;padding:2px 6px" onclick="removeBikeImg(${i})">X</button></div>`).join(''); }
-window.removeBikeImg = function(i){ selectedBikeImgs.splice(i,1); selectedBikeFiles.splice(i,1); renderBikePreview(); }
+window.removeBikeImg = function(i){ selectedBikeImgs.splice(i,1); renderBikePreview(); }
 window.handleEditFiles = async function(event){
   for(let file of event.target.files){
-    let c = await compressImage(file);
-    selectedEditFiles.push(c);
-    selectedEditImgs.push(URL.createObjectURL(c));
+    let b64 = await compressToBase64(file, 1024, 0.65);
+    if(!window._editImgs) window._editImgs = [];
+    window._editImgs.push(b64);
   }
-  renderEditPreview();
+  document.getElementById('editImagePreview').innerHTML = window._editImgs.map((url,i)=>`<div class="bike-preview-item"><img src="${url}"><button class="btn btn-red2" style="position:absolute;top:4px;right:4px;padding:2px 6px" onclick="removeEditImg(${i})">X</button></div>`).join('');
   event.target.value='';
 }
-window.renderEditPreview = function(){ document.getElementById('editImagePreview').innerHTML=selectedEditImgs.map((url,i)=>`<div class="bike-preview-item"><img src="${url}"><button class="btn btn-red2" style="position:absolute;top:4px;right:4px;padding:2px 6px" onclick="removeEditImg(${i})">X</button></div>`).join(''); }
-window.removeEditImg = function(i){ if(selectedEditImgs[i].startsWith('blob:')) selectedEditFiles.pop(); selectedEditImgs.splice(i,1); renderEditPreview(); }
+window.removeEditImg = function(i){ window._editImgs.splice(i,1); document.getElementById('editImagePreview').innerHTML = window._editImgs.map((url,j)=>`<div class="bike-preview-item"><img src="${url}"><button class="btn btn-red2" style="position:absolute;top:4px;right:4px;padding:2px 6px" onclick="removeEditImg(${j})">X</button></div>`).join(''); }
 
 document.getElementById('addBikeBtn').onclick = async function(){
   let name=document.getElementById('bName').value.trim();
@@ -422,13 +395,12 @@ document.getElementById('addBikeBtn').onclick = async function(){
   let mileage=document.getElementById('bMileage').value.trim();
   let desc=document.getElementById('bDesc').value.trim();
   let fullDescription=document.getElementById('bFullDesc').value.trim();
-  if(!name||!price||!desc||selectedBikeFiles.length===0){ alert('Name, Price, Description & Image required'); return; }
-  this.innerText='Uploading...'; this.disabled=true;
+  if(!name||!price||!desc||selectedBikeImgs.length===0){ alert('Name, Price, Description & Image required'); return; }
+  this.innerText='Saving...'; this.disabled=true;
   try{
-    let finalUrls = await uploadFilesToStorage(selectedBikeFiles, 'bikes');
-    await addDoc(collection(db, "bikes"), { name, cat, imgs:finalUrls, specs:[{k:'price',v:price},{k:'mileage',v:mileage}], desc, price, fullDescription, stock:true, createdAt: serverTimestamp() });
+    await addDoc(collection(db, "bikes"), { name, cat, imgs:selectedBikeImgs, specs:[{k:'price',v:price},{k:'mileage',v:mileage}], desc, price, fullDescription, stock:true, createdAt: serverTimestamp() });
     alert('✅ Bike Added LIVE!');
-    document.getElementById('bName').value=''; document.getElementById('bPrice').value=''; document.getElementById('bMileage').value=''; document.getElementById('bDesc').value=''; document.getElementById('bFullDesc').value=''; selectedBikeImgs=[]; selectedBikeFiles=[]; renderBikePreview();
+    document.getElementById('bName').value=''; document.getElementById('bPrice').value=''; document.getElementById('bMileage').value=''; document.getElementById('bDesc').value=''; document.getElementById('bFullDesc').value=''; selectedBikeImgs=[]; renderBikePreview();
     document.getElementById('bikeUploadStatus').innerText='';
   }catch(e){ alert('Error: '+e.message); }
   this.innerText='+ Add Bike To Firebase'; this.disabled=false;
@@ -455,9 +427,8 @@ window.openEdit = function(id){
   document.getElementById('editMileage').value=b.specs?.find(s=>s.k==='mileage')?.v||'';
   document.getElementById('editDesc').value=b.desc||'';
   document.getElementById('editFullDesc').value=b.fullDescription||'';
-  selectedEditImgs=b.imgs? [...b.imgs]:[];
-  selectedEditFiles=[];
-  renderEditPreview();
+  window._editImgs=b.imgs? [...b.imgs]:[];
+  document.getElementById('editImagePreview').innerHTML = window._editImgs.map((url,i)=>`<div class="bike-preview-item"><img src="${url}"><button class="btn btn-red2" style="position:absolute;top:4px;right:4px;padding:2px 6px" onclick="removeEditImg(${i})">X</button></div>`).join('');
   document.getElementById('editModal').style.display='flex';
 }
 window.closeEdit = function(){ document.getElementById('editModal').style.display='none'; editId=null; }
@@ -467,13 +438,7 @@ document.getElementById('saveEditBtn').onclick = async function(){
   let price=document.getElementById('editPrice').value.trim();
   let mileage=document.getElementById('editMileage').value.trim();
   try{
-    let existingUrls = selectedEditImgs.filter(u=>!u.startsWith('blob:'));
-    let newUrls = [];
-    if(selectedEditFiles.length>0){
-      this.innerText='Uploading new images...';
-      newUrls = await uploadFilesToStorage(selectedEditFiles, 'bikes');
-    }
-    let finalImgs = [...existingUrls,...newUrls];
+    let finalImgs = window._editImgs || [];
     await updateDoc(doc(db, "bikes", editId), {
       name: document.getElementById('editName').value.trim(),
       cat: document.getElementById('editCat').value,
@@ -536,17 +501,16 @@ window.addGalleryImg = async function(){
 }
 window.handleFileUpload = async function(event){
   let files=event.target.files; if(!files.length) return;
-  document.getElementById('uploadStatus').innerText=`Uploading ${files.length} to Storage...`;
+  let statusEl = document.getElementById('uploadStatus');
+  statusEl.innerText=`⏳ Saving ${files.length} images (No Billing)...`;
   try{
     for(let file of files){
-      let comp = await compressImage(file);
-      let storageRef = ref(storage, `gallery/${Date.now()}_${file.name}`);
-      await uploadBytes(storageRef, comp);
-      let url = await getDownloadURL(storageRef);
-      await addDoc(collection(db, "gallery"), { src: url, type:'image', createdAt: serverTimestamp() });
+      let b64 = await compressToBase64(file, 900, 0.6);
+      await addDoc(collection(db, "gallery"), { src: b64, type:'image', createdAt: serverTimestamp() });
     }
-    document.getElementById('uploadStatus').innerText=`✅ Uploaded!`;
-  }catch(e){ alert(e.message); }
+    statusEl.innerText=`✅ ${files.length} Images Saved LIVE!`;
+    setTimeout(()=>statusEl.innerText='',3000);
+  }catch(e){ statusEl.innerText='❌ '+e.message; alert(e.message); }
   event.target.value='';
 }
 window.renderGalleryAdmin = function(){
