@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yug Honda - Pusa, Samastipur</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Inter',sans-serif;background:#f5f5f6}
+:root{--red:#E4002B}
+.header{background:#12171e;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:14px 4%;position:sticky;top:0;z-index:99;gap:20px}
+.logo{display:flex;align-items:center;gap:10px;white-space:nowrap}.logo h1{font-family:'Outfit';font-size:22px}
+.menu{display:flex;gap:22px;list-style:none;align-items:center}.menu a{color:#9aa0a8;text-decoration:none;font-size:13px;white-space:nowrap;transition:0.2s}.menu a:hover{color:#fff}.menu a.active{color:#fff;border-bottom:2px solid var(--red);padding-bottom:3px}
+.hero{position:relative;height:460px;overflow:hidden;background:#000;display:flex;align-items:center}
+.hero-bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,15,20,0.97) 0%,rgba(10,15,20,0.6) 40%,rgba(10,15,20,0.15) 75%)}
+.hero-left{position:relative;z-index:2;padding:0 4%;color:#fff;max-width:520px}
+.hero-left h2{font-family:'Outfit';font-size:38px;line-height:1.1;margin:6px 0}
+.section{padding:20px 4%}.sec-head{display:flex;justify-content:space-between;margin-bottom:12px}.sec-head h2{font-size:18px}.sec-head a{color:var(--red);font-size:11px;text-decoration:none}
+.models{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.card{background:#f0f1f3;border-radius:10px;padding:12px;text-align:center;transition:0.2s;border:1px solid transparent;position:relative;overflow:hidden}
+.card:hover{transform:translateY(-3px);border-color:#e5e7eb;box-shadow:0 8px 20px rgba(0,0,0,0.08)}
+.card img{width:100%;height:115px;object-fit:contain;background:#fff;border-radius:8px;padding:4px}
+.card h4{font-size:13px;margin-top:8px}.card p{font-size:10px;color:#666}.price{font-size:11px;margin-top:4px}
+.view{border:1px solid #111;padding:5px 12px;border-radius:20px;font-size:10px;background:#fff;margin-top:8px;cursor:pointer}
+.diag-ribbon{position:absolute;top:18px;left:-32px;width:110px;text-align:center;background:var(--red);color:#fff;padding:6px 0;transform:rotate(-45deg);font-size:10px;font-weight:800;z-index:5;box-shadow:0 3px 10px rgba(0,0,0,0.3);letter-spacing:0.5px;line-height:1.1}
+.trust{background:#12171e;color:#fff;display:grid;grid-template-columns:repeat(5,1fr);padding:14px 4%}
+.trust-item{display:flex;gap:10px;align-items:center;border-right:1px solid #222}.trust-item i{color:var(--red)}
+.bottom{display:grid;grid-template-columns:1.2fr 1fr 1fr 0.7fr;gap:12px;padding:14px 4%}
+.box{background:#fff;border-radius:14px;padding:14px;border:1px solid #eee}
+.show-img{width:100%;height:115px;object-fit:cover;border-radius:8px}
+.gallery{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}.gallery img{width:100%;height:85px;object-fit:cover;border-radius:6px}
+.btn-red{background:var(--red);color:#fff;border:none;padding:10px 18px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer}
+.btn-outline{background:transparent;border:1px solid #fff;color:#fff;padding:9px 18px;border-radius:6px;font-size:12px;margin-left:8px;cursor:pointer}
+.offer-bar{background:linear-gradient(90deg,#E4002B,#ff4d4d,#E4002B);background-size:200% 200%;animation:shine 3s infinite;color:#fff;text-align:center;padding:10px 4%;font-size:12px;font-weight:700;display:none;cursor:pointer}
+@keyframes shine{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.festival-banner{background:linear-gradient(135deg,#E4002B,#ff4d4d,#E4002B);background-size:200% 200%;animation:shine 3s infinite;border-radius:20px;padding:24px 18px;text-align:center;color:#fff;position:relative;overflow:hidden;margin:14px 4%;display:none}
+.footer{background:#12171e;color:#fff;padding:20px 4%;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:20px;margin-top:20px}
+.footer a{color:#9aa0a8;text-decoration:none;font-size:12px;display:block;margin:6px 0}
+.footer a:hover{color:#fff}
+.social-icons{display:flex;gap:12px;margin-top:10px}
+.social-icons a{width:32px;height:32px;background:#1f2937;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.emi-card{padding:0;overflow:hidden}
+.emi-header{background:#12171e;color:#fff;padding:14px 16px;display:flex;justify-content:space-between;align-items:center}
+.emi-body{padding:14px 16px}
+.emi-label{font-size:10px;font-weight:700;color:#666;letter-spacing:0.5px;margin-top:10px;display:block}
+.emi-select{width:100%;padding:9px 10px;border:1px solid #ddd;border-radius:8px;font-size:12px;margin-top:4px}
+.emi-slider{width:100%;margin-top:6px;accent-color:var(--red)}
+.emi-tenure{display:flex;gap:6px;margin-top:6px}
+.emi-tenure button{flex:1;padding:7px;border:1px solid #ddd;border-radius:20px;background:#fff;font-size:11px;font-weight:600;cursor:pointer}
+.emi-tenure button.active{background:var(--red);color:#fff;border-color:var(--red)}
+.emi-result{background:#f9fafb;border:1px dashed #ddd;border-radius:10px;padding:12px;margin-top:12px}
+.emi-result-row{display:flex;justify-content:space-between;font-size:11px;margin:4px 0}
+.hamburger{display:none;font-size:22px;cursor:pointer;background:none;border:none;color:#fff}
+.mobile-menu{display:none;flex-direction:column;background:#12171e;padding:14px 4%;gap:12px;position:sticky;top:56px;z-index:98}
+.mobile-menu a{color:#9aa0a8;text-decoration:none;font-size:13px;padding:10px 0;border-bottom:1px solid #222}
+@media(max-width:1100px){.menu{gap:14px}.menu a{font-size:12px}.logo h1{font-size:19px}}
+@media(max-width:900px){
+.models{grid-template-columns:1fr 1fr}
+.bottom{grid-template-columns:1fr}
+.menu{display:none}
+.hamburger{display:block}
+.gallery{grid-template-columns:repeat(3,1fr)}
+.footer{grid-template-columns:1fr}
+.trust{grid-template-columns:1fr 1fr!important;gap:14px;padding:14px 4%!important}
+.trust-item{border-right:none!important;border-bottom:1px solid #222;padding-bottom:10px;justify-content:flex-start}
+.trust-item:last-child{grid-column:span 2;border-bottom:none}
+}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(34,197,94,0.4)}70%{box-shadow:0 0 0 10px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}
+@keyframes pulseRed{0%{box-shadow:0 0 0 0 rgba(239,68,68,0.4)}70%{box-shadow:0 0 0 10px rgba(239,68,68,0)}100%{box-shadow:0 0 0 0 rgba(239,68,68,0)}}
+.contact-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9999;align-items:center;justify-content:center;padding:20px}
+.contact-modal.active{display:flex}
+.contact-box{background:#fff;border-radius:16px;width:100%;max-width:360px;overflow:hidden}
+.contact-box-header{padding:16px;background:#12171e;color:#fff;display:flex;justify-content:space-between;align-items:center}
+.contact-box-body{padding:12px}
+.contact-option{display:flex;align-items:center;justify-content:space-between;padding:14px;border:1px solid #eee;border-radius:10px;margin-bottom:8px;cursor:pointer}
+.contact-option:hover{border-color:var(--red);background:#fff7f7}
+.review-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:9999;align-items:center;justify-content:center;padding:20px}
+.review-modal.active{display:flex}
+.review-modal-box{background:#fff;border-radius:16px;width:100%;max-width:700px;max-height:85vh;overflow-y:auto;padding:20px}
+</style>
+</head>
+<body>
+<header class="header">
+<div class="logo"><img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Honda_Logo.svg" style="height:28px;filter:brightness(0) invert(1)"><h1 id="headerLogoName">Yug Honda</h1></div>
+<ul class="menu">
+<li><a class="active" href="index.html">Home</a></li>
+<li><a href="bikes.html" target="_blank">Bikes & Scooters</a></li>
+<li><a href="service.html" target="_blank">Service</a></li>
+<li><a href="offers.html" target="_blank">Offers</a></li>
+<li><a href="gallery.html" target="_blank">Gallery</a></li>
+<li><a href="about.html" target="_blank">About Us</a></li>
+<li><a href="contact.html" target="_blank">Contact</a></li>
+</ul>
+<div style="display:flex;align-items:center;gap:14px">
+<div style="font-size:11px;white-space:nowrap;cursor:pointer" id="headerPhone" onclick="handleCallClick('sales')">+91 98765 43210</div>
+<button class="hamburger" id="hamburgerBtn"><i class="fa-solid fa-bars"></i></button>
+</div>
+</header>
+<div id="mobileMenu" class="mobile-menu">
+<a href="index.html">Home</a>
+<a href="bikes.html">Bikes & Scooters</a>
+<a href="service.html">Service</a>
+<a href="offers.html">Offers</a>
+<a href="gallery.html">Gallery</a>
+<a href="about.html">About Us</a>
+<a href="contact.html">Contact</a>
+</div>
+<div id="offerBar" class="offer-bar" onclick="window.open('offers.html','_blank')"></div>
+<section class="hero">
+<img class="hero-bg-img" src="https://images.unsplash.com/photo-1627919544121-c9bb9c4b7d4a?q=80&w=1475&auto=format&fit=crop">
+<div class="hero-overlay"></div>
+<div class="hero-left">
+<div style="font-size:10px;letter-spacing:2.5px;opacity:0.7">RIDE YOUR DREAMS</div>
+<h2>Honda Bikes & Scooters</h2>
+<div style="display:flex;gap:8px;font-size:13px;opacity:0.9;margin:6px 0"><span>Performance</span>|<span>Style</span>|<span>Reliability</span></div>
+<p style="font-size:11px;opacity:0.6;line-height:1.6;margin:10px 0 16px">Explore the latest Honda bikes and scooters at Yug Honda. Book a test ride today and experience the true joy of riding.</p>
+<button class="btn-red" onclick="scrollToModels()">Explore Models →</button>
+<button class="btn-outline" onclick="bookTestRide()">Book Test Ride</button>
+</div>
+</section>
+<div id="liveStatusSection" style="margin:14px 4%;background:#fff;border-radius:16px;border:1px solid #e5e7eb;padding:16px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px;box-shadow:0 4px 14px rgba(0,0,0,0.04);flex-wrap:wrap">
+  <div style="display:flex;align-items:center;gap:14px">
+    <div id="statusDot" style="width:14px;height:14px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 6px rgba(34,197,94,0.15);animation:pulse 1.6s infinite"></div>
+    <div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <b id="statusText" style="font-size:16px;font-family:'Outfit'">OPEN NOW</b>
+        <span id="statusBadge" style="font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;background:#dcfce7;color:#166534">Live</span>
+      </div>
+      <p id="statusSub" style="font-size:11px;color:#6b7280;margin-top:2px">Showroom is open • Closes at 7:30 PM</p>
+    </div>
+  </div>
+  <div style="text-align:right">
+    <p style="font-size:10px;color:#9ca3af;letter-spacing:1px;font-weight:700">SHOWROOM TIMING</p>
+    <p style="font-size:12px;font-weight:700;margin-top:2px;color:#111">9:30 AM - 7:30 PM</p>
+    <p id="currentTime" style="font-size:10px;color:#6b7280;margin-top:2px"></p>
+  </div>
+</div>
+<section class="section" id="modelsSection">
+<div class="sec-head"><h2>Popular Models</h2><a href="bikes.html" target="_blank">View All Bikes →</a></div>
+<div class="models" id="modelsContainer"><p style="font-size:12px;color:#888">Loading from Firebase LIVE...</p></div>
+</section>
+<div class="trust">
+<div class="trust-item"><i class="fa-solid fa-shield-halved"></i><div><b style="font-size:11px">Genuine Honda</b><br><span style="font-size:10px;opacity:0.7">Products</span></div></div>
+<div class="trust-item"><i class="fa-solid fa-wrench"></i><div><b style="font-size:11px">Certified Service</b><br><span style="font-size:10px;opacity:0.7">& Spare Parts</span></div></div>
+<div class="trust-item"><i class="fa-solid fa-handshake"></i><div><b style="font-size:11px">Easy Finance</b><br><span style="font-size:10px;opacity:0.7">Options</span></div></div>
+<div class="trust-item"><i class="fa-solid fa-percent"></i><div><b style="font-size:11px">Latest Offers</b><br><span style="font-size:10px;opacity:0.7">& Discounts</span></div></div>
+<div class="trust-item" style="border:none"><i class="fa-solid fa-headset"></i><div><b style="font-size:11px">24/7 Customer</b><br><span style="font-size:10px;opacity:0.7">Support</span></div></div>
+</div>
+<div id="festivalBanner" class="festival-banner">
+  <div style="position:absolute;top:-10px;left:-10px;font-size:50px;opacity:0.18">🎉</div>
+  <div style="position:absolute;bottom:-10px;right:-10px;font-size:50px;opacity:0.18">🎊</div>
+  <h3 id="festTitleShow" style="font-family:'Outfit';font-size:20px;line-height:1.2">YUG HONDA PUSA<br>FESTIVAL DHAMAKA</h3>
+  <p id="festOfferShow" style="font-size:13px;margin-top:8px;font-weight:600">Shine 100 pe ₹2100 Cash Discount + Free Helmet + 5% Cashback upto ₹5000</p>
+  <p id="festNoteShow" style="font-size:11px;margin-top:6px;opacity:0.9">Limited Time - Pusa Showroom Only</p>
+  <button id="festBtnShow" class="btn-red" style="background:#fff;color:var(--red);margin-top:12px;padding:8px 22px;border-radius:30px" onclick="window.open('offers.html','_blank')">Explore Now →</button>
+</div>
+<div class="bottom">
+<div class="box emi-card">
+<div class="emi-header"><div><b style="font-size:13px">🧮 EMI Calculator</b><br><span style="font-size:10px;opacity:0.7">Plan your dream ride easily</span></div><div style="font-size:10px;background:#1f2937;padding:4px 8px;border-radius:12px"><span id="emiRateShow">9% PA</span></div></div>
+<div class="emi-body">
+<label class="emi-label">SELECT MODEL</label>
+<select id="emiModel" class="emi-select" onchange="onModelChange()"></select>
+<div style="display:flex;justify-content:space-between;margin-top:10px"><label class="emi-label" style="margin:0">BIKE PRICE</label><b style="font-size:11px" id="emiPrice">₹ 0</b></div>
+<label class="emi-label">DOWN PAYMENT - <span id="downVal">₹ 15,000</span> (<span id="downPer">15%</span>)</label>
+<input type="range" id="downRange" class="emi-slider" min="0" max="100" value="15" oninput="onDownChange()">
+<label class="emi-label">LOAN TENURE</label>
+<div class="emi-tenure" id="tenureBtns">
+<button onclick="setTenure(12,this)">12 M</button><button class="active" onclick="setTenure(24,this)">24 M</button><button onclick="setTenure(36,this)">36 M</button><button onclick="setTenure(48,this)">48 M</button>
+</div>
+<div class="emi-result" id="emiResultBox">
+<div class="emi-result-row"><span>Loan Amount</span><b id="resLoan">₹ 0</b></div>
+<div class="emi-result-row"><span>Monthly EMI</span><b id="resEMI" style="color:var(--red);font-size:14px">₹ 0 /mo</b></div>
+<div class="emi-result-row"><span>Total Interest</span><span id="resInterest">₹ 0</span></div>
+<div class="emi-result-row" style="border-top:1px solid #eee;padding-top:6px;margin-top:6px"><span>Total Payable</span><b id="resTotal">₹ 0</b></div>
+</div>
+<button class="btn-red" style="width:100%;margin-top:10px" onclick="calcEMI()">Recalculate EMI</button>
+<button style="width:100%;margin-top:6px;padding:8px;border:1px solid var(--red);background:#fff;color:var(--red);border-radius:8px;font-size:11px;font-weight:700;cursor:pointer" onclick="bookTestRide(document.getElementById('emiModel').value)">Book This Bike →</button>
+</div>
+</div>
+<div class="box" style="position:relative;overflow:hidden;min-height:190px;border-radius:14px;padding:0;border:none">
+  <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=600&q=80" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+  <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,0.92) 0%,rgba(0,0,0,0.6) 50%,rgba(0,0,0,0.15) 100%);"></div>
+  <div style="position:relative;z-index:2;padding:20px 16px;color:#fff;">
+    <small style="font-size:10px;letter-spacing:2px;opacity:0.9;color:#ff4d4d;font-weight:700">BOOK YOUR</small>
+    <h3 style="font-size:18px;margin:6px 0;font-family:'Outfit';line-height:1.2">Test Ride Today</h3>
+    <p style="font-size:11px;margin:8px 0 14px;opacity:0.85;line-height:1.4">Experience the thrill before you buy.</p>
+    <button class="btn-red" onclick="bookTestRide()" style="padding:9px 16px;font-size:11px">Book Now →</button>
+  </div>
+</div>
+<div class="box">
+  <img class="show-img" src="pic/yug.jpeg" style="width:100%; height:auto; object-fit:contain; display:block; border-radius:8px; background:#fff;" onerror="this.src='https://images.unsplash.com/photo-1560958089-b8a1929cea89?q=80&w=400'">
+  <p style="font-weight:700;font-size:12px;margin-top:6px" id="showroomName">Yug Honda</p>
+  <p style="font-size:11px;color:#666" id="showroomAddr">Harpur Mahmada, Pusa, Samastipur, Bihar</p>
+  <p style="font-size:11px;cursor:pointer" id="showroomPhone" onclick="handleCallClick('sales')">+91 98765 43210</p>
+  <p style="font-size:11px;cursor:pointer;color:#166534" id="showroomServicePhone" onclick="handleCallClick('service')">+91 98765 43210</p>
+  <p style="font-size:10px;color:#888;margin-top:4px" id="showroomHours">9:00 AM - 8:00 PM</p>
+  <button class="btn-red" style="background:#fff;color:var(--red);border:1px solid var(--red);width:100%;margin-top:8px;font-size:11px" onclick="openMap()">📍 Get Directions</button>
+</div>
+<div class="box" style="text-align:center"><i class="fa-brands fa-whatsapp" style="font-size:36px;color:#25D366"></i><p style="font-size:11px;margin:8px 0">Chat on WhatsApp</p><div style="display:flex;gap:6px"><button class="btn-red" style="background:#25D366;flex:1" onclick="handleWhatsAppClick('sales')">Sales WA</button><button class="btn-red" style="background:#166534;flex:1" onclick="handleWhatsAppClick('service')">Service WA</button></div></div>
+</div>
+<section class="section">
+<div class="sec-head"><h2 style="font-size:14px">Our Gallery</h2><a href="gallery.html" target="_blank" style="color:var(--red);font-size:11px">View Gallery →</a></div>
+<div class="gallery" id="galleryContainer"></div>
+</section>
+
+<!-- FIXED REVIEWS SECTION -->
+<section class="section" id="reviewsSection" style="background:#fff;margin-top:16px;border-top:1px solid #eee;border-bottom:1px solid #eee">
+<div class="sec-head"><h2>Customer Reviews <span id="reviewAvg" style="font-size:12px;color:#f59e0b;margin-left:8px"></span></h2><a href="javascript:void(0)" onclick="openAllReviews()" style="cursor:pointer">View All Reviews →</a></div>
+<div id="reviewsList" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px">
+<p style="font-size:12px;color:#888">Loading reviews...</p>
+</div>
+<div style="max-width:500px;margin:24px auto 0;background:#f9fafb;padding:18px;border-radius:14px;border:1px solid #eee">
+<h3 style="font-size:14px;font-family:'Outfit'">Add Your Review</h3>
+<input id="rName" placeholder="Your Name" style="width:100%;padding:10px;margin-top:10px;border-radius:8px;border:1px solid #ddd;font-size:13px">
+<select id="rRating" style="width:100%;padding:10px;margin-top:10px;border-radius:8px;border:1px solid #ddd;font-size:13px">
+<option value="5">⭐⭐⭐⭐⭐ 5 Star - Excellent</option>
+<option value="4">⭐⭐⭐⭐ 4 Star - Good</option>
+<option value="3">⭐⭐⭐ 3 Star - Average</option>
+<option value="2">⭐⭐ 2 Star - Poor</option>
+<option value="1">⭐ 1 Star - Very Bad</option>
+</select>
+<textarea id="rMsg" rows="3" placeholder="Write your experience..." style="width:100%;padding:10px;margin-top:10px;border-radius:8px;border:1px solid #ddd;font-size:13px"></textarea>
+<button id="rBtn" class="btn-red" style="width:100%;margin-top:12px">Submit Review</button>
+<p style="font-size:10px;color:#888;text-align:center;margin-top:6px">Review will show after admin approval</p>
+</div>
+</section>
+
+<div id="allReviewsModal" class="review-modal" onclick="closeAllReviews()"><div class="review-modal-box" onclick="event.stopPropagation()"><div style="display:flex;justify-content:space-between;align-items:center"><h3 style="font-family:'Outfit'">All Customer Reviews</h3><span onclick="closeAllReviews()" style="cursor:pointer;font-size:20px">✕</span></div><div id="allReviewsList" style="margin-top:16px;display:grid;gap:12px"></div></div></div>
+
+<div id="contactModal" class="contact-modal" onclick="closeContactModal()"><div class="contact-box" onclick="event.stopPropagation()"><div class="contact-box-header"><b id="contactModalTitle">Choose Number</b><span onclick="closeContactModal()" style="cursor:pointer"><i class="fa-solid fa-xmark"></i></span></div><div class="contact-box-body" id="contactModalBody"></div></div></div>
+<footer class="footer">
+<div>
+<h3 id="footerName">Yug Honda</h3>
+<p style="font-size:11px;color:#9aa0a8;margin-top:8px" id="footerAddr">Harpur Mahmada, Pusa, Samastipur, Bihar - 848125</p>
+<p style="font-size:11px;color:#9aa0a8" id="footerPhone">+91 98765 43210 | yughonda@gmail.com</p>
+<p style="font-size:11px;color:#9aa0a8" id="footerServicePhone">Service: +91 98765 43210 | service@yughonda.com</p>
+<div class="social-icons" id="socialIcons">
+<a id="fbLink" href="#" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+<a id="instaLink" href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+<a id="ytLink" href="#" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+<a id="waLink" href="#" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+</div>
+</div>
+<div><b style="font-size:12px">Quick Links</b><a href="bikes.html" target="_blank">Bikes & Scooters</a><a href="offers.html" target="_blank">Offers</a><a href="gallery.html" target="_blank">Gallery</a><a href="about.html" target="_blank">About Us</a></div>
+<div><b style="font-size:12px">Support</b><a href="contact.html" target="_blank">Contact Us</a><a href="book-ride.html">Book Test Ride</a><a id="footerMapLink" href="#" target="_blank">Get Directions</a><a href="admin.html">Admin Panel</a></div>
+<div><b style="font-size:12px">Showroom</b><p style="font-size:11px;color:#9aa0a8;margin-top:6px" id="footerHours">Open: 9:30 AM - 7:30 PM</p><p style="font-size:11px;color:#9aa0a8" id="footerOwner">Owner: Yug Honda</p></div>
+</footer>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, collection, getDocs, doc, getDoc, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const app = initializeApp(firebaseConfig); const db = getFirestore(app);
+let allBikesData = []; let currentTenure=24; let currentPrice=80000; let globalSettings = {}; let globalOffers = { offerText: "", offerEnable: false, perBikeOffers: {}, festTitle: "", festOffer: "", festNote: "", festEnable: true, festBtn: "Explore Now →" };
+let allReviewsCache = [];
+async function fetchAllData() {
+  try {
+    const bikesSnap = await getDocs(collection(db, "bikes")); allBikesData = []; bikesSnap.forEach(d=>{ let data=d.data(); if(data.imgs && data.imgs[0] && data.imgs[0].length > 800000){ data.imgs = ['https://imgd.aeplcdn.com/664x374/n/cw/ec/1/versions/honda-sp-125-drum1725629300829.jpg']; } allBikesData.push({ id: d.id,...data }); });
+    if (allBikesData.length === 0) { let local = JSON.parse(localStorage.getItem('yug_bikes_v6') || '[]'); if (local.length > 0) allBikesData = local; }
+    const settingsSnap = await getDoc(doc(db, "settings", "main")); if (settingsSnap.exists()) { globalSettings = settingsSnap.data(); } else { globalSettings = JSON.parse(localStorage.getItem('yug_settings')||'{}'); }
+    const offersSnap = await getDoc(doc(db, "offers", "main")); if (offersSnap.exists()) { globalOffers = {...globalOffers,...offersSnap.data()}; } else { globalOffers.offerText = localStorage.getItem('yug_offer_text') || ""; globalOffers.offerEnable = localStorage.getItem('yug_offer_enable')!== 'false'; globalOffers.perBikeOffers = JSON.parse(localStorage.getItem('yug_per_bike_offers')||'{}'); }
+    renderBikes(); renderOfferBar(); renderFestivalBanner(); renderSettings(); await renderGallery(); loadReviews();
+  } catch (e) { console.error("Firebase fetch failed", e); document.getElementById('modelsContainer').innerHTML = `<div style="background:#fff;padding:20px;border-radius:12px;color:red"><b>Firebase Error:</b> ${e.message}</div>`; }
+}
+window.getBikes = () => allBikesData;
+window.renderBikes = function(){
+  let bikes = allBikesData.filter(b=>b.stock!==false); let container=document.getElementById('modelsContainer'); let emiSelect=document.getElementById('emiModel'); if(!container) return; emiSelect.innerHTML='';
+  if(bikes.length===0){ container.innerHTML='<p style="font-size:12px;color:#888;background:#fff;padding:20px;border-radius:10px;text-align:center">No bikes in Firebase yet.</p>'; return; }
+  container.innerHTML=bikes.map((b,idx)=>{ let trueIdx = allBikesData.findIndex(x=>x.id===b.id); let price=b.price || (b.specs && b.specs.find(s=>s.k==='price')?.v) || '0'; let offer = globalOffers.perBikeOffers[b.name] || ''; let firstImg=b.imgs && b.imgs[0]? b.imgs[0] : ''; return `<div class="card">${offer?`<div class="diag-ribbon" title="${offer}">SALE</div>`:''}<img src="${firstImg}" onerror="this.src='https://via.placeholder.com/200'"><h4>${b.name}</h4><p>${b.cat||''}</p><div class="price">Starting at <b>₹ ${Number(price).toLocaleString('en-IN')||price}*</b></div><button class="view" onclick="openDetail(${trueIdx})">View Details →</button><button class="view" style="background:#E4002B;color:#fff;border-color:#E4002B;margin-left:4px" onclick="bookTestRide('${b.name}')">Book Ride</button></div>` }).join('');
+  bikes.forEach(b=>{ let opt=document.createElement('option');opt.value=b.name;opt.textContent=b.name;emiSelect.appendChild(opt); }); onModelChange();
+}
+window.openDetail = function(i){ let bike = allBikesData[i]; if(bike){ localStorage.setItem('yug_view_bike_id', bike.id); localStorage.setItem('yug_view_bike', i); window.location.href='bike-detail.html?id='+bike.id; } }
+window.scrollToModels = function(){document.getElementById('modelsSection').scrollIntoView({behavior:'smooth'})}
+window.bookTestRide = function(bikeName){ if(bikeName){ window.location.href='book-ride.html?bike='+encodeURIComponent(bikeName); } else { let selected=document.getElementById('emiModel')?.value; if(selected){window.location.href='book-ride.html?bike='+encodeURIComponent(selected);} else {window.location.href='book-ride.html';} } }
+window.onModelChange = function(){ let bikeName=document.getElementById('emiModel').value; let bike=allBikesData.find(b=>b.name===bikeName); if(!bike) return; currentPrice=parseFloat(bike.price|| (bike.specs && bike.specs.find(s=>s.k==='price')?.v) ||80000); document.getElementById('emiPrice').innerText='₹ '+currentPrice.toLocaleString('en-IN'); onDownChange(); calcEMI(); }
+window.onDownChange = function(){ let per=document.getElementById('downRange').value; let downAmount=Math.round(currentPrice*per/100); document.getElementById('downVal').innerText='₹ '+downAmount.toLocaleString('en-IN'); document.getElementById('downPer').innerText=per+'%'; calcEMI(); }
+window.setTenure = function(months,el){ currentTenure=months; document.querySelectorAll('#tenureBtns button').forEach(b=>b.classList.remove('active')); el.classList.add('active'); calcEMI(); }
+window.calcEMI = function(){ let rate=parseFloat(globalSettings.emi||9); document.getElementById('emiRateShow').innerText=rate+'% PA'; let downPer=parseFloat(document.getElementById('downRange').value)||15; let downAmount=currentPrice*downPer/100; let loan=currentPrice-downAmount; if(loan<=0) loan=currentPrice*0.85; let r=rate/12/100; let n=currentTenure; let emi=(loan*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1); let total=emi*n; let interest=total-loan; document.getElementById('resLoan').innerText='₹ '+Math.round(loan).toLocaleString('en-IN'); document.getElementById('resEMI').innerText='₹ '+Math.round(emi).toLocaleString('en-IN')+' /mo'; document.getElementById('resInterest').innerText='₹ '+Math.round(interest).toLocaleString('en-IN'); document.getElementById('resTotal').innerText='₹ '+Math.round(total+downAmount).toLocaleString('en-IN'); }
+window.openMap = function(){ window.open(globalSettings.map||'https://maps.google.com/?q=Yug+Honda+Pusa','_blank')}
+function formatTel(p){ return p? p.replace(/\s+/g,''):''; }
+window.showContactChooser = function(title, numbers, type){
+  const modal=document.getElementById('contactModal'); const body=document.getElementById('contactModalBody'); document.getElementById('contactModalTitle').innerText=title; body.innerHTML='';
+  numbers.forEach(n=>{ if(!n.value) return; let icon=type==='call'?'fa-phone':'fa-whatsapp'; let col=type==='call'?'#111':'#25D366'; let div=document.createElement('div'); div.className='contact-option'; div.innerHTML=`<div style="display:flex;align-items:center;gap:10px"><div style="width:36px;height:36px;background:${col};color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center"><i class="fa-solid ${icon}"></i></div><div><b>${n.label}</b><br><span>${n.value}</span></div></div><i class="fa-solid fa-chevron-right" style="color:#ccc"></i>`; div.onclick=()=>{ if(type==='call'){ window.location.href=`tel:${formatTel(n.value)}`; }else{ let c=n.value.replace(/[^0-9]/g,''); window.open(`https://wa.me/${c}`,'_blank'); } closeContactModal(); }; body.appendChild(div); }); modal.classList.add('active');
+}
+window.closeContactModal = function(){ document.getElementById('contactModal').classList.remove('active'); }
+window.handleCallClick = function(dept){
+  let p1=dept==='sales'? (globalSettings.salesPhone1||globalSettings.phone):globalSettings.servicePhone1;
+  let p2=dept==='sales'? globalSettings.salesPhone2:globalSettings.servicePhone2;
+  let list=[]; if(p1) list.push({label:dept==='sales'?'Sales Number 1':'Service Number 1',value:p1}); if(p2&&p2.trim()!=='') list.push({label:dept==='sales'?'Sales Number 2':'Service Number 2',value:p2});
+  if(list.length===0){ alert('Number not configured'); return; } if(list.length===1){ window.location.href=`tel:${formatTel(list[0].value)}`; }else{ showContactChooser(dept==='sales'?'Choose Sales Number':'Choose Service Number',list,'call'); }
+}
+window.handleWhatsAppClick = function(dept){
+  let w1=dept==='sales'? (globalSettings.salesWA1||globalSettings.wa):globalSettings.serviceWA1; let w2=dept==='sales'? globalSettings.salesWA2:globalSettings.serviceWA2; if(!w1){ w1=dept==='sales'? (globalSettings.salesPhone1||globalSettings.phone):globalSettings.servicePhone1; }
+  let list=[]; if(w1) list.push({label:dept==='sales'?'Sales WhatsApp 1':'Service WhatsApp 1',value:w1}); if(w2&&w2.trim()!=='') list.push({label:dept==='sales'?'Sales WhatsApp 2':'Service WhatsApp 2',value:w2});
+  if(list.length===0){ alert('WhatsApp not configured'); return; } if(list.length===1){ let c=list[0].value.replace(/[^0-9]/g,''); window.open(`https://wa.me/${c}`,'_blank'); }else{ showContactChooser(dept==='sales'?'Choose Sales WhatsApp':'Choose Service WhatsApp',list,'whatsapp'); }
+}
+window.openWA = function(){ handleWhatsAppClick('sales'); }
+window.renderOfferBar = function(){ let text=globalOffers.offerText; let enable=globalOffers.offerEnable; if(text && enable!==false && enable!== 'false'){let bar=document.getElementById('offerBar');bar.style.display='block';bar.innerText='🎁 '+text+' - Click to view offers';} }
+window.renderFestivalBanner = function(){ let enable = globalOffers.festEnable; let banner = document.getElementById('festivalBanner'); if(enable===false || enable==='false'){ banner.style.display='none'; return; } let title = globalOffers.festTitle || 'YUG HONDA PUSA<br>FESTIVAL DHAMAKA'; let offer = globalOffers.festOffer || 'Shine 100 pe ₹2100 Cash Discount + Free Helmet + 5% Cashback upto ₹5000'; let note = globalOffers.festNote || 'Limited Time - Pusa Showroom Only'; let btn = globalOffers.festBtn || 'Explore Now →'; document.getElementById('festTitleShow').innerHTML = title.replace('\n','<br>'); document.getElementById('festOfferShow').innerText = offer; document.getElementById('festNoteShow').innerText = note; document.getElementById('festBtnShow').innerText = btn; banner.style.display='block'; }
+window.renderSettings = function(){
+  let s=globalSettings; if(!s||Object.keys(s).length===0) return;
+  let salesP1=s.salesPhone1||s.phone||''; let salesP2=s.salesPhone2||''; let salesEmail=s.salesEmail||s.email||'';
+  let serviceP1=s.servicePhone1||''; let serviceP2=s.servicePhone2||''; let serviceEmail=s.serviceEmail||'';
+  if(salesP1){ document.getElementById('headerPhone').innerText=salesP1; document.getElementById('showroomPhone').innerText=salesP1; document.getElementById('footerPhone').innerText=salesP1+(salesEmail?' | '+salesEmail:''); }
+  if(serviceP1){ document.getElementById('showroomServicePhone').innerText=serviceP1; document.getElementById('footerServicePhone').innerText='Service: '+serviceP1+(serviceEmail?' | '+serviceEmail:''); }
+  if(s.addr){document.getElementById('showroomAddr').innerText=s.addr;document.getElementById('footerAddr').innerText=s.addr;}
+  if(s.name){document.getElementById('showroomName').innerText=s.name;document.getElementById('footerName').innerText=s.name;document.getElementById('headerLogoName').innerText=s.name;}
+  if(s.hours){document.getElementById('showroomHours').innerText=s.hours;document.getElementById('footerHours').innerText='Open: '+s.hours;}
+  if(s.owner) document.getElementById('footerOwner').innerText='Owner: '+s.owner;
+  if(s.map) document.getElementById('footerMapLink').href=s.map;
+  if(s.fb && s.fb.trim()!=='') document.getElementById('fbLink').href=s.fb; else document.getElementById('fbLink').style.display='none';
+  if(s.insta && s.insta.trim()!=='') document.getElementById('instaLink').href=s.insta; else document.getElementById('instaLink').style.display='none';
+  if(s.yt && s.yt.trim()!=='') document.getElementById('ytLink').href=s.yt; else document.getElementById('ytLink').style.display='none';
+  if(s.wa||s.salesWA1){document.getElementById('waLink').href='https://wa.me/'+(s.salesWA1||s.wa); document.getElementById('waLink').style.display='flex';}
+  if(s.emi) document.getElementById('emiRateShow').innerText=s.emi+'% PA';
+}
+window.renderGallery = async function(){
+  let cont=document.getElementById('galleryContainer');
+  try { const galSnap = await getDocs(collection(db, "gallery")); let g = galSnap.docs.map(d=>d.data().src || d.data().url).filter(Boolean); if(g.length===0){ let localG = JSON.parse(localStorage.getItem('yug_gallery')||'[]'); g = localG; } if(g.length===0){ cont.innerHTML=``; return; } cont.innerHTML=g.slice(-6).map(src=>`<img src="${src}" onclick="window.open('gallery.html','_blank')" style="cursor:pointer">`).join(''); } catch(e){ let g=JSON.parse(localStorage.getItem('yug_gallery')||'[]'); if(g.length===0) cont.innerHTML=``; else cont.innerHTML=g.slice(-6).map(src=>`<img src="${src}" onclick="window.open('gallery.html','_blank')" style="cursor:pointer">`).join(''); }
+}
+function updateShowroomStatus(){ const now = new Date(); const hours = now.getHours() + now.getMinutes()/60; const open = 9.5; const close = 19.5; const isOpen = hours >= open && hours < close; const dot = document.getElementById('statusDot'); const text = document.getElementById('statusText'); const sub = document.getElementById('statusSub'); const badge = document.getElementById('statusBadge'); const timeEl = document.getElementById('currentTime'); if(!dot) return; timeEl.innerText = now.toLocaleString('en-IN', { weekday:'short', hour:'2-digit', minute:'2-digit', hour12:true }); if(isOpen){ dot.style.background = '#22c55e'; dot.style.animationName = 'pulse'; text.innerText = 'OPEN NOW'; text.style.color = '#166534'; badge.innerText = 'Live • Open'; badge.style.background = '#dcfce7'; badge.style.color = '#166534'; sub.innerText = 'Showroom is open • Closes at 7:30 PM today'; sub.style.color = '#16a34a'; } else { dot.style.background = '#ef4444'; dot.style.animationName = 'pulseRed'; text.innerText = 'CLOSED NOW'; text.style.color = '#991b1b'; badge.innerText = 'Closed'; badge.style.background = '#fee2e2'; badge.style.color = '#991b1b'; sub.style.color = '#dc2626'; if(hours < open){ sub.innerText = 'Showroom is closed • Opens at 9:30 AM today'; } else { sub.innerText = 'Showroom is closed • Opens at 9:30 AM tomorrow'; } } }
+
+// --- FIXED REVIEW SYSTEM (NO INDEX NEEDED) ---
+async function loadReviews(){
+  try{
+    const snap = await getDocs(collection(db, "reviews"));
+    let all = [];
+    snap.forEach(d=>{ all.push({id:d.id,...d.data()}) });
+    // Filter approved in JS (no composite index needed)
+    let approved = all.filter(r=>r.status==='approved');
+    // Sort by time in JS
+    approved.sort((a,b)=>{
+      let at = a.createdAt?.seconds || a.createdAt?.toMillis?.() || 0;
+      let bt = b.createdAt?.seconds || b.createdAt?.toMillis?.() || 0;
+      if(at && bt) return bt - at;
+      return 0;
+    });
+    allReviewsCache = approved;
+
+    let avg = 0;
+    if(approved.length>0){ avg = (approved.reduce((s,r)=>s+(r.rating||5),0)/approved.length).toFixed(1); document.getElementById('reviewAvg').innerText = `⭐ ${avg} (${approved.length} reviews)`; }
+
+    let show = approved.slice(0,4);
+    let html="";
+    show.forEach(r=>{
+      const stars="⭐".repeat(r.rating||5);
+      html+=`<div style="background:#f9fafb;border:1px solid #eee;padding:14px;border-radius:12px"><div style="color:#f59e0b;font-size:13px">${stars}</div><p style="margin-top:8px;font-size:13px;line-height:1.5;color:#333">"${r.message}"</p><b style="font-size:12px;margin-top:10px;display:block">- ${r.name}</b></div>`;
+    });
+    if(html==="") html="<p style='color:#888;font-size:13px;text-align:center;grid-column:1/-1'>No reviews yet. Be the first to review!</p>";
+    document.getElementById('reviewsList').innerHTML=html;
+
+    // Fill all reviews modal list too
+    let allHtml="";
+    approved.forEach(r=>{
+      const stars="⭐".repeat(r.rating||5);
+      allHtml+=`<div style="background:#f9fafb;border:1px solid #eee;padding:14px;border-radius:12px"><div style="color:#f59e0b;font-size:13px">${stars}</div><p style="margin-top:8px;font-size:13px;line-height:1.5;color:#333">"${r.message}"</p><b style="font-size:12px;margin-top:10px;display:block">- ${r.name}</b></div>`;
+    });
+    if(allHtml==="") allHtml="<p style='color:#888'>No reviews yet</p>";
+    document.getElementById('allReviewsList').innerHTML=allHtml;
+
+  }catch(e){
+    console.log("Reviews load error",e);
+    document.getElementById('reviewsList').innerHTML="<p style='color:red;font-size:12px'>Failed to load reviews: "+e.message+"</p>";
+  }
+}
+
+window.openAllReviews = function(){ document.getElementById('allReviewsModal').classList.add('active'); }
+window.closeAllReviews = function(){ document.getElementById('allReviewsModal').classList.remove('active'); }
+
+document.getElementById('rBtn').onclick = async function(){
+  const nameEl=document.getElementById('rName');
+  const msgEl=document.getElementById('rMsg');
+  const ratingEl=document.getElementById('rRating');
+  let name=nameEl.value.trim();
+  let message=msgEl.value.trim();
+  let rating=parseInt(ratingEl.value);
+  if(!name ||!message){ alert("Please enter name and review"); return; }
+  this.innerText="Submitting..."; this.disabled=true;
+  try{
+    await addDoc(collection(db, "reviews"), { name, rating, message, status: "pending", createdAt: serverTimestamp() });
+    alert("Thank you! Your review has been submitted for approval.");
+    nameEl.value=""; msgEl.value="";
+  }catch(err){ alert("Error: "+err.message); }
+  this.innerText="Submit Review"; this.disabled=false;
+}
+// --- REVIEW SYSTEM END ---
+
+fetchAllData(); updateShowroomStatus(); setInterval(updateShowroomStatus, 60000);
+document.getElementById('hamburgerBtn').onclick = () => { let m=document.getElementById('mobileMenu'); m.style.display = m.style.display==='flex'? 'none' : 'flex'; }
+</script>
+</body>
+</html>

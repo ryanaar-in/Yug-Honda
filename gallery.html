@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery - Yug Honda</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Outfit:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Inter',sans-serif;background:#f5f5f6}
+:root{--red:#E4002B}
+.header{background:#12171e;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:12px 4%;position:sticky;top:0;z-index:99}
+.header a{color:#9aa0a8;text-decoration:none;font-size:13px;margin-left:18px}
+.header a.active{color:#fff}
+.hero{background:#12171e;color:#fff;padding:36px 4%;text-align:center}
+.hero h1{font-family:'Outfit';font-size:34px}
+.hero p{font-size:12px;opacity:0.6;margin-top:6px}
+.gallery{max-width:1200px;margin:20px auto;padding:0 4% 30px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:900px){.gallery{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:500px){.gallery{grid-template-columns:1fr}}
+.item{position:relative;border-radius:12px;overflow:hidden;background:#fff;border:1px solid #eee;cursor:pointer;aspect-ratio:4/3}
+.item img{width:100%;height:100%;object-fit:cover;transition:0.3s}
+.item:hover img{transform:scale(1.06)}
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,0.92);display:none;align-items:center;justify-content:center;z-index:999;padding:20px}
+.lightbox.active{display:flex}
+.lightbox img{max-width:90vw;max-height:85vh;border-radius:10px}
+.lightbox .close{position:absolute;top:18px;right:20px;color:#fff;font-size:26px;cursor:pointer}
+.empty{grid-column:1/-1;text-align:center;padding:60px 20px;background:#fff;border-radius:12px;border:1px dashed #ddd}
+</style>
+</head>
+<body>
+<div class="header"><div><b id="headerName">YUG HONDA</b></div><div><a href="index.html">Home</a><a href="bikes.html">Bikes</a><a class="active" href="gallery.html">Gallery</a><a href="contact.html">Contact</a></div></div>
+
+<div class="hero">
+<h1>Our Gallery</h1>
+<p id="heroSub">Showroom, Bikes & Happy Customers - LIVE from Firebase</p>
+</div>
+
+<div class="gallery" id="galleryGrid"><p style="grid-column:1/-1;text-align:center;color:#888;font-size:12px;padding:20px">Loading from Firebase...</p></div>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+<span class="close"><i class="fa-solid fa-xmark"></i></span>
+<img id="lbImg" style="display:none">
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, collection, getDocs, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+async function loadGallery(){
+  try{
+    let items = [];
+    const snap = await getDocs(collection(db, "gallery"));
+    snap.docs.forEach(d=>{
+      let data = d.data();
+      let src = data.src || data.url;
+      if(src){
+        // Only keep images, ignore videos
+        if(data.type !== 'video' && !src.includes('.mp4')){
+          items.push(src);
+        }
+      }
+    });
+
+    if(items.length===0){
+      let images = JSON.parse(localStorage.getItem('yug_gallery')||'[]');
+      images.forEach(src=>{ if(src) items.push(src); });
+    }
+
+    try{
+      const sSnap = await getDoc(doc(db, "settings", "main"));
+      if(sSnap.exists() && sSnap.data().name){
+        document.getElementById('headerName').innerText=sSnap.data().name.toUpperCase();
+      }
+    }catch(e){}
+
+    let grid=document.getElementById('galleryGrid');
+    if(items.length===0){
+      grid.innerHTML=`
+      <div class="empty">
+        <i class="fa-regular fa-images" style="font-size:40px;color:#ccc;margin-bottom:12px;display:block"></i>
+        <b style="font-size:14px">No images yet</b>
+        <p style="font-size:11px;color:#888;margin-top:6px">Admin Panel > Gallery se add karo, yahan LIVE show hoga</p>
+      </div>`;
+      return;
+    }
+
+    grid.innerHTML=items.map(src=>`
+      <div class="item" onclick="openLightbox('${src}')">
+        <img src="${src}" loading="lazy" onerror="this.src='https://via.placeholder.com/300'">
+      </div>
+    `).join('');
+  }catch(e){
+    document.getElementById('galleryGrid').innerHTML='<p style="color:red">'+e.message+'</p>';
+  }
+}
+
+window.openLightbox = function(src){
+  let lb=document.getElementById('lightbox');
+  let img=document.getElementById('lbImg');
+  lb.classList.add('active');
+  img.style.display='block'; img.src=src;
+}
+window.closeLightbox = function(){
+  document.getElementById('lightbox').classList.remove('active');
+}
+
+loadGallery();
+</script>
+</body>
+</html>
